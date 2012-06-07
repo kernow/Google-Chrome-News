@@ -1,0 +1,10 @@
+{
+  "localityName": {
+    "message":      "Việt Nam (Vietnam)",
+    "description":  "The name of the local region"
+  },
+  "ned": {
+    "message":      "&ned=vi_vn",
+    "description":  "Specifies the feed edition to use"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "localityName": {
+    "message":      "台灣版 (Taiwan)",
+    "description":  "The name of the local region"
+  },
+  "ned": {
+    "message":      "&ned=tw",
+    "description":  "Specifies the feed edition to use"
+  }
+}

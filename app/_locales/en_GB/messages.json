@@ -1,0 +1,10 @@
+{
+  "localityName": {
+    "message":      "U.K.",
+    "description":  "The name of the local region"
+  },
+  "ned": {
+    "message":      "&ned=uk",
+    "description":  "Specifies the feed edition to use"
+  }
+}

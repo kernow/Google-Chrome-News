@@ -40,8 +40,10 @@ App.Articles = Backbone.Collection.extend({
 
   getFromFeed: function(){
     var collection = this;
+    var feedUri = chrome.i18n.getMessage("baseFeedUri") + chrome.i18n.getMessage("ned") + chrome.i18n.getMessage("TopStoriesParams");
+    console.warn('getting news from: ' + feedUri);
     jQuery.getFeed({
-      url: 'https://news.google.com/news/feeds?pz=1&cf=all&ned=uk&hl=en&output=rss',
+      url: feedUri,
       success: function(feed) {
         $.each(feed.items, function(i, item){
           // extract the image url from the description and use a larger version

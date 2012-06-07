@@ -1,0 +1,10 @@
+{
+  "localityName": {
+    "message":      "Россия (Russia)",
+    "description":  "The name of the local region"
+  },
+  "ned": {
+    "message":      "&ned=ru_ru",
+    "description":  "Specifies the feed edition to use"
+  }
+}

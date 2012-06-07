@@ -1,0 +1,10 @@
+{
+  "localityName": {
+    "message":      "India",
+    "description":  "The name of the local region"
+  },
+  "ned": {
+    "message":      "&ned=in",
+    "description":  "Specifies the feed edition to use"
+  }
+}

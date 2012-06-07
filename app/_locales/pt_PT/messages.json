@@ -1,0 +1,10 @@
+{
+  "localityName": {
+    "message":      "Portugal",
+    "description":  "The name of the local region"
+  },
+  "ned": {
+    "message":      "&ned=pt-PT_pt",
+    "description":  "Specifies the feed edition to use"
+  }
+}

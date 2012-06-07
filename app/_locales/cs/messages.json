@@ -1,0 +1,10 @@
+{
+  "localityName": {
+    "message":      "Česká republika",
+    "description":  "The name of the local region"
+  },
+  "ned": {
+    "message":      "&ned=cs_cz",
+    "description":  "Specifies the feed edition to use"
+  }
+}

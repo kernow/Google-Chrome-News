@@ -8,9 +8,9 @@ U.K.          http://news.google.com/news?&ned=uk&topic=n&output=rss
 Technology    http://news.google.com/news?ned=us&topic=tc&output=rss
 Entertainment http://news.google.com/news?ned=us&topic=e&output=rss
 Sports        http://news.google.com/news?ned=us&topic=s&output=rss
-Science       http://news.google.com/news?pz=1&cf=all&ned=us&hl=en&topic=snc&output=rss
+Science       http://news.google.com/news?ned=us&topic=snc&output=rss
 Health        http://news.google.com/news?ned=us&topic=m&output=rss
-Spotlight     http://news.google.com/news?pz=1&cf=all&ned=uk&hl=en&topic=ir&output=rss
+Spotlight     http://news.google.com/news?ned=uk&topic=ir&output=rss
 
 
 Info on feed parameters: http://blog.slashpoundbang.com/post/12975232033/google-news-search-parameters-the-missing-manual

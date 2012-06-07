@@ -1,0 +1,10 @@
+{
+  "localityName": {
+    "message":      "Norge",
+    "description":  "The name of the local region"
+  },
+  "ned": {
+    "message":      "&ned=no_no",
+    "description":  "Specifies the feed edition to use"
+  }
+}
