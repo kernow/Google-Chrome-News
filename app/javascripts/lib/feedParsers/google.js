@@ -51,6 +51,9 @@ App.googleFeed = {
       "category"    : item.category,
       "link"        : item.link,
       "updated"     : item.updated,
+      // set an updated time field so it can be used for sorting, we set this here rather than
+      // calculating it in the comparator method for efficiancy
+      "updatedTime" : new Date(item.updated).getTime(),
       "description" : item.description
     };
   }

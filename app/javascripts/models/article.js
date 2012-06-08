@@ -32,10 +32,9 @@ App.Articles = Backbone.Collection.extend({
   storeName:  "articles",
   model:      App.Article,
 
-  // sort articles by the updated field so that newest articles are first
+  // sort articles by the updatedTime field so that newest articles are first
   comparator: function(article) {
-    var time = new Date(article.get("updated")).getTime();
-    return -time;
+    return -article.get('updatedTime');
   },
 
   getFromFeed: function(feed){

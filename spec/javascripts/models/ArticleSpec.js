@@ -22,17 +22,26 @@ describe("Article", function() {
 
     beforeEach(function() {
       // create some articles
-      article1 = new App.Article($.extend({}, articleData, { "id": "1", "updated": "Mon, 10 Jun 2012 14:23:36 GMT" }));
-      article2 = new App.Article($.extend({}, articleData, { "id": "2", "updated": "Mon, 10 Jun 2012 09:23:36 GMT" }));
-      article3 = new App.Article($.extend({}, articleData, { "id": "3", "updated": "Mon, 11 Jun 2012 14:23:36 GMT" }));
+      article1 = new App.Article($.extend({}, articleData, {
+        "id": "1",
+        "updatedTime": new Date("Mon, 10 Jun 2012 14:23:36 GMT").getTime()
+      }));
+      article2 = new App.Article($.extend({}, articleData, {
+        "id": "2",
+        "updatedTime": new Date("Mon, 10 Jun 2012 09:23:36 GMT").getTime()
+      }));
+      article3 = new App.Article($.extend({}, articleData, {
+        "id": "3",
+        "updatedTime": new Date("Mon, 11 Jun 2012 14:23:36 GMT").getTime()
+      }));
       articles = new App.Articles([article1, article2, article3]);
     });
 
     it("should order the articles with the newest first", function() {
-      var dates = articles.pluck("updated");
-      expect(dates[0]).toEqual(article3.get("updated"));
-      expect(dates[1]).toEqual(article1.get("updated"));
-      expect(dates[2]).toEqual(article2.get("updated"));
+      var dates = articles.pluck("updatedTime");
+      expect(dates[0]).toEqual(article3.get("updatedTime"));
+      expect(dates[1]).toEqual(article1.get("updatedTime"));
+      expect(dates[2]).toEqual(article2.get("updatedTime"));
     });
 
   });
