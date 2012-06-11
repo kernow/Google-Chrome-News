@@ -12,6 +12,14 @@ App.ArticleView = Backbone.View.extend({
   render: function(){
     $(this.el).html(this.template(this.model.toJSON()));
     return this;
+  },
+  events: {
+    'click a': 'openLink'
+  },
+  openLink: function(){
+    console.log("loading link: ", this.model.get('link'));
+    // load the link into the browser tag plugin
+    newsbrowser.postMessage(this.model.get('link'));
   }
 });
 
