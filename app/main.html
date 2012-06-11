@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script src="javascripts/vendor/jquery-1.7.2.min.js"></script>
+    <script src="javascripts/vendor/underscore.min.js"></script>
+    <script src="javascripts/vendor/backbone.min.js"></script>
+    <script src="javascripts/vendor/backbone-indexeddb.js"></script>
+    <script src="javascripts/vendor/jfeed.min.js"></script>
+
+    <script src="javascripts/app.js"></script>
+    <script src="javascripts/models/article.js"></script>
+    <script src="javascripts/views/article-view.js"></script>
+    <script src="javascripts/setup.js"></script>
+
+    <script type="text/template" id="article-template">
+      <a href="javascript:;" data-link="<%= link %>">
+        <% if (image) { %>
+          <img src="<%= image %>" />
+        <% } %>
+        <p><%= category %></p>
+        <h1><%= title %></h1>
+        <p><%= source %></p>
+        <p><%= updated %></p>
+      </a>
+    </script>
+  </head>
+  <body>
+    <div id="container"></div>
+  </body>
+</html>
