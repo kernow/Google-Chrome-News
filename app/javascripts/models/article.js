@@ -38,27 +38,23 @@ App.Articles = Backbone.Collection.extend({
     return -time;
   },
 
-  getFromFeed: function(){
+  getFromFeed: function(feed){
     var collection = this;
-    var feedUri = chrome.i18n.getMessage("baseFeedUri") + chrome.i18n.getMessage("ned") + chrome.i18n.getMessage("TopStoriesParams");
+    var feedUri = feed.uri("topStories");
     console.warn('getting news from: ' + feedUri);
     jQuery.getFeed({
       url: feedUri,
       success: function(feed) {
         $.each(feed.items, function(i, item){
-          // extract the image url from the description and use a larger version
-          // TODO support articles that have no image
-          var image = $(item.description).find('img').eq(0).attr('src');
-          image = image.replace('0.jpg', '11.jpg').replace('//', 'http://');
-          item.image = image;
 
-          // extract the source from the title
-          var arr = item.title.split(/ - ([^\-]+)$/);
-          item.title = arr[0];
-          // tweak the title
-          item.source = arr[1];
-          var article = new App.Article(item);
+          // parse the feed using the supplied feed parser
+          var parsedItem = feed.parseItem(item);
+
+          // create a new article record
+          var article = new App.Article(parsedItem);
           article.save();
+
+
           collection.add(article);
         });
       }

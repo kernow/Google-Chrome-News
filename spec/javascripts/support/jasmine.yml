@@ -44,6 +44,7 @@ stylesheets:
 helpers:
   - helpers/**/*.js
   - matchers/**/*.js
+  - vendor/jsmocha.js
 
 # spec_files
 #
