@@ -11,14 +11,14 @@
  */
 
 App.articlesDatabase = {
-  id: "articles-database",
+  id: "google-news-database",
   description: "News acrticles",
   migrations : [{
-      version: 1,
-      migrate:function (transaction, next) {
-        var store = transaction.db.createObjectStore("articles");
-        next();
-      }
+    version: 1,
+    migrate:function (transaction, next) {
+      var store = transaction.db.createObjectStore("articles");
+      next();
+    }
   }]
 };
 
@@ -39,19 +39,22 @@ App.Articles = Backbone.Collection.extend({
 
   getFromFeed: function(feed){
     var collection = this;
-    var feedUri = feed.uri("topStories");
-    console.warn('getting news from: ' + feedUri);
-    jQuery.getFeed({
-      url: feedUri,
-      success: function(result) {
-        $.each(result.items, function(i, item){
+    _.each(App.settings.get('categories'), function(category){
+      var feedUri = feed.uri(category);
+      console.warn('getting news from: ' + feedUri);
+      jQuery.getFeed({
+        url: feedUri,
+        success: function(result) {
+          $.each(result.items, function(i, item){
 
-          // parse the feed using the supplied feed parser
-          var parsedItem = feed.parseItem(item);
-          collection.storeImage(parsedItem);
-        });
-      }
+            // parse the feed using the supplied feed parser
+            var parsedItem = feed.parseItem(item);
+            collection.storeImage(parsedItem);
+          });
+        }
+      });
     });
+
   },
 
   saveItem: function(item){

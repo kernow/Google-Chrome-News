@@ -4,7 +4,47 @@
  */
 
 /*global App: false, Filer: false */
+
 $(function() {
+
+  // initialize settings
+
+  // Create a new settings model
+  App.settings = new App.Settings();
+
+  // Fetch the settings from the sync storage
+  App.settings.fetch({
+    success: function(){
+
+      // If no categories have been previously stored load the defaults from the json file
+      if(!App.settings.get('categories')){
+        console.log('loading default categories');
+        $.getJSON('javascripts/settings.json', function(data) {
+
+          // Save the categories in the settings model
+          App.settings.save({ "categories" : data.defaultCategories });
+
+          // Now we have the settings loaded we can initialize the articles
+          App.initializeArtilces();
+        });
+      }else{
+
+        // Settings have been fetched so we can initialize the articles
+        App.initializeArtilces();
+      }
+    }
+  });
+
+  $(window).scroll(function(){
+    if($(this).scrollTop() > 0){
+      $("body").addClass("in_scroll");
+    }else{
+      $("body").removeClass("in_scroll");
+    }
+  });
+});
+
+App.initializeArtilces = function(){
   // initialize filer
   App.filer = new Filer();
   App.filer.init({persistent: true, size: 1024 * 1024}, function(fs) {
@@ -22,12 +62,4 @@ $(function() {
   }, function(e){
     console.warn('error: ', e);
   });
-
-  $(window).scroll(function(){
-    if($(this).scrollTop() > 0){
-      $("body").addClass("in_scroll");
-    }else{
-      $("body").removeClass("in_scroll");
-    }
-  });
-});
+};

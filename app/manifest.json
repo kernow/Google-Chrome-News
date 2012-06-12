@@ -21,6 +21,7 @@
   // "content_security_policy": "script-src 'self'; object-src 'self' https://nt3.ggpht.com",
   "permissions": [
     "unlimitedStorage",
+    "storage",
     "notifications",
     "appWindow",
     "experimental",
