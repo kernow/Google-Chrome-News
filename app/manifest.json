@@ -8,13 +8,14 @@
   "description": "Read news",
   "version": "1",
   "default_locale": "en",
+  "manifest_version": 2,
   "app": {
-    "launch": {
-      "local_path": "main.html"
+    "background": {
+      "scripts": ["javascripts/background.js"]
     }
   },
   "icons": {
     "128": "icon_128.png"
   },
-  "permissions": [ "unlimitedStorage", "notifications", "http://*/*" ]
+  "permissions": [ "unlimitedStorage", "notifications", "http://*/*", "appWindow"]
 }
