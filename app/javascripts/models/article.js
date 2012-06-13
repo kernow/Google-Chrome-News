@@ -43,8 +43,8 @@ App.Articles = Backbone.Collection.extend({
     console.warn('getting news from: ' + feedUri);
     jQuery.getFeed({
       url: feedUri,
-      success: function(feed) {
-        $.each(feed.items, function(i, item){
+      success: function(result) {
+        $.each(result.items, function(i, item){
 
           // parse the feed using the supplied feed parser
           var parsedItem = feed.parseItem(item);
