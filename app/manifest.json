@@ -17,5 +17,14 @@
   "icons": {
     "128": "icon_128.png"
   },
-  "permissions": [ "unlimitedStorage", "notifications", "http://*/*", "appWindow", "experimental"]
+  "offline_enabled": true,
+  // "content_security_policy": "script-src 'self'; object-src 'self' https://nt3.ggpht.com",
+  "permissions": [
+    "unlimitedStorage",
+    "notifications",
+    "appWindow",
+    "experimental",
+    "http://nt3.ggpht.com/*",
+    "http://*/*"
+  ]
 }
