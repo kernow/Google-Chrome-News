@@ -19,7 +19,7 @@ App.ArticleView = Backbone.View.extend({
   openLink: function(){
     console.log("loading link: ", this.model.get('link'));
     // load the link into the browser tag plugin
-    newsbrowser.postMessage(this.model.get('link'));
+    news_browser.postMessage(this.model.get('link'));
   }
 });
 
@@ -31,14 +31,14 @@ App.ArticlesView = App.ArticleView.extend({
     this.collection.bind('remove', this.remove);
   },
   add: function(article){
-    $('#container').prepend(new App.ArticleView({ model: article, id: 'article-' + article.cid }).render().el);
+    $('#news_container').prepend(new App.ArticleView({ model: article, id: 'article-' + article.cid }).render().el);
   },
   remove: function(article){
     $('#article-' + article.cid).remove();
   },
   render: function(){
     this.collection.each(function(article){
-      $('#container').append(new App.ArticleView({ model: article, id: 'article-' + article.cid }).render().el);
+      $('#news_container').append(new App.ArticleView({ model: article, id: 'article-' + article.cid }).render().el);
     });
     return this;
   }

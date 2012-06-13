@@ -1,0 +1,28 @@
+#main_nav{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .4);
+  background: -webkit-linear-gradient(top, #333 0%,#060606 100%);
+}
+
+.right_icon_list{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+  .icon_list li{ display: inline-block; }
+  
+    .icon_list li a{
+      display: block;
+      padding: 1.5em;
+      font-weight: 600;
+      text-transform: uppercase; 
+      color: #fff; 
+    }
+    
+    .icon{
+      font-family: ;
+    }

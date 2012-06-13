@@ -1,5 +1,13 @@
 <html>
   <head>
+    <title>Chrome News App</title>
+    
+    <style type="text/css">
+      @import url("stylesheets/reset.css");
+      @import url("stylesheets/base.css");
+      @import url("stylesheets/ui/navigation.css");
+    </style>
+    
     <script src="javascripts/vendor/jquery-1.7.2.min.js"></script>
     <script src="javascripts/vendor/underscore.min.js"></script>
     <script src="javascripts/vendor/backbone.min.js"></script>
@@ -26,7 +34,17 @@
     </script>
   </head>
   <body>
-    <div id="container"></div>
-    <object id="newsbrowser" src="about:blank" type="application/browser-plugin" style="position: fixed; top: 0; right: 0; height: 100%; width: 640px"></object>
+    <nav id="main_nav">
+      <ul class="icon_list">
+        <li class="icon"><a href="/search/" id="search_trigger">s</a></li>
+        <li><a href="/categories/" id="categories_trigger">Categories</a></li>
+      </ul>
+      <ul class="icon_list right_icon_list">
+        <li class="icon"><a href="/settings/" id="settings_trigger">y</a></li>
+        <li class="icon"><a href="#" id="fullscreen_trigger">`</a></li>
+      </ul>
+    </nav>
+    <ol id="news_container"></ol>
+    <object id="news_browser" src="about:blank" type="application/browser-plugin"></object>
   </body>
 </html>
