@@ -8,18 +8,15 @@ window.App = {};
 
 jQuery("document").ready(function(){
   jQuery(window).scroll(function(){
-    if($(this).scrollTop() > 0){
-      $("body").addClass("in_scroll");
+    if(jQuery(this).scrollTop() > 0){
+      jQuery("body").addClass("in_scroll");
     }else{
-      $("body").removeClass("in_scroll");
+      jQuery("body").removeClass("in_scroll");
     }
-  });
-  
-  $(".news_item").click(function(){
-    alert("test");
   });
 });
 
 jQuery(window).load(function(){
   jQuery("#news_container").masonry({ isFitWidth: true });
+  setTimeout(function(){ jQuery("body").addClass("news_loaded"); }, 900);
 });
