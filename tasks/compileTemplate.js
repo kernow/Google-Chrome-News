@@ -8,9 +8,9 @@ exports.compile = function(file){
 
 exports.write = function(file, templates){
   var code = 'App.templates = {';
-  _und.each(templates, function(template, key) {
-    code += '"'+key+'": '+template+',';
-  });
+  code += _und.map(templates, function(template, key) {
+    return'"'+key+'": '+template;
+  }).join(',');
   code += '};';
   fs.writeFileSync(file, code, 'utf8');
 };
