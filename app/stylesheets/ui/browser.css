@@ -1,12 +1,14 @@
 #browser_container{
-  display: none;
   position: fixed;
-  top: 0;
+  top: 4.5em;
   right: 0;
   bottom: 0;
-  left: 30%;
+  left: 100%;
   -webkit-box-shadow: -2px 0px 5px 0px rgba(0, 0, 0, .1);
+  -webkit-transition: left .45s ease;
 }
+
+  .news_loaded #browser_container{ left: 30%; }
 
   #news_browser{
     width: 100%;

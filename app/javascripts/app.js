@@ -14,6 +14,10 @@ jQuery("document").ready(function(){
       $("body").removeClass("in_scroll");
     }
   });
+  
+  $(".news_item").click(function(){
+    alert("test");
+  });
 });
 
 jQuery(window).load(function(){
