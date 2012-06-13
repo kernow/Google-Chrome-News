@@ -25,6 +25,7 @@
     "appWindow",
     "experimental",
     "http://nt3.ggpht.com/*",
+    "http://news.google.com/*",
     "http://*/*"
   ]
 }

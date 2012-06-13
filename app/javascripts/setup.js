@@ -3,12 +3,25 @@
  * Last changed:  2012-06-11
  */
 
-/*global App: false */
+/*global App: false, Filer: false */
 $(function() {
-  // Setup code goes here
-  App.articles = new App.Articles();
-  new App.ArticlesView({ collection: App.articles });
-  App.articles.fetch();
+  // initialize filer
+  App.filer = new Filer();
+  App.filer.init({persistent: true, size: 1024 * 1024}, function(fs) {
+    // filer.size == Filer.DEFAULT_FS_SIZE
+    // filer.isOpen == true
+    // filer.fs == fs
+    console.warn('filer initialized');
+
+    App.articles = new App.Articles();
+    new App.ArticlesView({ collection: App.articles });
+    App.articles.fetch();
+
+    // once our file storage is initialised we can load articles
+    App.articles.getFromFeed(App.googleFeed);
+  }, function(e){
+    console.warn('error: ', e);
+  });
 
   $(window).scroll(function(){
     if($(this).scrollTop() > 0){
