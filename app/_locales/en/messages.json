@@ -24,27 +24,27 @@
     "description":  "Parameters string to load business news"
   },
   "technologyParams": {
-    "message":      "topic=tc",
+    "message":      "&topic=tc",
     "description":  "Parameters string to load technology news"
   },
   "entertainmentParams": {
-    "message":      "topic=e",
+    "message":      "&topic=e",
     "description":  "Parameters string to load entertainment news"
   },
   "sportsParams": {
-    "message":      "topic=s",
+    "message":      "&topic=s",
     "description":  "Parameters string to load sports news"
   },
   "scienceParams": {
-    "message":      "topic=snc",
+    "message":      "&topic=snc",
     "description":  "Parameters string to load science news"
   },
   "healthParams": {
-    "message":      "topic=m",
+    "message":      "&topic=m",
     "description":  "Parameters string to load health news"
   },
   "spotlightParams": {
-    "message":      "topic=ir",
+    "message":      "&topic=ir",
     "description":  "Parameters string to load spotlight news"
   }
 }
