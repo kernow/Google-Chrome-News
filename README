@@ -1,3 +1,17 @@
+# Getting Setup
+
+You will need node JS with the Jake package which can ben installed using
+
+`npm install -g jake`
+
+Then run `jake build` to build the app before running it. To see a list of tasks run `jake -T`
+
+# Testing
+
+Currently Rake is used to run the test suite so ruby 1.9.3 will need to be installed with ruby gems and bundler. Then run `rake jamsmine` to get the test server running.
+
+# Notes
+
 Google Feeds:
 
 Top Stories   http://news.google.com/news?ned=us&topic=h&output=rss
