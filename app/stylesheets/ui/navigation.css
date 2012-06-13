@@ -3,9 +3,13 @@
   top: 0;
   right: 0;
   left: 0;
+  z-index: 9999;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .4);
   background: -webkit-linear-gradient(top, #333 0%, #060606 100%);
+  -webkit-transition: opacity .6s ease;
 }
+
+.in_scroll #main_nav{ opacity: .6; }
 
 .right_icon_list{
   position: absolute;
@@ -13,9 +17,7 @@
   right: 4px;
 }
 
-  .icon_list li{ 
-    display: inline-block; 
-  }
+  .icon_list li{ display: inline-block; }
   
     .icon_list li a{
       display: block;
