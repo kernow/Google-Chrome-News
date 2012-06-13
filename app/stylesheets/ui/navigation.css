@@ -53,3 +53,9 @@
         background: -webkit-linear-gradient(top, #444 0%, #111 100%);
         opacity: 1; 
       }
+      
+      .icon_list li a:active{ 
+        -webkit-box-shadow: inset 0px 2px 5px 0px rgba(0, 0, 0, 1);
+        background: -webkit-linear-gradient(top, #000 0%, #222 100%);
+        opacity: 1; 
+      }
