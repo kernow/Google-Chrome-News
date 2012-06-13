@@ -14,10 +14,11 @@ App.googleFeed = {
 
   parseItem: function(item){
     var image, arr, len, title, source;
+
     // extract the image uri from the description and use a larger version
-    image = $(item.description).find('img').eq(0).attr('src');
+    image = $('img', item.description).eq(0).attr('src');
     if (image) {
-      image = image.replace(/\/0\.jpg$/, '/11.jpg').replace(/^\/\//, 'http://');
+      image = image.replace(/\/0\.jpg$/, '/11.jpg').replace(/^\/\//, 'https://');
     }else{
       image = "";
     }
