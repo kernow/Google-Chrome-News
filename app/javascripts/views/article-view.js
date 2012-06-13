@@ -7,10 +7,10 @@
 
 App.ArticleView = Backbone.View.extend({
   initialize: function(){
-    this.template = _.template($('#article-template').html());
+    // this.template = _.template($('#article-template').html());
   },
   render: function(){
-    $(this.el).html(this.template(this.model.toJSON()));
+    $(this.el).html(App.templates.article(this.model.toJSON()));
     return this;
   },
   events: {
