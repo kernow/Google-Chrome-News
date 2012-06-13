@@ -18,20 +18,8 @@
     <script src="javascripts/lib/feedParsers/google.js"></script>
     <script src="javascripts/models/article.js"></script>
     <script src="javascripts/views/article-view.js"></script>
-    <script src="javascripts/templates/article.js"></script>
+    <script src="javascripts/templates.js"></script>
     <script src="javascripts/setup.js"></script>
-
-    <script type="text/template" id="article-template">
-      <a href="javascript:;" data-link="<%= link %>">
-        <% if (image) { %>
-          <img src="<%= image %>" />
-        <% } %>
-        <p><%= category %></p>
-        <h1><%= title %></h1>
-        <p><%= source %></p>
-        <p><%= updated %></p>
-      </a>
-    </script>
   </head>
   <body>
     <nav id="main_nav">
