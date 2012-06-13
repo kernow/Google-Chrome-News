@@ -1,0 +1,22 @@
+#news_container{ margin: auto; }
+
+  .news_item{
+    margin: 30px;
+    width: 150px;
+    float: left;
+    border-radius: 1px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .2);
+    background: #fff;
+  }
+
+    .news_meta{ padding: 6%; }
+  
+      .news_meta_item{ font-size: .75em; }
+    
+      .news_category{
+        padding: 5% 5% 0 5%;
+        border-top: .5em solid #333;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #333;
+      }

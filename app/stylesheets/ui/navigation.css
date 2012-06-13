@@ -9,7 +9,9 @@
   -webkit-transition: opacity .6s ease;
 }
 
-.in_scroll #main_nav{ opacity: .6; }
+.in_scroll #main_nav{ opacity: .9; }
+
+#main_nav:hover{ opacity: 1; }
 
 .right_icon_list{
   position: absolute;

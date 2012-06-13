@@ -15,3 +15,7 @@ jQuery("document").ready(function(){
     }
   });
 });
+
+jQuery(window).load(function(){
+  jQuery("#news_container").masonry({ isFitWidth: true });
+});
