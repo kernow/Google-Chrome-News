@@ -31,6 +31,7 @@ App.ArticlesView = App.ArticleView.extend({
   },
   add: function(article){
     $('#news_container').prepend(this.createArtilceView(article).render().el);
+    $(".timeago").timeago();
   },
   remove: function(article){
     $('#article-' + article.cid).remove();
@@ -40,6 +41,7 @@ App.ArticlesView = App.ArticleView.extend({
     this.collection.each(function(article){
       $('#news_container').append(self.createArtilceView(article).render().el);
     });
+    $(".timeago").timeago();
     return this;
   },
   createArtilceView: function(article){
