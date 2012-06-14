@@ -13,11 +13,11 @@ App.ArticleView = Backbone.View.extend({
     return this;
   },
   events: {
-    'click': 'openLink'
+    "click": "openLink"
   },
   openLink: function(){
-    console.log("loading link: ", this.model.get('link'));
-    // load the link into the browser tag plugin
+    $("body").toggleClass("news_loaded");
+    
     news_browser.postMessage(this.model.get('link'));
   }
 });
@@ -42,6 +42,9 @@ App.ArticlesView = App.ArticleView.extend({
       $('#news_container').append(self.createArtilceView(article).render().el);
     });
     $(".timeago").timeago();
+    
+    $("#news_container").masonry({ isFitWidth: true });
+    
     return this;
   },
   createArtilceView: function(article){

@@ -17,10 +17,4 @@ $(function() {
       $("body").removeClass("in_scroll");
     }
   });
-
-});
-
-$(window).load(function(){
-  $("#news_container").masonry({ isFitWidth: true });
-  setTimeout(function(){ $("body").addClass("news_loaded"); }, 900);
 });

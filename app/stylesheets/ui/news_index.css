@@ -1,6 +1,6 @@
 #news_container{ 
   margin: auto; 
-  -webkit-transition: -webkit-filter 3s ease;
+  -webkit-transition: -webkit-filter 1.5s ease;
 }
 
 .news_loaded #news_container{ 
