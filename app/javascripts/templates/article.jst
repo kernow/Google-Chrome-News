@@ -1,11 +1,9 @@
-<li class="news_item">
-  <a href="javascript:;" data-link="<%= link %>">
-    <% if (image) { %>
-      <img src="<%= image %>" />
-    <% } %>
-    <p><%= category %></p>
-    <h1><%= title %></h1>
-    <p><%= source %></p>
-    <p><%= updated %></p>
-  </a>
-</li>
+<% if (image) { %>
+  <img src="<%= image %>" />
+<% } %>
+<p class="news_category"><%= category %></p>
+<div class="news_meta">
+  <h1 class="primary_header"><a href="#" rel="bookmark"><%= title %></a></h1>
+  <p class="news_meta_item"><%= source %></p>
+  <p class="news_meta_item timeago" title="<%= new Date(updated).toISOString() %>"><%= updated %></p>
+</div>

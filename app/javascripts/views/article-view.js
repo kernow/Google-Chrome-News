@@ -6,15 +6,14 @@
 /*global App: false, newsbrowser: false */
 
 App.ArticleView = Backbone.View.extend({
-  initialize: function(){
-    // this.template = _.template($('#article-template').html());
-  },
+  tagName:    "li",
+
   render: function(){
     $(this.el).html(App.templates.article(this.model.toJSON()));
     return this;
   },
   events: {
-    'click a': 'openLink'
+    'click': 'openLink'
   },
   openLink: function(){
     console.log("loading link: ", this.model.get('link'));
@@ -31,15 +30,23 @@ App.ArticlesView = App.ArticleView.extend({
     this.collection.bind('remove', this.remove);
   },
   add: function(article){
-    $('#news_container').prepend(new App.ArticleView({ model: article, id: 'article-' + article.cid }).render().el);
+    $('#news_container').prepend(this.createArtilceView(article).render().el);
   },
   remove: function(article){
     $('#article-' + article.cid).remove();
   },
   render: function(){
+    var self = this;
     this.collection.each(function(article){
-      $('#news_container').append(new App.ArticleView({ model: article, id: 'article-' + article.cid }).render().el);
+      $('#news_container').append(self.createArtilceView(article).render().el);
     });
     return this;
+  },
+  createArtilceView: function(article){
+    return new App.ArticleView({
+      model:      article,
+      id:         "article-" + article.cid,
+      className:  "news_item in_category_" + article.get("category").toLowerCase().split(' ').join('_')
+    });
   }
 });
