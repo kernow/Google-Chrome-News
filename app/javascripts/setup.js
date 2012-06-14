@@ -9,4 +9,18 @@ $(function() {
   App.articles = new App.Articles();
   new App.ArticlesView({ collection: App.articles });
   App.articles.fetch();
+
+  $(window).scroll(function(){
+    if($(this).scrollTop() > 0){
+      $("body").addClass("in_scroll");
+    }else{
+      $("body").removeClass("in_scroll");
+    }
+  });
+
+});
+
+$(window).load(function(){
+  $("#news_container").masonry({ isFitWidth: true });
+  setTimeout(function(){ $("body").addClass("news_loaded"); }, 900);
 });
