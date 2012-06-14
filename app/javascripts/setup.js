@@ -11,14 +11,14 @@ $(function() {
     // filer.size == Filer.DEFAULT_FS_SIZE
     // filer.isOpen == true
     // filer.fs == fs
-    console.warn('filer initialized');
 
     App.articles = new App.Articles();
     new App.ArticlesView({ collection: App.articles });
-    App.articles.fetch();
-
-    // once our file storage is initialised we can load articles
-    App.articles.getFromFeed(App.googleFeed);
+    App.articles.fetch({
+      success: function(){
+        App.articles.getFromFeed(App.googleFeed);
+      }
+    });
   }, function(e){
     console.warn('error: ', e);
   });
