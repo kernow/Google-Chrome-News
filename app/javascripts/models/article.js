@@ -82,5 +82,12 @@ App.Articles = Backbone.Collection.extend({
     };
     xhr.open("GET", item.image);
     xhr.send();
+  },
+
+  // removes all articles from the database
+  removeAll: function(){
+    _.chain(App.articles.models).clone().each(function(model){
+      model.destroy();
+    });
   }
 });
