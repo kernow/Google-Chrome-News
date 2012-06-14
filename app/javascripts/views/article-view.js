@@ -45,7 +45,11 @@ App.ArticlesView = App.ArticleView.extend({
     
     $(".timeago").timeago();
     
-    $("#news_container").masonry({ isFitWidth: true });
+    $("#news_container").imagesLoaded(function(){
+      console.log("images loaded");
+      
+      $("#news_container").masonry({ isFitWidth: true });
+    });
     
     return this;
   },

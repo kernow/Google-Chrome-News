@@ -17,6 +17,12 @@
     background: #fff;
     cursor: pointer;
   }
+  
+    .news_item img{
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
     .news_meta{ padding: 6%; }
   
