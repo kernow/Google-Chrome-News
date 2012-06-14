@@ -38,9 +38,11 @@ App.ArticlesView = App.ArticleView.extend({
   },
   render: function(){
     var self = this;
+    
     this.collection.each(function(article){
       $('#news_container').append(self.createArtilceView(article).render().el);
     });
+    
     $(".timeago").timeago();
     
     $("#news_container").masonry({ isFitWidth: true });
