@@ -3,7 +3,7 @@
  * Last changed:  2012-06-11
  */
 
-/*global App: false, newsbrowser: false */
+/*global App: false, news_browser: false */
 
 App.ArticleView = Backbone.View.extend({
   tagName:    "li",
