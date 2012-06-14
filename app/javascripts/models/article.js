@@ -48,15 +48,39 @@ App.Articles = Backbone.Collection.extend({
 
           // parse the feed using the supplied feed parser
           var parsedItem = feed.parseItem(item);
-
-          // create a new article record
-          var article = new App.Article(parsedItem);
-          article.save();
-
-
-          collection.add(article);
+          collection.storeImage(parsedItem);
         });
       }
     });
+  },
+
+  saveItem: function(item){
+    // TODO only save new articles, update existing ones
+    var article = new App.Article(item);
+    article.save();
+    this.add(article);
+  },
+
+  // grabbs the remote image linked in the article and saves it to the local store
+  storeImage: function(item, callback){
+    var xhr = new XMLHttpRequest();
+    var collection = this;
+    xhr.responseType = "arraybuffer";
+    xhr.onload = function() {
+      var d = xhr.response;
+      var newUrl = encodeURIComponent(item.image);
+      var contentType = xhr.getResponseHeader('Content-Type');
+      App.filer.write(
+        newUrl,
+        {data: d, type: contentType},
+        function(fileEntry, fileWriter) {
+          item.image = fileEntry.toURL();
+          collection.saveItem(item);
+        },
+        function(e) {console.warn(e);}
+      );
+    };
+    xhr.open("GET", item.image);
+    xhr.send();
   }
 });
