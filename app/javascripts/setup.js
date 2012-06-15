@@ -46,7 +46,14 @@ App.initializeArtilces = function(){
     new App.ArticlesView({ collection: App.articles });
     App.articles.fetch({
       success: function(){
+
+        // Load articles on initialisation
         App.articles.getFromFeed(App.googleFeed);
+
+        // Load new articles every minute
+        setInterval(function() {
+          App.articles.getFromFeed(App.googleFeed);
+        }, 60000);
       }
     });
   }, function(e){
