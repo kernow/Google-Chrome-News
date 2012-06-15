@@ -46,7 +46,8 @@ App.ArticlesView = App.ArticleView.extend({
       $('#news_container').append(self.createArtilceView(article).render().el);
     });
     
-    $("#news_container").masonry('reload');
+    $("#news_container").masonry("reload");
+    
     
     this.postRender();
 
