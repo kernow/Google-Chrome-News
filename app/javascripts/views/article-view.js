@@ -18,7 +18,7 @@ App.ArticleView = Backbone.View.extend({
   openLink: function(){
     $("body").toggleClass("news_loaded");
     console.log('loading link: ', this.model.get('link'));
-    news_browser.postMessage(this.model.get('link'));
+    $('#browser_container').empty().append(App.templates.browser(this.model.toJSON()));
   }
 });
 
