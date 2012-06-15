@@ -13,7 +13,9 @@ __p+='';
 ( title )+
 '</a></h1>\n  <p class="news_meta_item">'+
 ( source )+
-'</p>\n  <p class="news_meta_item timeago" title="'+
+'</p>\n  <p class="news_meta_item timeago" data-sort_by="'+
+( updatedTime )+
+'" title="'+
 ( new Date(updated).toISOString() )+
 '">'+
 ( updated )+
