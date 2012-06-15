@@ -17,11 +17,15 @@
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .2);
     background: #fff;
     cursor: pointer;
+    -webkit-transition: opacity .3s ease;
   }
+  
+  .news_item:hover{ opacity: .7; }
   
     .news_item img{
       display: block;
-      width: 100%;
+      width: 150px;
+      height: 150px;
       height: auto;
     }
 
@@ -30,6 +34,7 @@
       .news_meta_item{ font-size: .75em; }
     
       .news_category{
+        margin-bottom: -5%;
         padding: 5% 5% 0 5%;
         border-top: .5em solid #333;
         font-weight: 600;

@@ -4,7 +4,7 @@
   bottom: 0;
   right: 0;
   left: 100%;
-  background: #000;
+  background: #fff;
   -webkit-box-shadow: -2px 0px 5px 0px rgba(0, 0, 0, .1);
   -webkit-transition: all .15s ease;
 }

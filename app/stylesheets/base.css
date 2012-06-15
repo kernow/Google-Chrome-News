@@ -1,13 +1,17 @@
+html{ background: #f1f1f1; }
+
 body{
   padding-top: 4.5em;
-  -webkit-transform: translate3d(0, 0, 0);
-  background: #f1f1f1;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
-  color: #999;
   font: .75em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: transparent;
+  color: #999;
 }
+
+.news_loaded{ overflow: hidden; }
 
 a{
   color: #000;
   text-decoration: none;
 }
+
+#main_nav, .news_item{ -webkit-transform: translate3d(0, 0, 0); }
