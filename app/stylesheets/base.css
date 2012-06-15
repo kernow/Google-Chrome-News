@@ -1,5 +1,6 @@
 body{
   padding-top: 4.5em;
+  -webkit-transform: translate3d(0, 0, 0);
   background: #f1f1f1;
   background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
   color: #999;

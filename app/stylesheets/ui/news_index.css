@@ -1,6 +1,7 @@
 #news_container{ 
-  margin: auto; 
-  -webkit-transition: -webkit-filter 1.5s ease;
+  margin: 15px auto;
+  -webkit-transition: opacity .75s ease;
+  -webkit-transition: -webkit-filter .75s ease;
 }
 
 .news_loaded #news_container{ 
@@ -9,7 +10,7 @@
 }
 
   .news_item{
-    margin: 30px;
+    margin: 15px;
     width: 150px;
     float: left;
     border-radius: 1px;
@@ -17,6 +18,12 @@
     background: #fff;
     cursor: pointer;
   }
+  
+    .news_item img{
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
     .news_meta{ padding: 6%; }
   

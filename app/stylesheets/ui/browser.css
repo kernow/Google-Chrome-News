@@ -1,18 +1,17 @@
 #browser_container{
   position: fixed;
   top: 4.5em;
-  right: 0;
   bottom: 0;
+  right: 0;
   left: 100%;
+  background: #000;
   -webkit-box-shadow: -2px 0px 5px 0px rgba(0, 0, 0, .1);
-  -webkit-transition: left .15s ease;
+  -webkit-transition: all .15s ease;
 }
 
   .news_loaded #browser_container{ left: 30%; }
 
   #news_browser{
-    display: block;
-    background: #000;
     width: 100%;
     height: 100%;
   }
