@@ -31,13 +31,11 @@ App.ArticlesView = App.ArticleView.extend({
   },
   add: function(article){
     $('#news_container').prepend(this.createArtilceView(article).render().el);
-    $(".timeago").timeago();
-    $('#news_container>li').tsort('.timeago', { 'data': 'sort_by', 'order': 'desc' });
-    $("#news_container").masonry({ isFitWidth: true });
+    this.postRender();
   },
   remove: function(article){
     $('#article-' + article.cid).remove();
-    $("#news_container").masonry({ isFitWidth: true });
+    this.postRender();
   },
   render: function(){
     var self = this;
@@ -46,14 +44,20 @@ App.ArticlesView = App.ArticleView.extend({
       $('#news_container').append(self.createArtilceView(article).render().el);
     });
 
-    $(".timeago").timeago();
-    $('#news_container>li').tsort('.timeago', { 'data': 'sort_by', 'order': 'desc' });
-
     $("#news_container").imagesLoaded(function(){
       $("#news_container").masonry({ isFitWidth: true });
     });
 
+    this.postRender();
+
     return this;
+  },
+  postRender: function(){
+    $(".timeago").timeago();
+    $('#news_container>li').tsort('.timeago', { 'data': 'sort_by', 'order': 'desc' });
+    $("#news_container").imagesLoaded(function(){
+      $("#news_container").masonry('reload');
+    });
   },
   createArtilceView: function(article){
     return new App.ArticleView({
