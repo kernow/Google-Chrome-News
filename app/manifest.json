@@ -11,7 +11,21 @@
   "manifest_version": 2,
   "app": {
     "background": {
-      "scripts": ["javascripts/background.js"]
+      "scripts": [
+        "javascripts/background.js",
+        "javascripts/vendor/jquery-1.7.2.min.js",
+        "javascripts/vendor/underscore.min.js",
+        "javascripts/vendor/backbone.min.js",
+        "javascripts/vendor/backbone-indexeddb.js",
+        "javascripts/vendor/jfeed.min.js",
+        "javascripts/vendor/filer.min.js",
+        "javascripts/app.js",
+        "javascripts/lib/feedParsers/google.js",
+        "javascripts/models/setting.js",
+        "javascripts/models/article.js",
+        "javascripts/views/notifications-view.js",
+        "javascripts/background/setup.js"
+      ]
     }
   },
   "icons": {
@@ -23,6 +37,7 @@
     "unlimitedStorage",
     "storage",
     "notifications",
+    "management", // Required to launch the main app window from notifications
     "appWindow",
     "experimental",
     "http://nt3.ggpht.com/*",

@@ -37,6 +37,31 @@ App.Articles = Backbone.Collection.extend({
     return -article.get('updatedTime');
   },
 
+  startProcessing: function(interval){
+    if(!interval){ interval = 60000; } // Set the default interval to 60 seconds
+    var self = this;
+    this.stopProcessing();
+    console.log('started processing');
+    this.intervalId = setInterval(function() {
+      self.getFromFeed(App.googleFeed);
+    }, interval);
+  },
+
+  stopProcessing: function(interval){
+    var self = this;
+    console.log('stopped processing');
+    clearInterval(this.intervalId);
+    clearInterval(this.timeOutIntervalId);
+    delete this.intervalId;
+    delete this.timeOutIntervalId;
+    // If an interval is passed automatically resume processing in the specified time
+    if(interval){
+      self.timeOutIntervalId = setTimeout(function(){
+        self.startProcessing();
+      });
+    }
+  },
+
   getFromFeed: function(feed){
     var collection = this;
     _.each(App.settings.get('categories'), function(category){
@@ -52,13 +77,13 @@ App.Articles = Backbone.Collection.extend({
 
             // Only store the image and save teh article if it not already in teh database
             if(!collection.get(item.id)){
+              console.log('Adding and article');
               collection.storeImage(parsedItem);
             }
           });
         }
       });
     });
-
   },
 
   saveItem: function(item){

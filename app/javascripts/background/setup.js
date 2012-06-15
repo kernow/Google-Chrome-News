@@ -3,7 +3,7 @@
  * Last changed:  2012-06-11
  */
 
-/*global App: false, Filer: false */
+/*global App: false, Filer: false, webkitNotifications: false */
 
 $(function() {
 
@@ -35,15 +35,18 @@ $(function() {
     }
   });
 
-  // send a message to the background process to stop working every 60 seconds
+  // Temporary message listening code
   // currently there is no event for when the app window is closed so we get the main app to send a message to
   // the background process every 60 seconds telling it to stay paused. There should be an onSuspend event at
   // some point which can be used instead of this code
-  chrome.extension.sendMessage('pause');
-  setInterval(function() {
-    chrome.extension.sendMessage('pause');
-  }, 60000);
-
+  chrome.extension.onMessage.addListener(
+    function(message, sender, sendResponse) {
+      console.log(message);
+      if(message == 'pause'){
+        // Stop processing new articles, but set to automatically resume in 70 seconds
+        App.articles.stopProcessing(70000);
+      }
+  });
 });
 
 App.initializeArtilces = function(){
@@ -53,17 +56,12 @@ App.initializeArtilces = function(){
     App.filer.size = 10485760; // set the file size limit to 10 mb
 
     App.articles = new App.Articles();
-    new App.ArticlesView({ collection: App.articles });
+    new App.NotificationsView({ collection: App.articles });
     App.articles.fetch({
       success: function(){
-
-        // Load articles on initialisation
+        console.log('start BG processing');
         App.articles.getFromFeed(App.googleFeed);
-
-        // Load new articles every minute
-        setInterval(function() {
-          App.articles.getFromFeed(App.googleFeed);
-        }, 60000);
+        App.articles.startProcessing();
       }
     });
   }, function(e){
