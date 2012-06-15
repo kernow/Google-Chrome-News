@@ -40,9 +40,7 @@ App.initializeArtilces = function(){
   // initialize filer
   App.filer = new Filer();
   App.filer.init({persistent: true, size: 1024 * 1024}, function(fs) {
-    // filer.size == Filer.DEFAULT_FS_SIZE
-    // filer.isOpen == true
-    // filer.fs == fs
+    App.filer.size = 10485760; // set the file size limit to 10 mb
 
     App.articles = new App.Articles();
     new App.ArticlesView({ collection: App.articles });
