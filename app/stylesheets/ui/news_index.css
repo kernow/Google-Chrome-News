@@ -10,7 +10,9 @@
 }
 
   .news_item{
+    position: relative;
     margin: 15px;
+    padding-top: 150px;
     width: 150px;
     float: left;
     border-radius: 1px;
@@ -20,10 +22,13 @@
     -webkit-transition: opacity .3s ease;
   }
   
-  .news_item:hover{ opacity: .7; }
+  body:not(.news_loaded) .news_item:hover{ opacity: .7; }
   
     .news_item img{
       display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 150px;
       height: 150px;
       height: auto;
