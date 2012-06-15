@@ -49,7 +49,11 @@ App.Articles = Backbone.Collection.extend({
 
             // parse the feed using the supplied feed parser
             var parsedItem = feed.parseItem(item);
-            collection.storeImage(parsedItem);
+
+            // Only store the image and save teh article if it not already in teh database
+            if(!collection.get(item.id)){
+              collection.storeImage(parsedItem);
+            }
           });
         }
       });
