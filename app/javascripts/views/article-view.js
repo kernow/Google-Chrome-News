@@ -28,7 +28,7 @@ App.ArticlesView = App.ArticleView.extend({
     this.collection.bind('reset', this.render);
     this.collection.bind('add', this.add);
     this.collection.bind('remove', this.remove);
-    
+
     $("#news_container").masonry({ isFitWidth: true });
   },
   add: function(article){
@@ -45,10 +45,7 @@ App.ArticlesView = App.ArticleView.extend({
     this.collection.each(function(article){
       $('#news_container').append(self.createArtilceView(article).render().el);
     });
-    
-    $("#news_container").masonry("reload");
-    
-    
+
     this.postRender();
 
     return this;
@@ -56,7 +53,7 @@ App.ArticlesView = App.ArticleView.extend({
   postRender: function(){
     $(".timeago").timeago();
     $('#news_container>li').tsort('.timeago', { 'data': 'sort_by', 'order': 'desc' });
-    
+
     $("#news_container").masonry('reload');
   },
   createArtilceView: function(article){
