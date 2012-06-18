@@ -3,6 +3,20 @@
   border-left: 5px solid #fff;
 }
 
+  .category_list li a{ position: relative; }
+
+  .category_list a.active:before{
+    content: "3";
+    display: block;
+    position: absolute;
+    top: 1.25em;
+    left: 1em;
+    font-size: .75em;
+    font-size: ;
+    font-family: Pictos;
+    color: #fff;
+  }
+
 .in_category_top_stories .news_category, li.top_stories_category_trigger{ 
   color: #005bc4;
   border-color: #005bc4;

@@ -12,4 +12,12 @@ $(document).ready(function(){
       $("body").removeClass("in_scroll");
     }
   });
+  
+  $(".category_list").on("click", "a", function(){
+    $(".category_list a").removeClass("active");
+    
+    $(this).addClass("active");
+    
+    return false;
+  });
 });

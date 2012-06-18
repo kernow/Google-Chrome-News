@@ -37,7 +37,7 @@
       -webkit-transition: all .3s ease;
     }
     
-    .icon_list > li a:before, .icon_list > li a:after{
+    .icon_list > li > a:before, .icon_list > li > a:after{
       content: "";
       position: absolute;
       top: 0;
@@ -46,9 +46,9 @@
       background: -webkit-linear-gradient(top, #333 0%, #262626 100%);
     }
     
-    .icon_list li a:before{ left: 0; }
+    .icon_list > li > a:before{ left: 0; }
     
-    .icon_list li a:after{ right: 0; }
+    .icon_list > li > a:after{ right: 0; }
     
     .icon_list li:not(.icon){ text-transform: uppercase; }
     
@@ -106,3 +106,5 @@
     }
     
     .dropdown ul li a:hover, .dropdown ul li a.active{ background: #222; }
+    
+    .dropdown ul li a.active{ opacity: 1; }
