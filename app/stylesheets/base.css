@@ -23,7 +23,7 @@ a{
 }
 
 ::-webkit-scrollbar-thumb{ 
-  background: #aaa; 
+  background: #666; 
   
   -webkit-box-shadow: inset 2px 0px 3px 0px rgba(0, 0, 0, .2);
 }

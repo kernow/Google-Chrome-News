@@ -5,7 +5,8 @@
   left: 0;
   z-index: 9999;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .4);
-  background: -webkit-linear-gradient(top, #333 0%, #060606 100%);
+  background: url(../../logo.png) center no-repeat, -webkit-linear-gradient(top, #333 0%, #060606 100%);
+  background-size: auto 65%, auto;
   -webkit-transition: opacity .6s ease;
 }
 
