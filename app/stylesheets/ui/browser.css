@@ -1,15 +1,44 @@
-#browser_container{
+#browser_wrap{
   position: fixed;
   top: 4.5em;
   bottom: 0;
-  right: 0;
+  right: -1px;
   left: 100%;
+  overflow: hidden;
   background: #fff;
-  -webkit-box-shadow: -2px 0px 5px 0px rgba(0, 0, 0, .1);
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
   -webkit-transition: all .15s ease;
 }
 
-  .news_loaded #browser_container{ left: 30%; }
+  .browser_controls{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 1.5% 150px 1.5% 1.5%;
+    -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .4);
+    background: #333;
+    color: #fff;
+  }
+  
+    .browser_tools{
+      display: block;
+      position: absolute;
+      top: 35%;
+      right: 2%;
+      width: 140px;
+      text-align: right;
+      white-space: nowrap;
+      font: 1.5em/1 Pictos;
+      color: #fff;
+    }
+    
+      .browser_tools a{
+        margin-left: 10%;
+        color: #fff;
+      }
+
+  .news_loaded #browser_wrap{ left: 30%; }
 
   #news_browser{
     width: 100%;

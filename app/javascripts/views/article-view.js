@@ -16,6 +16,8 @@ App.ArticleView = Backbone.View.extend({
     "click": "openLink"
   },
   openLink: function(){
+    $(".browser_heading").text(this.model.get("title"));
+    
     $("body").toggleClass("news_loaded");
     console.log('loading link: ', this.model.get('link'));
     $('#browser_container').empty().append(App.templates.browser(this.model.toJSON()));

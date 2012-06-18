@@ -24,4 +24,25 @@ $(document).ready(function(){
     
     return false;
   });
+  
+  var toggle_categories_list_trigger = function(){
+    nav_item = $(".category_list_trigger");
+    nav_item_link = $(".category_list_trigger > a");
+
+    if($(window).width() > 480){
+      nav_item.removeClass("icon");
+      nav_item_link.text("Categories");
+    }else{
+      nav_item.addClass("icon");
+      nav_item_link.text("l");
+    }
+  };
+  
+  toggle_categories_list_trigger();
+  
+  $(window).resize(function(){ toggle_categories_list_trigger(); });
+  
+  $(".close_browser_trigger").click(function(){
+    $("body").removeClass("news_loaded");
+  });
 });

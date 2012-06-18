@@ -19,12 +19,12 @@ a{
   width: 9px;
   height: 9px;
   background: #fff;
-  -webkit-box-shadow: inset 2px 0px 3px 0px rgba(0, 0, 0, .2);
+  -webkit-box-shadow: inset 2px 0 3px 0 rgba(0, 0, 0, .2);
 }
 
 ::-webkit-scrollbar-thumb{ 
   background: #666;   
-  -webkit-box-shadow: inset 2px 0px 3px 0px rgba(0, 0, 0, .2);
+  -webkit-box-shadow: inset 2px 0 3px 0 rgba(0, 0, 0, .2);
 }
 
 ::-webkit-scrollbar-thumb:window-inactive{ background: #777; }
