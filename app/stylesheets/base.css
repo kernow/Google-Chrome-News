@@ -13,3 +13,29 @@ a{
 }
 
 #main_nav, .news_item{ -webkit-transform: translate3d(0, 0, 0); }
+
+::-webkit-scrollbar{
+  margin-top: 300px;
+  width: 9px;
+  height: 9px;
+  background: #fff;
+  -webkit-box-shadow: inset 2px 0px 3px 0px rgba(0, 0, 0, .2);
+}
+
+::-webkit-scrollbar-thumb{ 
+  background: #aaa; 
+  
+  -webkit-box-shadow: inset 2px 0px 3px 0px rgba(0, 0, 0, .2);
+}
+
+::-webkit-scrollbar-thumb:window-inactive{ background: #777; }
+
+::-moz-selection{
+  background: #9a1b1f;
+  color: #fff; 
+}
+
+::selection{
+  background: #9a1b1f;
+  color: #fff; 
+}
