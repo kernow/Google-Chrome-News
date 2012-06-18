@@ -58,15 +58,15 @@ $(document).ready(function(){
     return false;
   });
   
-  $(document).bind("keyup", "right", function(){
+  $(document).bind("keydown", "right", function(){
     $("body").addClass("keyboard_navigation");
     
     var current = $(".keyboard_activated");
     
     if(current.size() > 0){     
-      current_position = current.offset();
+      var current_position = current.offset();
        
-      target = $(document.elementFromPoint(current_position.left + 210, current_position.top + 10)).parents(".news_item");
+      target = $(document.elementFromPoint(current_position.left + current.outerWidth() + parseFloat(current.css("margin-left")) + parseFloat(current.css("margin-right")) + 10, current_position.top + 10)).parents(".news_item");
       
       current.removeClass("keyboard_activated");
       
@@ -74,6 +74,32 @@ $(document).ready(function(){
     }else{
       $(".news_item:first").addClass("keyboard_activated");
     }
+    
+    return false;
+  });
+  
+  $(document).bind("keydown", "down", function(){
+    $("body").addClass("keyboard_navigation");
+    
+    var current = $(".keyboard_activated");
+    
+    if(current.size() > 0){     
+      var current_position = current.offset();
+      
+      var target_top = current_position.top + current.outerHeight() + parseFloat(current.css("margin-top")) + parseFloat(current.css("margin-bottom")) + 10;
+       
+      target = $(document.elementFromPoint(current_position.left + 10, target_top)).parents(".news_item");
+      
+      current.removeClass("keyboard_activated");
+      
+      target.addClass("keyboard_activated"); 
+    }else{
+      $(".news_item:first").addClass("keyboard_activated");
+    }
+    
+    $("html, body").animate({ scrollTop: target_top - 85 }, 800, function(){ $("body").addClass("keyboard_navigation"); });
+    
+    return false;
   });
   
   $(window).mousemove(function(){ $("body").removeClass("keyboard_navigation"); })
