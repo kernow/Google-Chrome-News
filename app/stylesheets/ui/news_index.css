@@ -25,9 +25,9 @@
   
     .news_item a{ pointer-events: none; }
   
-  .invisible{ display: none; }
-  
   body:not(.news_loaded) .news_item:hover{ opacity: .7; }
+  
+  .keyboard_navigation .news_item:not(.keyboard_activated){ opacity: .5; }
   
     .news_item img{
       display: block;
