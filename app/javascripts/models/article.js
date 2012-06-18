@@ -15,8 +15,9 @@ App.articlesDatabase = {
   description: "News acrticles",
   migrations : [{
     version: 1,
-    migrate:function (transaction, next) {
+    migrate: function (transaction, next) {
       var store = transaction.db.createObjectStore("articles");
+      store.createIndex("categoryIndex", "category", { unique: false }); // Adds an index on the categories
       next();
     }
   }]
