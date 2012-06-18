@@ -44,7 +44,7 @@ $(function() {
       console.log(message);
       if(message == 'pause'){
         // Stop processing new articles, but set to automatically resume in 70 seconds
-        App.articles.stopProcessing(70000);
+        App.articles.stopProcessing(90000);
       }
   });
 });
