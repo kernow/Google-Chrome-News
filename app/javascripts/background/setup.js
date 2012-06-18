@@ -41,8 +41,8 @@ $(function() {
   // some point which can be used instead of this code
   chrome.extension.onMessage.addListener(
     function(message, sender, sendResponse) {
-      console.log(message);
       if(message == 'pause'){
+        console.log('Calling stop processing from message handler');
         // Stop processing new articles, but set to automatically resume in 70 seconds
         App.articles.stopProcessing(90000);
       }

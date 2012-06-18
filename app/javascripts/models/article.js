@@ -40,7 +40,10 @@ App.Articles = Backbone.Collection.extend({
   startProcessing: function(interval){
     if(!interval){ interval = 60000; } // Set the default interval to 60 seconds
     var self = this;
-    this.stopProcessing();
+    if(this.intervalId){
+      console.log('Calling stop processing from start...');
+      this.stopProcessing();
+    }
     console.log('started processing');
     this.intervalId = setInterval(function() {
       self.getFromFeed(App.googleFeed);
@@ -56,9 +59,11 @@ App.Articles = Backbone.Collection.extend({
     delete this.timeOutIntervalId;
     // If an interval is passed automatically resume processing in the specified time
     if(interval){
-      self.timeOutIntervalId = setTimeout(function(){
+      console.log('Interval set, will start processing in: ', interval);
+      this.timeOutIntervalId = setTimeout(function(){
+        console.log('Starting processing from interval timeout');
         self.startProcessing();
-      });
+      }, interval);
     }
   },
 
