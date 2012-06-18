@@ -18,6 +18,10 @@ $(document).ready(function(){
     
     $(this).addClass("active");
     
+    var target = $(this).parents("li").attr("class").replace("_category_trigger", "");
+    
+    $("#news_container").masonry("reload");
+    
     return false;
   });
 });

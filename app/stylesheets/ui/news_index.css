@@ -23,6 +23,8 @@
     -webkit-transition: opacity .3s ease;
   }
   
+  .invisible{ display: none; }
+  
   body:not(.news_loaded) .news_item:hover{ opacity: .7; }
   
     .news_item img{

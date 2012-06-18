@@ -54,7 +54,7 @@ App.ArticlesView = App.ArticleView.extend({
     $(".timeago").timeago();
     $('#news_container>li').tsort('.timeago', { 'data': 'sort_by', 'order': 'desc' });
 
-    $("#news_container").masonry('reload');
+    $("#news_container").masonry("reload");
   },
   createArtilceView: function(article){
     return new App.ArticleView({
