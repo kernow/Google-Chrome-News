@@ -18,9 +18,13 @@ App.ArticleView = Backbone.View.extend({
   openLink: function(){
     $(".browser_heading").text(this.model.get("title"));
     
+    $(".save_trigger, .share_trigger").attr("href", this.model.get("link"));
+    
     $("body").toggleClass("news_loaded");
-    console.log('loading link: ', this.model.get('link'));
+    
     $('#browser_container').empty().append(App.templates.browser(this.model.toJSON()));
+    
+    console.log('loading link: ', this.model.get('link'));
   }
 });
 

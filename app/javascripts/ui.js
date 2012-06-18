@@ -44,5 +44,17 @@ $(document).ready(function(){
   
   $(".close_browser_trigger").click(function(){
     $("body").removeClass("news_loaded");
+    
+    $("#browser_container").html("");
+  });
+  
+  $(".save_trigger, .share_trigger").click(function(){
+    var action = ($(this).hasClass("share_trigger")) ? "share" : "save";
+    
+    var intent = new Intent("http://webintents.org/" + action, "text/uri-list", $(this).attr("href"));
+
+    window.navigator.startActivity(intent);
+    
+    return false;
   });
 });
