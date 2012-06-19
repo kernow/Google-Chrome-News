@@ -16,7 +16,9 @@ src_files:
   - app/javascripts/vendor/backbone.min.js
   - app/javascripts/vendor/*.js
   - app/javascripts/app.js
-  - app/javascripts/**/*.js
+  - app/javascripts/lib/**/*.js
+  - app/javascripts/models/**/*.js
+  - app/javascripts/views/**/*.js
 
 # stylesheets
 #
@@ -45,6 +47,8 @@ helpers:
   - helpers/**/*.js
   - matchers/**/*.js
   - vendor/jsmocha.js
+  - vendor/jasmine-jquery.js
+  - vendor/mock-ajax.js
 
 # spec_files
 #

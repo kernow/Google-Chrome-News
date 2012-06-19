@@ -3,22 +3,24 @@
  * Last changed:  2012-06-11
  */
 
+/*global App: false, mostRecentAjaxRequest: false */
+
 describe("Article", function() {
+
+  var articleData = {
+    "image"       : "http://google.com/image_url.jpg",
+    "title"       : "Something happened in the business world!",
+    "source"      : "The Guardian",
+    "id"          : "123456",
+    "category"    : "Business",
+    "link"        : "http://news.google.com",
+    "updated"     : "",
+    "description" : "The article"
+  };
 
   describe("ordering", function() {
 
-    var articleData = {
-      "image"       : "http://google.com/image_url.jpg",
-      "title"       : "Something happened in the business world!",
-      "source"      : "The Guardian",
-      "id"          : "123456",
-      "category"    : "Business",
-      "link"        : "http://news.google.com",
-      "updated"     : "",
-      "description" : "The article"
-    };
-
-    var artilce1, artilce2, article3, articles;
+    var article1, article2, article3, articles;
 
     beforeEach(function() {
       // create some articles
@@ -42,6 +44,93 @@ describe("Article", function() {
       expect(dates[0]).toEqual(article3.get("updatedTime"));
       expect(dates[1]).toEqual(article1.get("updatedTime"));
       expect(dates[2]).toEqual(article2.get("updatedTime"));
+    });
+
+  });
+
+  describe("article processing", function(){
+    var articles;
+
+    beforeEach(function() {
+      jasmine.Clock.useMock();
+      articles = new App.Articles();
+    });
+
+    describe("startProcessing", function() {
+
+      it("should call getFromFeed after the default interval", function() {
+        spyOn(articles, 'getFromFeed');
+        articles.startProcessing();
+        jasmine.Clock.tick(60000);
+        expect(articles.getFromFeed).toHaveBeenCalledWith(App.googleFeed);
+      });
+
+      it("should call getFromFeed after the specified interval", function() {
+        spyOn(articles, 'getFromFeed');
+        articles.startProcessing(9000000000);
+        jasmine.Clock.tick(60000);
+        expect(articles.getFromFeed).not.toHaveBeenCalled();
+        jasmine.Clock.tick(9000000000);
+        expect(articles.getFromFeed).toHaveBeenCalledWith(App.googleFeed);
+      });
+
+      it("should clear any previous interval that have been set", function() {
+        spyOn(articles, 'stopProcessing');
+        articles.startProcessing();
+        expect(articles.stopProcessing).not.toHaveBeenCalled();
+        articles.startProcessing();
+        expect(articles.stopProcessing).toHaveBeenCalled();
+      });
+
+    });
+
+    describe("stopProcessing", function() {
+
+      it("should clear all intervals", function() {
+        spyOn(window, 'clearInterval');
+        articles.stopProcessing();
+        expect(window.clearInterval.calls.length).toEqual(2);
+      });
+
+      it("should call startProcessing if an interval is passed", function() {
+        spyOn(articles, 'startProcessing');
+        articles.stopProcessing(5000);
+        expect(articles.startProcessing).not.toHaveBeenCalled();
+        jasmine.Clock.tick(5000);
+        expect(articles.startProcessing).toHaveBeenCalled();
+      });
+
+    });
+
+    describe("getFromFeed", function() {
+      var request, xml;
+
+      beforeEach(function() {
+        xml = jasmine.getFixtures().read('science-feed.rss');
+        App.settings = new Mock();
+        new Mock(App.settings);
+        App.settings.stubs('get').returns(['science']);
+
+        new Mock(App.googleFeed);
+        App.googleFeed.stubs('uri').returns('https://news.google.com');
+
+        spyOn(articles, 'storeImage');
+
+        jasmine.Ajax.useMock();
+      });
+
+      it("call storeImage for each article that is processed", function() {
+        runs(function() {
+          articles.getFromFeed(App.googleFeed);
+          request = mostRecentAjaxRequest();
+          request.response({ 'status': 200, 'responseText': xml });
+        });
+
+        runs(function() {
+          expect(articles.storeImage.calls.length).toEqual(10);
+        });
+      });
+
     });
 
   });
