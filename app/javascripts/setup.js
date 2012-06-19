@@ -54,6 +54,7 @@ App.initializeArtilces = function(){
 
     App.articles = new App.Articles();
     new App.ArticlesView({ collection: App.articles });
+
     App.articles.fetch({
       success: function(){
 
@@ -66,6 +67,13 @@ App.initializeArtilces = function(){
         }, 60000);
       }
     });
+
+    // Search initialization
+    App.searchResults = new App.SearchResults();
+    new App.SearchResultsView({ collection: App.searchResults });
+    new App.SearchView();
+
+
   }, function(e){
     console.warn('error: ', e);
   });

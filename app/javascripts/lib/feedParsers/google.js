@@ -6,10 +6,16 @@
 /*global App: false */
 App.googleFeed = {
 
-  uri: function(category){
-    return  chrome.i18n.getMessage("baseFeedUri") +
-            chrome.i18n.getMessage("ned") +
-            chrome.i18n.getMessage(category + "Params");
+  uri: function(options){
+    var uri = chrome.i18n.getMessage("baseFeedUri") +
+              chrome.i18n.getMessage("ned");
+    if(options.category){
+      uri += chrome.i18n.getMessage(options.category + "Params");
+    }
+    if(options.query){
+      uri += "&q=" + encodeURIComponent(options.query);
+    }
+    return uri;
   },
 
   parseItem: function(item){
