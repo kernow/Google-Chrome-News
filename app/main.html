@@ -12,6 +12,7 @@
       @import url("stylesheets/ui/browser.css");
       @import url("stylesheets/ui/news_index.css");
       @import url("stylesheets/specific/categories.css");
+      @import url("stylesheets/specific/settings.css");
     </style>
 
     <script src="javascripts/vendor/jquery-1.7.2.min.js"></script>
@@ -61,8 +62,34 @@
       <ul class="icon_list right_icon_list">
         <li class="icon">
           <a href="/settings/" id="settings_trigger">y</a>
-          <div class="dropdown">
-            Yo
+          <div class="dropdown settings_dropdown">
+            <div class="content_block">
+              <h2 class="tertiary_header">Edit Categories</h2>
+              <p class="hint">Select your preferred categories:</p>
+              <ul>
+                <li class="active" data-target-category="top_stories">Top Stories</li>
+                <li data-target-category="news_near_you">News near you</li>
+                <li data-target-category="world">World</li>
+                <li data-target-category="business">Business</li>
+                <li class="active" data-target-category="uk">U.K.</li>
+                <li data-target-category="technology">Technology</li>
+                <li data-target-category="entertainment">Entertainment</li>
+                <li data-target-category="sports">Sports</li>
+                <li data-target-category="science">Science</li>
+                <li data-target-category="health">Health</li>
+                <li data-target-category="spotlight">Spotlight</li>
+              </ul>
+            </div>
+            <div class="content_block">
+              <h2 class="tertiary_header">Change Location</h2>
+              <p class="hint">Select a country or region:</p>
+              <select>
+                <option>UK</option>
+                <option>US</option>
+                <option>France</option>
+                <option>Canada</option>
+              </select>
+            </div>
           </div>
         </li>
         <li class="icon"><a href="#" id="fullscreen_trigger">`</a></li>

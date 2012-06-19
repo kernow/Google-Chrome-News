@@ -9,3 +9,9 @@
   font-size: 1.25em;
   font-weight: bold;
 }
+
+.tertiary_header{
+  font-size: 1.25em;
+  font-weight: 600;
+  text-transform: uppercase;
+}

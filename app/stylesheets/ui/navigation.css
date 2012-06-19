@@ -50,7 +50,7 @@
     
     .icon_list > li > a:after{ right: 0; }
     
-    .icon_list li:not(.icon){ text-transform: uppercase; }
+    .icon_list > li:not(.icon){ text-transform: uppercase; }
     
     .icon_list li.icon > a{
       padding: 1em;
@@ -78,6 +78,7 @@
   width: 180px;
   -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .6);
   background: rgba(60, 60, 60, .98);
+  color: #fff;
 }
 
 .icon_list li:hover .dropdown{ display: block; }
@@ -94,3 +95,16 @@
 	border-bottom-color: rgba(60, 60, 60, .98);
 	border-width: 9px;
 }
+
+.content_block{
+  margin: 0 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #666;
+}
+
+.hint{ 
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.content_block:last-of-type{ border: 0; }
