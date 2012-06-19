@@ -19,6 +19,7 @@
         "javascripts/vendor/backbone-indexeddb.js",
         "javascripts/vendor/jfeed.min.js",
         "javascripts/vendor/filer.min.js",
+        "javascripts/vendor/inflection.js",
         "javascripts/app.js",
         "javascripts/lib/feedParsers/google.js",
         "javascripts/models/setting.js",

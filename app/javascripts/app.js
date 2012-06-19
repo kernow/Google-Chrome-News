@@ -4,4 +4,15 @@
  */
 
 // setup the applications namespace
-window.App = {};
+window.App = {
+
+  // pluralization help method
+  pluralize: function(singular, count) {
+    if (count == 1) {
+      return singular;
+    } else {
+      return singular.pluralize();
+    }
+  }
+
+};
