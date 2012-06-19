@@ -35,7 +35,7 @@ App.ArticlesView = App.ArticleView.extend({
     this.collection.bind('add', this.add);
     this.collection.bind('remove', this.remove);
 
-    $("#news_container").masonry({ isFitWidth: true });
+    $("#news_container").masonry();
   },
   add: function(article){
     $('#news_container').prepend(this.createArtilceView(article).render().el);
@@ -58,6 +58,7 @@ App.ArticlesView = App.ArticleView.extend({
   },
   postRender: function(){
     $(".timeago").timeago();
+    
     $('#news_container>li').tsort('.timeago', { 'data': 'sort_by', 'order': 'desc' });
 
     $("#news_container").masonry("reload");

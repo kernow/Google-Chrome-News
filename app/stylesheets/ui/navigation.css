@@ -94,17 +94,3 @@
 	border-bottom-color: rgba(60, 60, 60, .98);
 	border-width: 9px;
 }
-
-  .dropdown ul li{ display: block; }
-
-    .dropdown ul li a{ 
-      margin: 0;
-      padding: 9px 24px;
-      border: 0;
-      text-transform: none;
-      -webkit-transition: background .15s ease;
-    }
-    
-    .dropdown ul li a:hover, .dropdown ul li a.active{ background: #222; }
-    
-    .dropdown ul li a.active{ opacity: 1; }

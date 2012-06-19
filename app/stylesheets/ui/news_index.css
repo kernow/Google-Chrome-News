@@ -1,5 +1,5 @@
 #news_container{ 
-  margin: 15px auto;
+  margin: 10px;
   -webkit-transition: opacity .75s ease;
   -webkit-transition: -webkit-filter .75s ease;
 }
@@ -11,7 +11,7 @@
 
   .news_item{
     position: relative;
-    margin: 15px;
+    margin: 5px;
     padding-top: 150px;
     width: 150px;
     overflow: hidden;
