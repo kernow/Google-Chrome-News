@@ -71,7 +71,7 @@ App.Articles = Backbone.Collection.extend({
   getFromFeed: function(feed){
     var collection = this;
     _.each(App.settings.get('categories'), function(category){
-      var feedUri = feed.uri(category);
+      var feedUri = feed.uri({ 'category': category });
       console.warn('getting news from: ' + feedUri);
       jQuery.getFeed({
         url: feedUri,

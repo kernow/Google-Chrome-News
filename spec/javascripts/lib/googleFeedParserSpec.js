@@ -3,6 +3,8 @@
  * Last changed:  2012-06-11
  */
 
+/*global App: false, Mock: false */
+
 describe("Google Feed Parser", function() {
 
   describe("pareseItem", function() {
@@ -78,7 +80,7 @@ describe("Google Feed Parser", function() {
     });
 
     it("should return the feed uri for the category", function() {
-      var uri = App.googleFeed.uri("business");
+      var uri = App.googleFeed.uri({ "category": "business" });
       expect(uri).toEqual('http://news.google.com/news?output=rss&ned=us&topic=b');
     });
 
