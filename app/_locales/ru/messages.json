@@ -1,5 +1,5 @@
 {
-  "localityName": {
+  "nation": {
     "message":      "Россия (Russia)",
     "description":  "The name of the local region"
   },
