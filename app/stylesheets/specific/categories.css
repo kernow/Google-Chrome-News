@@ -5,19 +5,19 @@
 
 .category_list li{ display: block; }
 
-  .category_list li a{ 
+  .category_list li a{
     margin: 0;
     padding: 9px 24px;
     border: 0;
     text-transform: none;
     -webkit-transition: background .15s ease;
   }
-  
+
   .category_list li a:hover, .category_list li a.active{ background: #222; }
-  
-  .category_list li a.active{ 
+
+  .category_list li a.active{
     opacity: 1;
-    position: relative; 
+    position: relative;
   }
 
   .category_list a.active:before{
@@ -32,57 +32,57 @@
     color: #fff;
   }
 
-.in_category_top_stories .news_category, li.top_stories_category_trigger{ 
+.in_category_top_stories .news_category, li.top_stories_category_trigger{
   color: #005bc4;
   border-color: #005bc4;
 }
 
-.in_category_news_near_you .news_category, li.news_near_you_category_trigger{ 
+.in_category_news_near_you .news_category, li.news_near_you_category_trigger{
   color: #f0ba00;
   border-color: #f0ba00;
 }
 
-.in_category_world .news_category, li.world_category_trigger{ 
+.in_category_world .news_category, li.world_category_trigger{
   color: #810d00;
   border-color: #810d00;
 }
 
-.in_category_business .news_category, li.business_category_trigger{ 
+.in_category_business .news_category, li.business_category_trigger{
   color: #004471;
   border-color: #004471;
 }
 
-.in_category_uk .news_category, li.uk_category_trigger{ 
+.in_category_nation .news_category, li.nation_category_trigger{
   color: #570f00;
   border-color: #570f00;
 }
 
-.in_category_technology .news_category, li.technology_category_trigger{ 
+.in_category_technology .news_category, li.technology_category_trigger{
   color: #0c9cf3;
   border-color: #0c9cf3;
 }
 
-.in_category_entertainment .news_category, li.entertainment_category_trigger{ 
+.in_category_entertainment .news_category, li.entertainment_category_trigger{
   color: #f80000;
   border-color: #f80000;
 }
 
-.in_category_sports .news_category, li.sports_category_trigger{ 
+.in_category_sports .news_category, li.sports_category_trigger{
   color: #007f32;
   border-color: #007f32;
 }
 
-.in_category_science .news_category, li.science_category_trigger{ 
+.in_category_science .news_category, li.science_category_trigger{
   color: #97bc5d;
   border-color: #97bc5d;
 }
 
-.in_category_health .news_category, li.health_category_trigger{ 
+.in_category_health .news_category, li.health_category_trigger{
   color: #f37d7d;
   border-color: #f37d7d;
 }
 
-.in_category_spotlight .news_category, li.spotlight_category_trigger{ 
+.in_category_spotlight .news_category, li.spotlight_category_trigger{
   color: #d79d0d;
   border-color: #d79d0d;
 }
