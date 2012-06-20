@@ -8,7 +8,7 @@ __p+='';
 '" />\n';
  } 
 ;__p+='\n<p class="news_category">'+
-( category )+
+( category == 'nation' ? chrome.i18n.getMessage('nation') : category )+
 '</p>\n<div class="news_meta">\n  <h1 class="primary_header">'+
 ( title )+
 '</h1>\n  <p class="news_meta_item">'+
