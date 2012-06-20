@@ -16,22 +16,21 @@ $(function() {
   App.settings.fetch({
     success: function(){
 
-      // If no categories have been previously stored load the defaults from the json file
-      if(!App.settings.get('categories')){
-        console.log('loading default categories');
-        $.getJSON('javascripts/settings.json', function(data) {
+      $.getJSON('javascripts/settings.json', function(data) {
+
+        App.defaultCategories = data.defaultCategories;
+
+        // If no categories have been previously stored set the default categories
+        if(!App.settings.get('categories')){
 
           // Save the categories in the settings model
-          App.settings.save({ "categories" : data.defaultCategories });
+          App.settings.save({ "categories" : App.defaultCategories });
+        }
 
-          // Now we have the settings loaded we can initialize the articles
-          App.initializeArtilces();
-        });
-      }else{
-
-        // Settings have been fetched so we can initialize the articles
+        // Settings have been fetched so we can initialize the articles and settings view
         App.initializeArtilces();
-      }
+        App.initializeSettingsView();
+      });
     }
   });
 
@@ -45,6 +44,10 @@ $(function() {
   }, 60000);
 
 });
+
+App.initializeSettingsView = function(){
+  new App.SettingsView();
+};
 
 App.initializeArtilces = function(){
   // initialize filer

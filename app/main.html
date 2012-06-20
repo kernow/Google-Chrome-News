@@ -35,6 +35,7 @@
     <script src="javascripts/views/article-view.js"></script>
     <script src="javascripts/views/search-view.js"></script>
     <script src="javascripts/views/search-results-view.js"></script>
+    <script src="javascripts/views/settings-view.js"></script>
     <script src="javascripts/templates.js"></script>
     <script src="javascripts/setup.js"></script>
   </head>
@@ -69,18 +70,18 @@
             <div class="content_block">
               <h2 class="tertiary_header">Edit Categories</h2>
               <p class="hint">Select your preferred categories:</p>
-              <ul>
-                <li class="active" data-target-category="top_stories">Top Stories</li>
-                <li data-target-category="news_near_you">News near you</li>
-                <li data-target-category="world">World</li>
-                <li data-target-category="business">Business</li>
-                <li class="active" data-target-category="uk">U.K.</li>
-                <li data-target-category="technology">Technology</li>
-                <li data-target-category="entertainment">Entertainment</li>
-                <li data-target-category="sports">Sports</li>
-                <li data-target-category="science">Science</li>
-                <li data-target-category="health">Health</li>
-                <li data-target-category="spotlight">Spotlight</li>
+              <ul id="settings_categories">
+                <li data-category="topStories" class="active">Top Stories</li>
+                <li data-category="newsNearYou">News near you</li>
+                <li data-category="world">World</li>
+                <li data-category="business">Business</li>
+                <li data-category="uk" class="active">U.K.</li>
+                <li data-category="technology">Technology</li>
+                <li data-category="entertainment">Entertainment</li>
+                <li data-category="sports">Sports</li>
+                <li data-category="science">Science</li>
+                <li data-category="health">Health</li>
+                <li data-category="spotlight">Spotlight</li>
               </ul>
             </div>
             <div class="content_block">

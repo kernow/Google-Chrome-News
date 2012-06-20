@@ -17,23 +17,24 @@ App.ArticleView = Backbone.View.extend({
   },
   openLink: function(){
     $(".browser_heading").text(this.model.get("title"));
-    
+
     $(".save_trigger, .share_trigger").attr("href", this.model.get("link"));
-    
+
     $("body").toggleClass("news_loaded");
-    
+
     $('#browser_container').empty().append(App.templates.browser(this.model.toJSON()));
-    
+
     console.log('loading link: ', this.model.get('link'));
   }
 });
 
 App.ArticlesView = App.ArticleView.extend({
   initialize: function(){
-    _.bindAll(this, 'render', 'add', 'remove');
+    _.bindAll(this, 'render', 'add', 'remove', 'categoryRemoved');
     this.collection.bind('reset', this.render);
     this.collection.bind('add', this.add);
     this.collection.bind('remove', this.remove);
+    this.collection.bind('categoryRemoved', this.categoryRemoved);
 
     $("#news_container").masonry();
   },
@@ -43,6 +44,11 @@ App.ArticlesView = App.ArticleView.extend({
   },
   remove: function(article){
     $('#article-' + article.cid).remove();
+    // We don't call postRender after removing an article as it's an expensive operation
+    // and can slow down the browser. Instead we listen out of the categoryRemoved event
+    // and call postRender then
+  },
+  categoryRemoved: function(){
     this.postRender();
   },
   render: function(){
@@ -58,7 +64,7 @@ App.ArticlesView = App.ArticleView.extend({
   },
   postRender: function(){
     $(".timeago").timeago();
-    
+
     $('#news_container>li').tsort('.timeago', { 'data': 'sort_by', 'order': 'desc' });
 
     $("#news_container").masonry("reload");

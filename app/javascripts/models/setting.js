@@ -7,7 +7,7 @@
 
 /*
  * Setting Model
- * fields: categories [ 'Business', 'World' ] etc.
+ * fields: categories [ 'business', 'world' ] etc.
  */
 
 App.Settings = Backbone.Model.extend({
@@ -16,6 +16,23 @@ App.Settings = Backbone.Model.extend({
     var self = this;
     this.syncStore = chrome.storage.sync;
     chrome.storage.onChanged.addListener(function(changes, namespace){ self.onSyncDataChange(changes, namespace); });
+  },
+
+  addCategory: function(category){
+    var categories = this.get('categories');
+    categories.push(category);
+    // Save the categories and call uniq on the array to make sure there are no duplicates
+    this.save({ "categories" : _.uniq(categories) });
+    // TODO optimiseation, we only need to grab articles from the category thats just been added
+    App.articles.getFromFeed(App.googleFeed, category);
+  },
+
+  removeCategory: function(category){
+    // Remove the category from the array and save it
+    var categories = _.without(this.get('categories'), category);
+    this.save({ "categories" : categories });
+    // remove the articles from the category that is no longer displayed
+    App.articles.removeWithCategory(category);
   },
 
   onSyncDataChange: function(changes, namespace){

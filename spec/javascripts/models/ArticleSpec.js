@@ -109,7 +109,7 @@ describe("Article", function() {
         xml = jasmine.getFixtures().read('science-feed.rss');
         App.settings = new Mock();
         new Mock(App.settings);
-        App.settings.stubs('get').returns(['science']);
+        App.settings.stubs('get').returns(['science', 'world']);
 
         new Mock(App.googleFeed);
         App.googleFeed.stubs('uri').returns('https://news.google.com');
@@ -129,6 +129,16 @@ describe("Article", function() {
         runs(function() {
           expect(articles.storeImage.calls.length).toEqual(10);
         });
+      });
+
+      it("should load all feeds when no category is passed", function() {
+        App.googleFeed.expects('uri').twice();
+        articles.getFromFeed(App.googleFeed);
+      });
+
+      it("should only load the feed for the category that it passed", function() {
+        App.googleFeed.expects('uri').once();
+        articles.getFromFeed(App.googleFeed, 'science');
       });
 
     });

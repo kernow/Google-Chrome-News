@@ -68,9 +68,10 @@ App.Articles = Backbone.Collection.extend({
     }
   },
 
-  getFromFeed: function(feed){
+  getFromFeed: function(feed, category){
     var collection = this;
-    _.each(App.settings.get('categories'), function(category){
+    var categories = category !== undefined ? [category] : App.settings.get('categories');
+    _.each(categories, function(category){
       var feedUri = feed.uri({ 'category': category });
       console.warn('getting news from: ' + feedUri);
       jQuery.getFeed({
@@ -80,6 +81,9 @@ App.Articles = Backbone.Collection.extend({
 
             // parse the feed using the supplied feed parser
             var parsedItem = feed.parseItem(item);
+
+            // override the category so we always store it in english
+            parsedItem.category = category;
 
             // Only store the image and save teh article if it not already in teh database
             if(!collection.get(item.id)){
@@ -120,6 +124,18 @@ App.Articles = Backbone.Collection.extend({
     };
     xhr.open("GET", item.image);
     xhr.send();
+  },
+
+  removeWithCategory: function(category){
+    console.log('removing articles with category: ', category);
+    var articles = this.where({ 'category': category });
+    console.log(articles);
+    _.each(articles, function(article){
+      article.destroy();
+    });
+    console.log('articles removed');
+    // raise event to call post render
+    this.trigger("categoryRemoved");
   },
 
   // removes all articles from the database
