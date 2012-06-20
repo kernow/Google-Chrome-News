@@ -9,9 +9,9 @@ __p+='';
  } 
 ;__p+='\n<p class="news_category">'+
 ( category )+
-'</p>\n<div class="news_meta">\n  <h1 class="primary_header"><a href="#" rel="bookmark">'+
+'</p>\n<div class="news_meta">\n  <h1 class="primary_header">'+
 ( title )+
-'</a></h1>\n  <p class="news_meta_item">'+
+'</h1>\n  <p class="news_meta_item">'+
 ( source )+
 '</p>\n  <p class="news_meta_item timeago" data-sort_by="'+
 ( updatedTime )+
