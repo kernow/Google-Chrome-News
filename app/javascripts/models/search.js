@@ -22,7 +22,7 @@ App.SearchResults = Backbone.Collection.extend({
     this.removeAll();
     var self = this;
     var feedUri = feed.uri({ 'query': query });
-    console.warn('getting news from: ' + feedUri);
+    console.log('getting news from: ' + feedUri);
     jQuery.getFeed({
       url: feedUri,
       success: function(result) {
