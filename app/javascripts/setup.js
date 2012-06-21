@@ -18,13 +18,18 @@ $(function() {
 
       $.getJSON('javascripts/settings.json', function(data) {
 
-        App.defaultCategories = data.defaultCategories;
+        App.defaultCategories   = data.defaultCategories;
+        App.supportedLanguages  = data.languages;
 
         // If no categories have been previously stored set the default categories
         if(!App.settings.get('categories')){
-
           // Save the categories in the settings model
           App.settings.save({ "categories" : App.defaultCategories });
+        }
+
+        // If not feed language has been set create one
+        if(!App.settings.get('feedLanguage')){
+          App.settings.save({ "feedLanguage" : chrome.i18n.getMessage("languageCode") });
         }
 
         // Settings have been fetched so we can initialize the articles and settings view

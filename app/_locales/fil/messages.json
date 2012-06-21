@@ -3,8 +3,8 @@
     "message":      "Philippines",
     "description":  "The name of the local region"
   },
-  "ned": {
-    "message":      "&ned=en_ph",
+  "languageCode": {
+    "message":      "en_ph",
     "description":  "Specifies the feed edition to use"
   }
 }

@@ -3,8 +3,8 @@
     "message":      "Nederland",
     "description":  "The name of the local region"
   },
-  "ned": {
-    "message":      "&ned=nl_nl",
+  "languageCode": {
+    "message":      "nl_nl",
     "description":  "Specifies the feed edition to use"
   }
 }

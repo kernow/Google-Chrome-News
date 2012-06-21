@@ -3,8 +3,8 @@
     "message":      "Italia",
     "description":  "The name of the local region"
   },
-  "ned": {
-    "message":      "&ned=it",
+  "languageCode": {
+    "message":      "it",
     "description":  "Specifies the feed edition to use"
   }
 }

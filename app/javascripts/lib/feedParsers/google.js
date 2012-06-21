@@ -7,11 +7,50 @@
 App.googleFeed = {
 
   uri: function(options){
-    var uri = chrome.i18n.getMessage("baseFeedUri") +
-              chrome.i18n.getMessage("ned");
-    if(options.category){
-      uri += chrome.i18n.getMessage(options.category + "Params");
+    var uri  = chrome.i18n.getMessage("baseFeedUri");
+    console.log(options);
+    if(options.language){
+      uri += "&ned=" + options.language;
+    }else{
+      uri += "&ned=" + chrome.i18n.getMessage("languageCode");
     }
+
+    switch(options.category){
+      case "topStories":
+        uri += "&topic=h";
+        break;
+      case "newsNearYou":
+        uri += "&geo=detect_metro_area";
+        break;
+      case "world":
+        uri += "&topic=w";
+        break;
+      case "business":
+        uri += "&topic=b";
+        break;
+      case "nation":
+        uri += "&topic=n";
+        break;
+      case "technology":
+        uri += "&topic=tc";
+        break;
+      case "entertainment":
+        uri += "&topic=e";
+        break;
+      case "sports":
+        uri += "&topic=s";
+        break;
+      case "science":
+        uri += "&topic=snc";
+        break;
+      case "health":
+        uri += "&topic=m";
+        break;
+      case "spotlight":
+        uri += "&topic=ir";
+        break;
+    }
+
     if(options.query){
       uri += "&q=" + encodeURIComponent(options.query);
     }

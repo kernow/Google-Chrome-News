@@ -35,6 +35,14 @@ App.Settings = Backbone.Model.extend({
     App.articles.removeWithCategory(category);
   },
 
+  changeLanguage: function(language){
+    this.save({ "feedLanguage": language });
+    // Remove all articles as they are no longer needed
+    App.articles.removeAll();
+    // Download articles in the new language
+    App.articles.getFromFeed(App.googleFeed);
+  },
+
   onSyncDataChange: function(changes, namespace){
     console.log('change called', arguments);
     if (namespace == 'sync' && changes.categories) {
@@ -43,9 +51,12 @@ App.Settings = Backbone.Model.extend({
 
       // only update the backbone model if there are changes to be made
       if(this.get('categories') != changes.categories.newValue){
-        console.log('saving changes to backbone');
         // set the changes but no need to save them as they are already in the sync storage
         this.set({ 'categories': changes.categories.newValue });
+      }
+      if(this.get('feedLanguage') != changes.feedLanguage.newValue){
+        // set the changes but no need to save them as they are already in the sync storage
+        this.set({ 'feedLanguage': changes.feedLanguage.newValue });
       }
     }
   },

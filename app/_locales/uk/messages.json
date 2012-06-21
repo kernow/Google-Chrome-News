@@ -3,8 +3,8 @@
     "message":      "Україна (Ukraine)",
     "description":  "The name of the local region"
   },
-  "ned": {
-    "message":      "&ned=uk_ua",
+  "languageCode": {
+    "message":      "uk_ua",
     "description":  "Specifies the feed edition to use"
   }
 }

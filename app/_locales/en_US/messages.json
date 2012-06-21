@@ -3,8 +3,8 @@
     "message":      "U.S.",
     "description":  "The name of the local region"
   },
-  "ned": {
-    "message":      "&ned=us",
+  "languageCode": {
+    "message":      "us",
     "description":  "Specifies the feed edition to use"
   }
 }

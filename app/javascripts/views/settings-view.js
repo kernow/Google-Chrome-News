@@ -5,7 +5,46 @@
 
 /*global App: false */
 
-App.CategorySettingsView = Backbone.View.extend({
+// Master settings panel view
+App.SettingsView = Backbone.View.extend({
+  initialize: function(){
+    this.setElement('.settings_dropdown');
+    // Immediatly render on initialization
+    this.render();
+  },
+
+  render: function(){
+    this.categories = new App.SettingCategoriesView();
+    this.categories.setElement(this.$('#settings_categories')).render();
+
+    this.languages = new App.SettingsLanguagesView();
+    this.languages.setElement(this.$('#settings_languages')).render();
+  }
+});
+
+// View for the category list
+App.SettingCategoriesView = Backbone.View.extend({
+  render: function(){
+    var self = this;
+    this.$el.empty();
+    _.each(App.defaultCategories, function(category){
+      self.$el.append(self.createCategorySetting(category).render().el);
+    });
+  },
+
+  createCategorySetting: function(category){
+    var options = {
+      'category': category
+    };
+    if($.inArray(category, App.settings.get('categories')) > -1){
+      options.className = 'active';
+    }
+    return new App.SettingsCategoryView(options);
+  }
+});
+
+// View for each category
+App.SettingsCategoryView = Backbone.View.extend({
   tagName:    "li",
 
   initialize: function(options){
@@ -36,24 +75,45 @@ App.CategorySettingsView = Backbone.View.extend({
   }
 });
 
-App.SettingsView = Backbone.View.extend({
+App.SettingsLanguagesView = Backbone.View.extend({
 
-  initialize: function(){
-    var self = this;
-    this.setElement('#settings_categories');
+  render: function(){
     this.$el.empty();
-    _.each(App.defaultCategories, function(category){
-      self.$el.append(self.createCategorySetting(category).render().el);
+    var self = this;
+    _.each(App.supportedLanguages, function(language){
+      language.attributes = { 'value': language.code };
+      // TODO work out if the language should be selected
+      if(App.settings.get('feedLanguage') == language.code){
+        // This is the current language and should be selected
+        language.attributes.selected = "selected";
+      }
+      self.$el.append(self.createLanguage(language).render().el);
     });
+    return this;
   },
 
-  createCategorySetting: function(category){
-    var options = {
-      'category': category
-    };
-    if($.inArray(category, App.settings.get('categories')) > -1){
-      options.className = 'active';
-    }
-    return new App.CategorySettingsView(options);
+  events: {
+    "change": "updateSettings"
+  },
+
+  updateSettings: function(){
+    App.settings.changeLanguage(this.$el.val());
+  },
+
+  createLanguage: function(options){
+    return new App.SettingsLanguageView(options);
+  }
+});
+
+App.SettingsLanguageView = Backbone.View.extend({
+  tagName:    "option",
+
+  initialize: function(options){
+    this.name = options.name;
+  },
+
+  render: function(){
+    $(this.el).html(this.name);
+    return this;
   }
 });

@@ -3,8 +3,8 @@
     "message":      "中国版 (China)",
     "description":  "The name of the local region"
   },
-  "ned": {
-    "message":      "&ned=cn",
+  "languageCode": {
+    "message":      "cn",
     "description":  "Specifies the feed edition to use"
   }
 }

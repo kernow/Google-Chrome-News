@@ -3,8 +3,8 @@
     "message":      "Polska",
     "description":  "The name of the local region"
   },
-  "ned": {
-    "message":      "&ned=pl_pl",
+  "languageCode": {
+    "message":      "pl_pl",
     "description":  "Specifies the feed edition to use"
   }
 }

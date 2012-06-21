@@ -3,8 +3,8 @@
     "message":      "한국 (Korea)",
     "description":  "The name of the local region"
   },
-  "ned": {
-    "message":      "&ned=kr",
+  "languageCode": {
+    "message":      "kr",
     "description":  "Specifies the feed edition to use"
   }
 }

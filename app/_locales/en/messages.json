@@ -48,52 +48,8 @@
     "message":      "http://news.google.com/news?output=rss",
     "description":  "The base uri to load all feed from"
   },
-  "ned": {
-    "message":      "&ned=us",
+  "languageCode": {
+    "message":      "us",
     "description":  "The feed edition to use"
-  },
-  "topStoriesParams": {
-    "message":      "&topic=h",
-    "description":  "Parameters string to load top stories"
-  },
-  "newsNearYouParams": {
-    "message":      "&geo=detect_metro_area",
-    "description":  "Parameters string to load news near you"
-  },
-  "worldParams": {
-    "message":      "&topic=w",
-    "description":  "Parameters string to load world news"
-  },
-  "businessParams": {
-    "message":      "&topic=b",
-    "description":  "Parameters string to load business news"
-  },
-  "nationParams": {
-    "message":      "&topic=n",
-    "description":  "Parameters string to load news from a specific nation"
-  },
-  "technologyParams": {
-    "message":      "&topic=tc",
-    "description":  "Parameters string to load technology news"
-  },
-  "entertainmentParams": {
-    "message":      "&topic=e",
-    "description":  "Parameters string to load entertainment news"
-  },
-  "sportsParams": {
-    "message":      "&topic=s",
-    "description":  "Parameters string to load sports news"
-  },
-  "scienceParams": {
-    "message":      "&topic=snc",
-    "description":  "Parameters string to load science news"
-  },
-  "healthParams": {
-    "message":      "&topic=m",
-    "description":  "Parameters string to load health news"
-  },
-  "spotlightParams": {
-    "message":      "&topic=ir",
-    "description":  "Parameters string to load spotlight news"
   }
 }
