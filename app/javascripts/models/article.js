@@ -25,7 +25,16 @@ App.articlesDatabase = {
 
 App.Article = Backbone.Model.extend({
   database:   App.articlesDatabase,
-  storeName:  "articles"
+  storeName:  "articles",
+
+  initialize: function(){
+    this.on('destroy', this.destroyFile, this);
+  },
+
+  // When the record is destroyed remove the image from the filesystem
+  destroyFile: function(article){
+    App.filer.rm(article.get('image'), function(){});
+  }
 });
 
 App.Articles = Backbone.Collection.extend({
