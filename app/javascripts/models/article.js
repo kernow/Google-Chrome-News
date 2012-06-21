@@ -83,7 +83,7 @@ App.Articles = Backbone.Collection.extend({
     var language = App.settings.get('feedLanguage');
     _.each(categories, function(category){
       var feedUri = feed.uri({ 'category': category, 'language': language.code });
-      console.warn('getting news from: ' + feedUri);
+      console.log('getting news from: ' + feedUri);
       jQuery.getFeed({
         url: feedUri,
         success: function(result) {

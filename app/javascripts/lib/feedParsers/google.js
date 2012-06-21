@@ -8,7 +8,6 @@ App.googleFeed = {
 
   uri: function(options){
     var uri  = chrome.i18n.getMessage("baseFeedUri");
-    console.log(options);
     if(options.language){
       uri += "&ned=" + options.language;
     }else{
