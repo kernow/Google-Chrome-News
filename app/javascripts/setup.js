@@ -39,6 +39,9 @@ $(function() {
         // Settings have been fetched so we can initialize the articles and settings view
         App.initializeArtilces();
         App.initializeSettingsView();
+        
+        // Initialize categories list
+        categories_list = new App.CategoriesListView();
       });
     }
   });

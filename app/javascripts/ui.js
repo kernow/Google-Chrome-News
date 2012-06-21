@@ -13,16 +13,6 @@ $(document).ready(function(){
     }
   });
   
-  $(".category_list a").click(function(){
-    $(".category_list a").removeClass("active");
-    
-    $(this).addClass("active");
-    
-    var target = $(this).parents("li").attr("class").replace("_category_trigger", "");
-    
-    return false;
-  });
-  
   var toggle_categories_list_trigger = function(){
     nav_item = $(".category_list_trigger");
     nav_item_link = $(".category_list_trigger > a");
@@ -97,10 +87,17 @@ $(document).ready(function(){
       $(".news_item:first").addClass("keyboard_activated");
     }
     
-    $("html, body").animate({ scrollTop: target_top - 85 }, 800, function(){ $("body").addClass("keyboard_navigation"); });
+    //$("html, body").animate({ scrollTop: target_top - 85 }, 800, function(){ $("body").addClass("keyboard_navigation"); });
     
     return false;
   });
   
-  $(window).mousemove(function(){ $("body").removeClass("keyboard_navigation"); })
+  $(window).mousemove(function(e){ 
+    if(window.lastX !== e.clientX || window.lastY !== e.clientY){
+      $("body").removeClass("keyboard_navigation"); 
+    }   
+  
+    window.lastX = e.clientX
+    window.lastY = e.clientY
+  });
 });
