@@ -72,6 +72,7 @@
 .dropdown{
   display: none;
   position: absolute;
+  z-index: 9999;
   margin-left: -90px;
   padding: 6px 0;
   left: 50%;
