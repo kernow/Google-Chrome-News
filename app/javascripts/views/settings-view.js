@@ -24,6 +24,10 @@ App.SettingsView = Backbone.View.extend({
 
 // View for the category list
 App.SettingCategoriesView = Backbone.View.extend({
+  initialize: function(){
+    App.settings.on('languageChanged', this.changeCountryName, this);
+  },
+
   render: function(){
     var self = this;
     this.$el.empty();
@@ -32,13 +36,32 @@ App.SettingCategoriesView = Backbone.View.extend({
     });
   },
 
+  changeCountryName: function(language){
+    this.$('.countryName').text(language.name);
+  },
+
   createCategorySetting: function(category){
-    var options = {
-      'category': category
-    };
-    if($.inArray(category, App.settings.get('categories')) > -1){
-      options.className = 'active';
+    var categoryName;
+    var classNames = [];
+    if(category == "nation"){
+      categoryName = App.settings.get('feedLanguage').name;
+      // Add the 'countryName' class so it can be changed when the language setting is changed
+      classNames.push('countryName');
+    }else{
+      categoryName = chrome.i18n.getMessage(category);
     }
+
+    var options = {
+      'displayCategory':  categoryName,
+      'category':         category
+    };
+
+    // If the category is in the settings array of categories mark it as active
+    if($.inArray(category, App.settings.get('categories')) > -1){
+      classNames.push('active');
+    }
+
+    options.className = classNames.join(' ');
     return new App.SettingsCategoryView(options);
   }
 });
@@ -48,7 +71,8 @@ App.SettingsCategoryView = Backbone.View.extend({
   tagName:    "li",
 
   initialize: function(options){
-    this.category = options.category;
+    this.category         = options.category;
+    this.displayCategory  = options.displayCategory;
   },
 
   events: {
@@ -70,7 +94,7 @@ App.SettingsCategoryView = Backbone.View.extend({
   },
 
   render: function(){
-    $(this.el).html(chrome.i18n.getMessage(this.category));
+    $(this.el).html(this.displayCategory);
     return this;
   }
 });
@@ -82,8 +106,7 @@ App.SettingsLanguagesView = Backbone.View.extend({
     var self = this;
     _.each(App.supportedLanguages, function(language){
       language.attributes = { 'value': language.code };
-      // TODO work out if the language should be selected
-      if(App.settings.get('feedLanguage') == language.code){
+      if(App.settings.get('feedLanguage').code == language.code){
         // This is the current language and should be selected
         language.attributes.selected = "selected";
       }

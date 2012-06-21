@@ -73,7 +73,7 @@ App.ArticlesView = App.ArticleView.extend({
     return new App.ArticleView({
       model:      article,
       id:         "article-" + article.cid,
-      className:  "news_item in_category_" + article.get("category").toLowerCase().split(' ').join('_')
+      className:  "news_item in_category_" + article.get("categoryEnglish").underscore()
     });
   }
 });

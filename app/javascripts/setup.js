@@ -29,7 +29,11 @@ $(function() {
 
         // If not feed language has been set create one
         if(!App.settings.get('feedLanguage')){
-          App.settings.save({ "feedLanguage" : chrome.i18n.getMessage("languageCode") });
+          App.settings.save({
+            "feedLanguage" : {
+              "code": chrome.i18n.getMessage("languageCode"),
+              "name": chrome.i18n.getMessage("nation")
+          }});
         }
 
         // Settings have been fetched so we can initialize the articles and settings view

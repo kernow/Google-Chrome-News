@@ -73,7 +73,7 @@ App.Articles = Backbone.Collection.extend({
     var categories = category !== undefined ? [category] : App.settings.get('categories');
     var language = App.settings.get('feedLanguage');
     _.each(categories, function(category){
-      var feedUri = feed.uri({ 'category': category, 'language': language });
+      var feedUri = feed.uri({ 'category': category, 'language': language.code });
       console.warn('getting news from: ' + feedUri);
       jQuery.getFeed({
         url: feedUri,
@@ -83,10 +83,15 @@ App.Articles = Backbone.Collection.extend({
             // parse the feed using the supplied feed parser
             var parsedItem = feed.parseItem(item);
 
-            // override the category so we always store it in english
-            parsedItem.category = category;
+            // Save the english category name so we can use it programatically
+            parsedItem.categoryEnglish = category;
 
-            // Only store the image and save teh article if it not already in teh database
+            // instead of storing "nation" store the real country name
+            if(category == "nation"){
+              parsedItem.category = App.settings.get('feedLanguage').name;
+            }
+
+            // Only store the image and save teh article if it not already in the database
             if(!collection.get(item.id)){
               console.log('Adding and article');
               collection.storeImage(parsedItem);
@@ -129,7 +134,7 @@ App.Articles = Backbone.Collection.extend({
 
   removeWithCategory: function(category){
     console.log('removing articles with category: ', category);
-    var articles = this.where({ 'category': category });
+    var articles = this.where({ 'categoryEnglish': category });
     console.log(articles);
     _.each(articles, function(article){
       article.destroy();

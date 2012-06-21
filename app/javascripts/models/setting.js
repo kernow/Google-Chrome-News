@@ -35,26 +35,30 @@ App.Settings = Backbone.Model.extend({
     App.articles.removeWithCategory(category);
   },
 
-  changeLanguage: function(language){
-    this.save({ "feedLanguage": language });
+  changeLanguage: function(languageCode){
+    var name = _.find(App.supportedLanguages, function(obj){ return obj.code == languageCode; }).name;
+    var feedLanguage = { "code": languageCode, "name": name };
+    this.save({ "feedLanguage": feedLanguage });
     // Remove all articles as they are no longer needed
     App.articles.removeAll();
     // Download articles in the new language
     App.articles.getFromFeed(App.googleFeed);
+    this.trigger("languageChanged", feedLanguage);
   },
 
   onSyncDataChange: function(changes, namespace){
     console.log('change called', arguments);
-    if (namespace == 'sync' && changes.categories) {
-      console.log('new values: ', changes.categories.newValue);
+    if (namespace == 'sync') {
       // set the new values into the backbone model
 
       // only update the backbone model if there are changes to be made
-      if(this.get('categories') != changes.categories.newValue){
+      if(changes.categories && this.get('categories') != changes.categories.newValue){
+        console.log('new values: ', changes.categories.newValue);
         // set the changes but no need to save them as they are already in the sync storage
         this.set({ 'categories': changes.categories.newValue });
       }
-      if(this.get('feedLanguage') != changes.feedLanguage.newValue){
+      if(changes.feedLanguage && this.get('feedLanguage') != changes.feedLanguage.newValue){
+        console.log('new values: ', changes.feedLanguage.newValue);
         // set the changes but no need to save them as they are already in the sync storage
         this.set({ 'feedLanguage': changes.feedLanguage.newValue });
       }
