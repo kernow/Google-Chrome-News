@@ -36,10 +36,10 @@ App.ArticleView = Backbone.View.extend({
 App.ArticlesView = App.ArticleView.extend({
   initialize: function(){
     _.bindAll(this, 'render', 'add', 'remove', 'articlesFromCategoryRemoved');
-    this.collection.bind('reset', this.render);
-    this.collection.bind('add', this.add);
-    this.collection.bind('remove', this.remove);
-    this.collection.bind('articlesFromCategoryRemoved', this.articlesFromCategoryRemoved);
+    this.collection.on('reset', this.render);
+    this.collection.on('add', this.add);
+    this.collection.on('remove', this.remove);
+    this.collection.on('articlesFromCategoryRemoved', this.articlesFromCategoryRemoved);
 
     $("#news_container").masonry({
       itemSelector: ".news_item:visible",

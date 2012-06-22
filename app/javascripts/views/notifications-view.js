@@ -6,10 +6,8 @@ App.NotificationsView = Backbone.View.extend({
     var self = this;
     this.clearCounts();
 
-    _.bindAll(this, 'add');
-
     // Add a handler for the collections add event
-    this.collection.bind('add', this.add);
+    this.collection.on('add', this.add, this);
 
     // Check to see if we need to display a notification every 30 seconds
     setInterval(function() {
