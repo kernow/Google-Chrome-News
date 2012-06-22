@@ -46,7 +46,7 @@ App.CategoryView = Backbone.View.extend({
   },
   
   // Register click callback
-  events: { "click": "activate_category" },
+  events: { click: "activate_category" },
 
   activate_category: function(){
     // Deactivate all categories

@@ -57,9 +57,9 @@ $(function() {
 
 });
 
-App.initializeSettingsView = function(){
-  new App.SettingsView();
-};
+App.initializeSettingsView = function(){ new App.SettingsView(); };
+
+App.initialize_window_view = function(){ new App.WindowView(); };
 
 App.initializeArtilces = function(){
   // initialize filer
@@ -92,4 +92,8 @@ App.initializeArtilces = function(){
   }, function(e){
     console.warn('error: ', e);
   });
+  
+  new App.CloseBrowserView();
 };
+
+App.initialize_window_view();

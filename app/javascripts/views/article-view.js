@@ -6,7 +6,7 @@
 /*global App: false, news_browser: false */
 
 App.ArticleView = Backbone.View.extend({
-  tagName:    "li",
+  tagName: "li",
 
   render: function(){
     $(this.el).html(App.templates.article(this.model.toJSON()));
@@ -16,15 +16,17 @@ App.ArticleView = Backbone.View.extend({
     "click": "openLink"
   },
   openLink: function(){
+    // Set the article title as the browser heading text
     $(".browser_heading").text(this.model.get("title"));
 
+    // Update the intent triggers hrefs for reference
     $(".save_trigger, .share_trigger").attr("href", this.model.get("link"));
-
+    
+    // Set the body class to trigger the article loaded state and styles
     $("body").toggleClass("news_loaded");
 
+    // Empty the browser wrapper and append a new browser object
     $('#browser_container').empty().append(App.templates.browser(this.model.toJSON()));
-
-    console.log('loading link: ', this.model.get('link'));
   }
 });
 
@@ -75,5 +77,22 @@ App.ArticlesView = App.ArticleView.extend({
       id:         "article-" + article.cid,
       className:  "news_item in_category_" + article.get("categoryEnglish").underscore()
     });
+  }
+});
+
+App.CloseBrowserView = Backbone.View.extend({
+  initialize: function(){
+    // Fetch the close button from DOM    
+    this.setElement('.close_browser_trigger');
+  },
+  
+  events: { 
+    click: function(){
+      $("body").removeClass("news_loaded");
+
+      $("#browser_container").html("");
+
+      return false;
+    } 
   }
 });
