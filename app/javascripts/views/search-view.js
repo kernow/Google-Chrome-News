@@ -19,10 +19,14 @@ App.SearchView = Backbone.View.extend({
     "click #search_trigger": "toggleSearch",
     "submit #search_form":   "performSearch"
   },
+  
+  exit_method: "close",
 
-  toggleSearch: function(){
+  toggleSearch: function(e){
     // Toggle body class to hide/show search
     $("body").toggleClass("search_triggered");
+    
+    $("#search_trigger").text(($("body").hasClass("search_triggered")) ? "*" : "s");
 
     // If the search has been triggered, focus on the input
     if($("body").hasClass("search_triggered")){
@@ -34,6 +38,10 @@ App.SearchView = Backbone.View.extend({
   },
 
   performSearch: function(term){
+    $("body").removeClass("search_triggered");
+    
+    $("#search_trigger").text("s");
+    
     $('#news_container').hide();
     $('#search_container').empty().show();
     App.searchResults.getFromFeed(this.$('#search_term').val(), App.googleFeed);
