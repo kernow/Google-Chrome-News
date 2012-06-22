@@ -1,4 +1,8 @@
 {
+  "allStories": {
+    "message": "All Stories",
+    "description": "All stories category title"
+  },
   "topStories": {
     "message":      "Top Stories",
     "description":  "Top stories category title"
