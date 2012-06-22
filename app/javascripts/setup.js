@@ -67,7 +67,7 @@ App.initializeArticles = function(){
     App.filer.size = 10485760; // set the file size limit to 10 mb
 
     App.articles = new App.Articles();
-    new App.ArticlesView({ collection: App.articles });
+    App.articles_view = new App.ArticlesView({ collection: App.articles });
 
     App.articles.fetch({
       success: function(){
