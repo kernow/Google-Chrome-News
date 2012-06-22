@@ -57,33 +57,16 @@ App.Articles = Backbone.Collection.extend({
     if(!interval){ interval = 60000; } // Set the default interval to 60 seconds
     var self = this;
     if(this.intervalId){
-      console.log('Calling stop processing from start...');
-      this.stopProcessing();
+      clearInterval(this.intervalId);
     }
-    console.log('started processing');
     this.intervalId = setInterval(function() {
       self.getFromFeed(App.googleFeed);
     }, interval);
   },
 
-  stopProcessing: function(interval){
-    var self = this;
-    console.log('stopped processing');
-    clearInterval(this.intervalId);
-    clearInterval(this.timeOutIntervalId);
-    delete this.intervalId;
-    delete this.timeOutIntervalId;
-    // If an interval is passed automatically resume processing in the specified time
-    if(interval){
-      console.log('Interval set, will start processing in: ', interval);
-      this.timeOutIntervalId = setTimeout(function(){
-        console.log('Starting processing from interval timeout');
-        self.startProcessing();
-      }, interval);
-    }
-  },
-
   getFromFeed: function(feed, category){
+    // If background processing is not allowed to run simply return and do nothing
+    if(!App.canBackgroundProcess){ return; }
     var self = this;
     var categories = category !== undefined ? [category] : App.settings.get('categories');
     var language = App.settings.get('feedLanguage');

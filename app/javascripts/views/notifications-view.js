@@ -3,9 +3,8 @@
 App.NotificationsView = Backbone.View.extend({
 
   initialize: function(){
-    var self                  = this;
-    this.unreadArticles       = 0;
-    this.previousUnreadCount  = 0;
+    var self = this;
+    this.clearCounts();
 
     _.bindAll(this, 'add');
 
@@ -18,11 +17,20 @@ App.NotificationsView = Backbone.View.extend({
     }, 30000);
   },
 
+  clearCounts: function(){
+    console.log('clearing unread counts');
+    this.unreadArticles       = 0;
+    this.previousUnreadCount  = 0;
+  },
+
   add: function(){
     this.unreadArticles++;
   },
 
   render: function(){
+    // If background processing is not allowed to run simply return and do nothing
+    if(!App.canBackgroundProcess){ return; }
+
     var self = this;
 
     if(this.unreadArticles > 0 && this.previousUnreadCount != this.unreadArticles){

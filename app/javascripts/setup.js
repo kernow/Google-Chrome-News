@@ -38,9 +38,9 @@ $(function() {
         // Settings have been fetched so we can initialize the articles and settings view
         App.initializeArticles();
         App.initializeSettingsView();
-        
+
         // Initialize categories list
-        categories_list = new App.CategoriesListView();
+        new App.CategoriesListView();
       });
     }
   });
@@ -54,7 +54,12 @@ $(function() {
     chrome.extension.sendMessage('pause');
   }, 60000);
 
+  chrome.extension.sendMessage('appOpened');
+
 });
+
+// This setting is used to control the packground processing of feeds
+App.canBackgroundProcess = true;
 
 App.initializeSettingsView = function(){ new App.SettingsView(); };
 
@@ -91,7 +96,7 @@ App.initializeArticles = function(){
   }, function(e){
     console.warn('error: ', e);
   });
-  
+
   new App.CloseBrowserView();
 };
 

@@ -54,6 +54,7 @@ describe("Article", function() {
     beforeEach(function() {
       jasmine.Clock.useMock();
       articles = new App.Articles();
+      App.canBackgroundProcess = true;
     });
 
     describe("startProcessing", function() {
@@ -75,29 +76,11 @@ describe("Article", function() {
       });
 
       it("should clear any previous interval that have been set", function() {
-        spyOn(articles, 'stopProcessing');
-        articles.startProcessing();
-        expect(articles.stopProcessing).not.toHaveBeenCalled();
-        articles.startProcessing();
-        expect(articles.stopProcessing).toHaveBeenCalled();
-      });
-
-    });
-
-    describe("stopProcessing", function() {
-
-      it("should clear all intervals", function() {
         spyOn(window, 'clearInterval');
-        articles.stopProcessing();
-        expect(window.clearInterval.calls.length).toEqual(2);
-      });
-
-      it("should call startProcessing if an interval is passed", function() {
-        spyOn(articles, 'startProcessing');
-        articles.stopProcessing(5000);
-        expect(articles.startProcessing).not.toHaveBeenCalled();
-        jasmine.Clock.tick(5000);
-        expect(articles.startProcessing).toHaveBeenCalled();
+        articles.startProcessing();
+        expect(window.clearInterval).not.toHaveBeenCalled();
+        articles.startProcessing();
+        expect(window.clearInterval).toHaveBeenCalled();
       });
 
     });
@@ -156,6 +139,14 @@ describe("Article", function() {
       it("should only load the feed for the category that it passed", function() {
         App.googleFeed.expects('uri').once();
         articles.getFromFeed(App.googleFeed, 'science');
+      });
+
+      it("should not process any articles when canBackgroundProcess is false", function() {
+        spyOn(App.settings, 'get');
+
+        App.canBackgroundProcess = false;
+        articles.getFromFeed(App.googleFeed);
+        expect(App.settings.get).not.toHaveBeenCalled();
       });
 
     });

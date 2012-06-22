@@ -34,6 +34,9 @@ $(function() {
       }
     }
   });
+});
+
+App.initializeMessageHandlers = function(){
 
   // Temporary message listening code
   // currently there is no event for when the app window is closed so we get the main app to send a message to
@@ -41,13 +44,36 @@ $(function() {
   // some point which can be used instead of this code
   chrome.extension.onMessage.addListener(
     function(message, sender, sendResponse) {
-      if(message == 'pause'){
-        console.log('Calling stop processing from message handler');
-        // Stop processing new articles, but set to automatically resume in 70 seconds
-        App.articles.stopProcessing(90000);
+      switch(message){
+        case 'pause':
+          // Stop processing new articles, but set to automatically resume in 70 seconds
+          App.pauseProcessing(90000);
+          break;
+        case 'appOpened':
+          App.notificationsView.clearCounts();
+          break;
       }
   });
-});
+};
+
+App.pauseProcessing = function(interval){
+  App.canBackgroundProcess = false;
+  clearInterval(App.pauseProcessingIntervalId);
+  if(interval){
+    console.log('Interval set, will start processing in: ', interval);
+    App.pauseProcessingIntervalId = setTimeout(function(){
+      console.log('Starting processing from interval timeout');
+      App.resumeProcessing();
+    }, interval);
+  }
+};
+
+App.resumeProcessing = function(){
+  App.canBackgroundProcess = true;
+};
+
+App.resumeProcessing();
+App.initializeMessageHandlers();
 
 App.initializeArticles = function(){
   // initialize filer
@@ -56,7 +82,7 @@ App.initializeArticles = function(){
     App.filer.size = 10485760; // set the file size limit to 10 mb
 
     App.articles = new App.Articles();
-    new App.NotificationsView({ collection: App.articles });
+    App.notificationsView = new App.NotificationsView({ collection: App.articles });
     App.articles.fetch({
       success: function(){
         console.log('start BG processing');
