@@ -25,12 +25,12 @@ $(function() {
           App.settings.save({ "categories" : data.defaultCategories });
 
           // Now we have the settings loaded we can initialize the articles
-          App.initializeArtilces();
+          App.initializeArticles();
         });
       }else{
 
         // Settings have been fetched so we can initialize the articles
-        App.initializeArtilces();
+        App.initializeArticles();
       }
     }
   });
@@ -49,7 +49,7 @@ $(function() {
   });
 });
 
-App.initializeArtilces = function(){
+App.initializeArticles = function(){
   // initialize filer
   App.filer = new Filer();
   App.filer.init({persistent: true, size: 1024 * 1024}, function(fs) {

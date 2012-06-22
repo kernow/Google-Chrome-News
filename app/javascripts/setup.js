@@ -6,7 +6,6 @@
 /*global App: false, Filer: false */
 
 $(function() {
-
   // initialize settings
 
   // Create a new settings model
@@ -37,7 +36,7 @@ $(function() {
         }
 
         // Settings have been fetched so we can initialize the articles and settings view
-        App.initializeArtilces();
+        App.initializeArticles();
         App.initializeSettingsView();
         
         // Initialize categories list
@@ -61,7 +60,7 @@ App.initializeSettingsView = function(){ new App.SettingsView(); };
 
 App.initialize_window_view = function(){ new App.WindowView(); };
 
-App.initializeArtilces = function(){
+App.initializeArticles = function(){
   // initialize filer
   App.filer = new Filer();
   App.filer.init({persistent: true, size: 1024 * 1024}, function(fs) {
