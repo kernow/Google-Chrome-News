@@ -18,7 +18,6 @@ App.SearchView = Backbone.View.extend({
   events: {
     "click #search_trigger": "toggleSearch",
     "submit #search_form":   "performSearch"
-    // TODO add event to catch click on close button and pass to closeSearch
   },
 
   toggleSearch: function(){
@@ -26,7 +25,12 @@ App.SearchView = Backbone.View.extend({
     $("body").toggleClass("search_triggered");
 
     // If the search has been triggered, focus on the input
-    if($("body").hasClass("search_triggered")){ $("#search_term").focus(); }
+    if($("body").hasClass("search_triggered")){
+      $("#search_term").focus();
+    }else{
+      // when the search is closed show the main display again
+      this.closeSearch();
+    }
   },
 
   performSearch: function(term){
