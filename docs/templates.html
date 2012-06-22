@@ -1,0 +1,35 @@
+<!DOCTYPE html>  <html> <head>   <title>templates.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="app.html">                 app.js               </a>                                           <a class="source" href="background.html">                 background.js               </a>                                           <a class="source" href="setup.html">                 setup.js               </a>                                           <a class="source" href="templates.html">                 templates.js               </a>                                           <a class="source" href="ui.html">                 ui.js               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               templates.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="nx">App</span><span class="p">.</span><span class="nx">templates</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;article&quot;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">){</span>
+<span class="kd">var</span> <span class="nx">__p</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="kd">var</span> <span class="nx">print</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span><span class="nx">__p</span><span class="o">+=</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">join</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)};</span>
+<span class="kd">with</span><span class="p">(</span><span class="nx">obj</span><span class="o">||</span><span class="p">{}){</span>
+<span class="nx">__p</span><span class="o">+=</span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+ <span class="k">if</span> <span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span> 
+<span class="p">;</span><span class="nx">__p</span><span class="o">+=</span><span class="s1">&#39;\n  &lt;img src=&quot;&#39;</span><span class="o">+</span>
+<span class="p">(</span> <span class="nx">image</span> <span class="p">)</span><span class="o">+</span>
+<span class="s1">&#39;&quot; /&gt;\n&#39;</span><span class="p">;</span>
+ <span class="p">}</span> 
+<span class="p">;</span><span class="nx">__p</span><span class="o">+=</span><span class="s1">&#39;\n&lt;p class=&quot;news_category&quot;&gt;&#39;</span><span class="o">+</span>
+<span class="p">(</span> <span class="nx">category</span> <span class="p">)</span><span class="o">+</span>
+<span class="s1">&#39;&lt;/p&gt;\n&lt;div class=&quot;news_meta&quot;&gt;\n  &lt;h1 class=&quot;primary_header&quot;&gt;&#39;</span><span class="o">+</span>
+<span class="p">(</span> <span class="nx">title</span> <span class="p">)</span><span class="o">+</span>
+<span class="s1">&#39;&lt;/h1&gt;\n  &lt;p class=&quot;news_meta_item&quot;&gt;&#39;</span><span class="o">+</span>
+<span class="p">(</span> <span class="nx">source</span> <span class="p">)</span><span class="o">+</span>
+<span class="s1">&#39;&lt;/p&gt;\n  &lt;p class=&quot;news_meta_item timeago&quot; data-sort_by=&quot;&#39;</span><span class="o">+</span>
+<span class="p">(</span> <span class="nx">updatedTime</span> <span class="p">)</span><span class="o">+</span>
+<span class="s1">&#39;&quot; title=&quot;&#39;</span><span class="o">+</span>
+<span class="p">(</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">updated</span><span class="p">).</span><span class="nx">toISOString</span><span class="p">()</span> <span class="p">)</span><span class="o">+</span>
+<span class="s1">&#39;&quot;&gt;&#39;</span><span class="o">+</span>
+<span class="p">(</span> <span class="nx">updated</span> <span class="p">)</span><span class="o">+</span>
+<span class="s1">&#39;&lt;/p&gt;\n&lt;/div&gt;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="nx">__p</span><span class="p">;</span>
+<span class="p">},</span><span class="s2">&quot;browser&quot;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">){</span>
+<span class="kd">var</span> <span class="nx">__p</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="kd">var</span> <span class="nx">print</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span><span class="nx">__p</span><span class="o">+=</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">join</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)};</span>
+<span class="kd">with</span><span class="p">(</span><span class="nx">obj</span><span class="o">||</span><span class="p">{}){</span>
+<span class="nx">__p</span><span class="o">+=</span><span class="s1">&#39;&lt;object id=&quot;news_browser&quot; src=&quot;&#39;</span><span class="o">+</span>
+<span class="p">(</span> <span class="nx">link</span> <span class="p">)</span><span class="o">+</span>
+<span class="s1">&#39;&quot; type=&quot;application/browser-plugin&quot;&gt;&lt;/object&gt;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="nx">__p</span><span class="p">;</span>
+<span class="p">}};</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
