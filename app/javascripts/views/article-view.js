@@ -32,11 +32,11 @@ App.ArticleView = Backbone.View.extend({
 
 App.ArticlesView = App.ArticleView.extend({
   initialize: function(){
-    _.bindAll(this, 'render', 'add', 'remove', 'categoryRemoved');
+    _.bindAll(this, 'render', 'add', 'remove', 'articlesFromCategoryRemoved');
     this.collection.bind('reset', this.render);
     this.collection.bind('add', this.add);
     this.collection.bind('remove', this.remove);
-    this.collection.bind('categoryRemoved', this.categoryRemoved);
+    this.collection.bind('articlesFromCategoryRemoved', this.articlesFromCategoryRemoved);
 
     $("#news_container").masonry();
   },
@@ -47,10 +47,10 @@ App.ArticlesView = App.ArticleView.extend({
   remove: function(article){
     $('#article-' + article.cid).remove();
     // We don't call postRender after removing an article as it's an expensive operation
-    // and can slow down the browser. Instead we listen out of the categoryRemoved event
+    // and can slow down the browser. Instead we listen out of the articlesFromCategoryRemoved event
     // and call postRender then
   },
-  categoryRemoved: function(){
+  articlesFromCategoryRemoved: function(){
     this.postRender();
   },
   render: function(){

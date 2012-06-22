@@ -150,7 +150,7 @@ App.Articles = Backbone.Collection.extend({
     });
     console.log('articles removed');
     // raise event to call post render
-    this.trigger("categoryRemoved");
+    this.trigger("articlesFromCategoryRemoved");
   },
 
   // removes all articles from the database
