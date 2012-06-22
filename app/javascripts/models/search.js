@@ -45,9 +45,9 @@ App.SearchResults = Backbone.Collection.extend({
   },
 
   saveItem: function(item){
-    var article = new App.Article(item);
-    article.save();
-    this.add(article);
+    var searchResult = new App.SearchResult(item);
+    searchResult.save();
+    this.add(searchResult);
   },
 
   // grabbs the remote image linked in the article and saves it to the local store
