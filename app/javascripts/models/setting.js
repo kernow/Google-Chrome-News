@@ -25,6 +25,7 @@ App.Settings = Backbone.Model.extend({
     this.save({ "categories" : _.uniq(categories) });
     // TODO optimiseation, we only need to grab articles from the category thats just been added
     App.articles.getFromFeed(App.googleFeed, category);
+    this.trigger("categoryAdded", category);
   },
 
   removeCategory: function(category){
@@ -33,6 +34,7 @@ App.Settings = Backbone.Model.extend({
     this.save({ "categories" : categories });
     // remove the articles from the category that is no longer displayed
     App.articles.removeWithCategory(category);
+    this.trigger("categoryRemoved", category);
   },
 
   changeLanguage: function(languageCode){
