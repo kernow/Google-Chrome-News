@@ -13,11 +13,16 @@ App.SearchView = Backbone.View.extend({
     
     // Trigger search on cmd+f
     $(window).bind("keyup", "f", function(){ self.toggleSearch(); });
+    
+    $("#search_form").submit(function(){
+      self.performSearch($("#search_term").val());
+      
+      return false;
+    });
   },
 
   events: {
-    "click": "toggleSearch",
-    // TODO add event to catch form submit and pass to performSearch
+    "click": "toggleSearch"
   },
 
   toggleSearch: function(){
@@ -28,7 +33,7 @@ App.SearchView = Backbone.View.extend({
     if($("body").hasClass("search_triggered")){ $("#search_term").focus(); }
   },
 
-  performSearch: function(){
+  performSearch: function(term){
     $('#news_container').hide();
     $('#search_container').empty().show();
     // TODO get the query from the search field
