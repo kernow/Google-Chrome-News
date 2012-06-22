@@ -56,6 +56,11 @@ App.CategoryView = Backbone.View.extend({
     
     // And activate this one
     $(this.el).addClass("active");
+    
+    // Filter collection
+    App.articles = App.articles.filter_by_category($(this.el).text());
+    
+    new App.ArticlesView({ collection: App.articles });
   },
 
   render: function(){

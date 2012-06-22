@@ -48,6 +48,14 @@ App.Articles = Backbone.Collection.extend({
     this.on('imageGrabbed',             this.saveItem,    this);
   },
 
+  filter_by_category: function(category){
+    this.filter(function(item){
+      return item.get("category") == category;
+    });
+    
+    return this;
+  },
+
   // sort articles by the updatedTime field so that newest articles are first
   comparator: function(article) {
     return -article.get('updatedTime');
