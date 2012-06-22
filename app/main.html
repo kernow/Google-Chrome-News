@@ -11,6 +11,7 @@
       @import url("stylesheets/ui/headings.css");
       @import url("stylesheets/ui/browser.css");
       @import url("stylesheets/ui/news_index.css");
+      @import url("stylesheets/ui/search.css");
       @import url("stylesheets/specific/categories.css");
       @import url("stylesheets/specific/settings.css");
     </style>
@@ -46,7 +47,13 @@
   <body>
     <nav id="main_nav">
       <ul class="icon_list">
-        <li class="icon"><a href="#" id="search_trigger">s</a></li>
+        <li class="icon">
+          <a href="#" id="search_trigger">s</a>
+          <form id="search_form">
+            <input type="text" id="search_term" />
+            <button id="search_button" type="submit">s</button>
+          </form>
+        </li>
         <li class="category_list_trigger">
           <a href="/categories/" id="categories_trigger">Categories</a>
           <div class="dropdown">

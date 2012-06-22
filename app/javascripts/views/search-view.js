@@ -17,8 +17,11 @@ App.SearchView = Backbone.View.extend({
   },
 
   openSearch: function(){
-    console.log('opening the search');
-    // TODO add code for rendering/showing the search form here
+    // Toggle body class to hide/show search
+    $("body").toggleClass("search_triggered");
+    
+    // If the search has been triggered, focus on the input
+    if($("body").hasClass("search_triggered")){ $("#search_term").focus(); }
   },
 
   performSearch: function(){
