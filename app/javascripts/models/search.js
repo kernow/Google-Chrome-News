@@ -19,7 +19,7 @@ App.SearchResults = Backbone.Collection.extend({
 
   getFromFeed: function(query, feed){
     // clear the collection of any previous results
-    this.removeAll();
+    this.reset();
     var self = this;
     var language = App.settings.get('feedLanguage');
     var feedUri = feed.uri({ 'query': query, 'language': language.code });
@@ -47,7 +47,6 @@ App.SearchResults = Backbone.Collection.extend({
 
   saveItem: function(item){
     var searchResult = new App.SearchResult(item);
-    searchResult.save();
     this.add(searchResult);
   },
 
@@ -73,12 +72,5 @@ App.SearchResults = Backbone.Collection.extend({
     };
     xhr.open("GET", item.image);
     xhr.send();
-  },
-
-  // removes all articles from the database
-  removeAll: function(){
-    _.chain(this.models).clone().each(function(model){
-      model.destroy();
-    });
   }
 });
