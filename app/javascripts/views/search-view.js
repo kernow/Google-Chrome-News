@@ -6,29 +6,25 @@
 /*global App: false */
 
 App.SearchView = Backbone.View.extend({
-  initialize: function(){ 
+  initialize: function(){
     var self = this;
-    
-    self.setElement('#search_trigger'); 
-    
+
+    this.setElement('#search_menu');
+
     // Trigger search on cmd+f
     $(window).bind("keyup", "f", function(){ self.toggleSearch(); });
-    
-    $("#search_form").submit(function(){
-      self.performSearch($("#search_term").val());
-      
-      return false;
-    });
   },
 
   events: {
-    "click": "toggleSearch"
+    "click #search_trigger": "toggleSearch",
+    "submit #search_form":   "performSearch"
+    // TODO add event to catch click on close button and pass to closeSearch
   },
 
   toggleSearch: function(){
     // Toggle body class to hide/show search
     $("body").toggleClass("search_triggered");
-    
+
     // If the search has been triggered, focus on the input
     if($("body").hasClass("search_triggered")){ $("#search_term").focus(); }
   },
@@ -36,8 +32,8 @@ App.SearchView = Backbone.View.extend({
   performSearch: function(term){
     $('#news_container').hide();
     $('#search_container').empty().show();
-    // TODO get the query from the search field
-    App.searchResults.getFromFeed('apple computers', App.googleFeed);
+    App.searchResults.getFromFeed(this.$('#search_term').val(), App.googleFeed);
+    return false;
   },
 
   closeSearch: function(){
