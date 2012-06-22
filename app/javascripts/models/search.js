@@ -32,7 +32,7 @@ App.SearchResults = Backbone.Collection.extend({
           // parse the feed using the supplied feed parser
           var parsedItem = feed.parseItem(item);
 
-          // Only store the image and save the article if it not already in teh database
+          // Only store the image and save the article if it not already in the database
           if(!self.get(item.id)){
             if(parsedItem.image){
               self.trigger('articleGrabbedWithImage', parsedItem);
