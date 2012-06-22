@@ -27,6 +27,9 @@ App.ArticleView = Backbone.View.extend({
 
     // Empty the browser wrapper and append a new browser object
     $('#browser_container').empty().append(App.templates.browser(this.model.toJSON()));
+
+    // Save the currently open article in the settings model so the app's state is saved
+    App.settings.saveOpenArticleId(this.model.get('id'));
   }
 });
 
@@ -95,6 +98,9 @@ App.CloseBrowserView = Backbone.View.extend({
       $("body").removeClass("news_loaded");
 
       $("#browser_container").html("");
+
+      // Remove the currently open article from the settings model so the app's state is saved
+      App.settings.saveOpenArticleId('');
 
       return false;
     } 

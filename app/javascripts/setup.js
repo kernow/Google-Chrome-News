@@ -65,6 +65,26 @@ App.initializeSettingsView = function(){ new App.SettingsView(); };
 
 App.initialize_window_view = function(){ new App.WindowView(); };
 
+// Restore the state of the application on load, settings are loaded from the
+App.restoreState = function(){
+  // Restore the state of an open article if needed
+  var articleId = App.settings.get('openArticleId');
+  if(articleId !== ""){
+
+    // Load the article from storage
+    var article = App.articles.get(articleId);
+
+    if(article){
+      // If the article is found restore the viewing state using the article view
+      var articleView = new App.ArticleView({ model: article });
+      articleView.openLink();
+    }else{
+      // If the article can't be found remove the setting from storeage
+      App.settings.saveOpenArticleId('');
+    }
+  }
+};
+
 App.initializeArticles = function(){
   // initialize filer
   App.filer = new Filer();
@@ -76,6 +96,9 @@ App.initializeArticles = function(){
 
     App.articles.fetch({
       success: function(){
+
+        // Restore the applications state
+        App.restoreState();
 
         // Load articles on initialisation
         App.articles.getFromFeed(App.googleFeed);

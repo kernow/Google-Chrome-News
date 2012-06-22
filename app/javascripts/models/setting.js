@@ -37,6 +37,11 @@ App.Settings = Backbone.Model.extend({
     this.trigger("categoryRemoved", category);
   },
 
+  // Saves the id of the currently open article so that the app's state can be restored
+  saveOpenArticleId: function(id){
+    this.save({ "openArticleId" : id });
+  },
+
   changeLanguage: function(languageCode){
     var name = _.find(App.supportedLanguages, function(obj){ return obj.code == languageCode; }).name;
     var feedLanguage = { "code": languageCode, "name": name };
@@ -60,6 +65,10 @@ App.Settings = Backbone.Model.extend({
       if(changes.feedLanguage && this.get('feedLanguage') != changes.feedLanguage.newValue){
         // set the changes but no need to save them as they are already in the sync storage
         this.set({ 'feedLanguage': changes.feedLanguage.newValue });
+      }
+      if(changes.openArticleId && this.get('openArticleId') != changes.openArticleId.newValue){
+        // set the changes but no need to save them as they are already in the sync storage
+        this.set({ 'openArticleId': changes.openArticleId.newValue });
       }
     }
   },
