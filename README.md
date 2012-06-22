@@ -1,5 +1,17 @@
 # Getting Setup
 
+To run this Google Chrom App you will need to have the latest [Google Chrome Canary](https://tools.google.com/dlpage/chromesxs/) installed with a few of the options changed. Open the [chrome://flags/](chrome://flags/) page and eneable the following settings:
+
+* Browser Plugin (set to "Everywhere")
+* Experimental Extension APIs
+* Enable platform apps
+
+Open extension settings (select the Chrome wrench tool > Tools > Extensions) and Check "Developer mode".
+
+To load the application click the "Load unpacked extension..." button in the extension settings and brows to the "app" folder within the codebase. Finally open a new tab and you should see the application icon on the home screen, click it to launch.
+
+# Building the application
+
 You will need node JS with the Jake package which can ben installed using
 
 `npm install -g jake`
