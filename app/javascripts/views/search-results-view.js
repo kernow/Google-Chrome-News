@@ -10,6 +10,7 @@ App.SearchResultsView = App.ArticleView.extend({
     this.setElement('#search_container');
     
     this.$el.masonry({ 
+      itemSelector: ".news_item:visible",
       isFitWidth: false,
       layoutPriorities: { shelfOrder: 1.21 } 
     });

@@ -57,10 +57,14 @@ App.CategoryView = Backbone.View.extend({
     // And activate this one
     $(this.el).addClass("active");
     
-    // Filter collection    
-    App.articles_view.collection = _(App.articles.filter(function(item){ return item.get("category") == $(this.el).text(); }));
+    // Hide irrelevant news items
+    $(".news_item").show();
+      
+    if(this.category != "allStories"){ $(".news_item:not(.in_category_" + this.category + ")").hide(); }
     
-    App.articles_view.render();
+    // Reload masonry
+    
+    $("#news_container").masonry("reload");
   },
 
   render: function(){
