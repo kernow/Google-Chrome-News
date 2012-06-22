@@ -44,14 +44,47 @@ App.WindowView = Backbone.View.extend({
     window.lastY = e.clientY
   },
   
-  current_active_item: null,
+  current_active_item: false,
   
-  activate_keyboard_state: function(e, test){    
+  activate_item: function(item){
+    item.siblings().removeClass("keyboard_activated");
+    
+    item.addClass("keyboard_activated");
+    
+    this.current_active_item = item;
+  },
+  
+  layout: {
+    get_items_per_row: function(){ return Math.ceil($("#news_container").width() / 160); },
+    get_target_item_vertically: function(direction, item, per_row){
+      index = item.index();
+      
+      target_index = (direction == "down") ? index + per_row + 1 : index - per_row - 1;
+      
+      item = $(".news_item:eq(" + target_index + ")");
+      
+      return item;
+    },
+  },
+  
+  activate_keyboard_state: function(e){    
     // Set keyboard navigable state
     $("body").addClass("keyboard_navigation");
     
-    // Cache the currently active item
-    this.current_active_item = $(".keyboard_activated");
+    var target_item = false;
+    
+    if(this.current_active_item){  
+      switch(e.which){
+        case 68: target_item = this.current_active_item.next(); break; // Go to the next item
+        case 65: target_item = this.current_active_item.prev(); break; // Go to the previous item
+        case 87: target_item = this.layout.get_target_item_vertically("up", this.current_active_item, this.layout.get_items_per_row()); break;
+        case 83: target_item = this.layout.get_target_item_vertically("down", this.current_active_item, this.layout.get_items_per_row()); break;
+      }
+      
+      if(target_item){ this.activate_item(target_item); }else{ this.activate_item($(".news_item:first")); }
+    }else{
+      this.activate_item($(".news_item:first"));
+    }
     
     return false;
   }
