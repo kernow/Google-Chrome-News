@@ -53,13 +53,14 @@ describe("Google Feed Parser", function() {
     });
 
     it("should handle images with unexpected uri formats", function() {
+      var parsedItem;
       sampleItem.description = '<p><img src="http://nt0.ggpht.com/news/tbn/5JJEAThGRTPdZM/11.jpg" /></p>';
-      var parsedItem = App.googleFeed.parseItem(sampleItem);
+      parsedItem = App.googleFeed.parseItem(sampleItem);
 
       expect(parsedItem.image).toEqual("http://nt0.ggpht.com/news/tbn/5JJEAThGRTPdZM/11.jpg");
 
       sampleItem.description = '<p><img src="//nt0.ggpht.com/news/tbn/5JJEAThGRTPdZM/00.jpg" /></p>';
-      var parsedItem = App.googleFeed.parseItem(sampleItem);
+      parsedItem = App.googleFeed.parseItem(sampleItem);
 
       expect(parsedItem.image).toEqual("http://nt0.ggpht.com/news/tbn/5JJEAThGRTPdZM/00.jpg");
     });
