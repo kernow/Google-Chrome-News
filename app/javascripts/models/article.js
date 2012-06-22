@@ -42,6 +42,12 @@ App.Articles = Backbone.Collection.extend({
   storeName:  "articles",
   model:      App.Article,
 
+  initialize: function(){
+    this.on('articleGrabbedWithImage',  this.storeImage,  this);
+    this.on('articleGrabbed',           this.saveItem,    this);
+    this.on('imageGrabbed',             this.saveItem,    this);
+  },
+
   // sort articles by the updatedTime field so that newest articles are first
   comparator: function(article) {
     return -article.get('updatedTime');
@@ -102,8 +108,11 @@ App.Articles = Backbone.Collection.extend({
 
             // Only store the image and save teh article if it not already in the database
             if(!self.get(item.id)){
-              console.log('Adding and article');
-              self.storeImage(parsedItem);
+              if(parsedItem.image){
+                self.trigger('articleGrabbedWithImage', parsedItem);
+              }else{
+                self.trigger('articleGrabbed', parsedItem);
+              }
             }
           });
         }
@@ -132,7 +141,7 @@ App.Articles = Backbone.Collection.extend({
         {data: d, type: contentType},
         function(fileEntry, fileWriter) {
           item.image = fileEntry.toURL();
-          self.saveItem(item);
+          self.trigger('imageGrabbed', item);
         },
         function(e) {console.warn(e);}
       );
