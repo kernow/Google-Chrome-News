@@ -66,13 +66,4 @@ $(document).ready(function(){
     
     return false;
   });
-  
-  $(window).mousemove(function(e){ 
-    if(window.lastX !== e.clientX || window.lastY !== e.clientY){
-      $("body").removeClass("keyboard_navigation"); 
-    }   
-  
-    window.lastX = e.clientX
-    window.lastY = e.clientY
-  });
 });
