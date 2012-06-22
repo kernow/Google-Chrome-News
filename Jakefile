@@ -7,12 +7,12 @@ var templatesDir          = 'app/javascripts/templates';
 var compiledTemplatesFile = 'app/javascripts/templates.js';
 
 desc('Build the application.');
-task('build', ['build:templates']);
+task('build', ['build:templates', 'build:docs']);
 
 namespace('build', function () {
   desc('Precompile the applications templates.');
   task('templates', [], function () {
-    console.log('Building the templates...');
+    jake.logger.log('Building the templates...');
 
     var files = fs.readdirSync(templatesDir);
 
@@ -21,15 +21,16 @@ namespace('build', function () {
     for (i = 0; i < files.length; i++) {
       if (/\.jst$/.test(files[i])) {
         templates[files[i].replace(/\.jst$/, '')] = template.compile(templatesDir + '/' + files[i]);
-        console.log('.');
+        jake.logger.log('.');
       }
     }
     template.write(compiledTemplatesFile, templates);
-    console.log('Finished compiling templates');
+    jake.logger.log('Finished compiling templates');
   });
 
   desc('Compile the documentation');
   task('docs', [], function(){
+    jake.logger.log('Building documentation...');
     var commands = [
       "rm -r ./docs/*",
       "docco ./app/javascripts/background/*.js",
