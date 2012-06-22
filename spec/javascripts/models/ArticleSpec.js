@@ -48,7 +48,7 @@ describe("Article", function() {
 
   });
 
-  describe("article processing", function(){
+  describe("processing", function(){
     var articles;
 
     beforeEach(function() {
@@ -103,10 +103,11 @@ describe("Article", function() {
     });
 
     describe("getFromFeed", function() {
-      var request, xml;
+      var request, scienceFeedXml, technologyFeedXml;
 
       beforeEach(function() {
-        xml = jasmine.getFixtures().read('science-feed.rss');
+        scienceFeedXml    = jasmine.getFixtures().read('science-feed.rss');
+        technologyFeedXml = jasmine.getFixtures().read('technology-feed.rss');
         App.settings = new Mock();
         new Mock(App.settings);
         App.settings.stubs('get').returns(['science', 'world']);
@@ -114,20 +115,36 @@ describe("Article", function() {
         new Mock(App.googleFeed);
         App.googleFeed.stubs('uri').returns('https://news.google.com');
 
-        spyOn(articles, 'storeImage');
+        spyOn(articles, 'trigger');
 
         jasmine.Ajax.useMock();
       });
 
-      it("call storeImage for each article that is processed", function() {
+      it("call trigger articleGrabbedWithImage for each article that is processed", function() {
         runs(function() {
           articles.getFromFeed(App.googleFeed);
           request = mostRecentAjaxRequest();
-          request.response({ 'status': 200, 'responseText': xml });
+          request.response({ 'status': 200, 'responseText': scienceFeedXml });
         });
 
         runs(function() {
-          expect(articles.storeImage.calls.length).toEqual(10);
+          expect(articles.trigger.calls.length).toEqual(10);
+          for(var i = 0; i <= articles.trigger.calls.length-1; i++){
+            expect(articles.trigger.calls[i].args[0]).toEqual('articleGrabbedWithImage');
+          }
+        });
+      });
+
+      it("call trigger articleGrabbed for articles with no images", function() {
+        runs(function() {
+          articles.getFromFeed(App.googleFeed);
+          request = mostRecentAjaxRequest();
+          request.response({ 'status': 200, 'responseText': technologyFeedXml });
+        });
+
+        runs(function() {
+          expect(articles.trigger.calls.length).toEqual(10);
+          expect(articles.trigger.calls[0].args[0]).toEqual('articleGrabbed');
         });
       });
 

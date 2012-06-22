@@ -42,6 +42,12 @@ App.Articles = Backbone.Collection.extend({
   storeName:  "articles",
   model:      App.Article,
 
+  initialize: function(){
+    this.on('articleGrabbedWithImage',  this.storeImage,  this);
+    this.on('articleGrabbed',           this.saveItem,    this);
+    this.on('imageGrabbed',             this.saveItem,    this);
+  },
+
   // sort articles by the updatedTime field so that newest articles are first
   comparator: function(article) {
     return -article.get('updatedTime');
@@ -78,7 +84,7 @@ App.Articles = Backbone.Collection.extend({
   },
 
   getFromFeed: function(feed, category){
-    var collection = this;
+    var self = this;
     var categories = category !== undefined ? [category] : App.settings.get('categories');
     var language = App.settings.get('feedLanguage');
     _.each(categories, function(category){
@@ -101,9 +107,12 @@ App.Articles = Backbone.Collection.extend({
             }
 
             // Only store the image and save teh article if it not already in the database
-            if(!collection.get(item.id)){
-              console.log('Adding and article');
-              collection.storeImage(parsedItem);
+            if(!self.get(item.id)){
+              if(parsedItem.image){
+                self.trigger('articleGrabbedWithImage', parsedItem);
+              }else{
+                self.trigger('articleGrabbed', parsedItem);
+              }
             }
           });
         }
@@ -121,7 +130,7 @@ App.Articles = Backbone.Collection.extend({
   // grabbs the remote image linked in the article and saves it to the local store
   storeImage: function(item, callback){
     var xhr = new XMLHttpRequest();
-    var collection = this;
+    var self = this;
     xhr.responseType = "arraybuffer";
     xhr.onload = function() {
       var d = xhr.response;
@@ -132,7 +141,7 @@ App.Articles = Backbone.Collection.extend({
         {data: d, type: contentType},
         function(fileEntry, fileWriter) {
           item.image = fileEntry.toURL();
-          collection.saveItem(item);
+          self.trigger('imageGrabbed', item);
         },
         function(e) {console.warn(e);}
       );

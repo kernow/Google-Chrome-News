@@ -21,7 +21,8 @@ App.SearchResults = Backbone.Collection.extend({
     // clear the collection of any previous results
     this.removeAll();
     var self = this;
-    var feedUri = feed.uri({ 'query': query });
+    var language = App.settings.get('feedLanguage');
+    var feedUri = feed.uri({ 'query': query, 'language': language });
     console.log('getting news from: ' + feedUri);
     jQuery.getFeed({
       url: feedUri,
@@ -31,7 +32,7 @@ App.SearchResults = Backbone.Collection.extend({
           // parse the feed using the supplied feed parser
           var parsedItem = feed.parseItem(item);
 
-          // Only store the image and save the article if it not already in teh database
+          // Only store the image and save the article if it not already in the database
           if(!self.get(item.id)){
             if(parsedItem.image){
               self.trigger('articleGrabbedWithImage', parsedItem);
@@ -45,9 +46,9 @@ App.SearchResults = Backbone.Collection.extend({
   },
 
   saveItem: function(item){
-    var article = new App.Article(item);
-    article.save();
-    this.add(article);
+    var searchResult = new App.SearchResult(item);
+    searchResult.save();
+    this.add(searchResult);
   },
 
   // grabbs the remote image linked in the article and saves it to the local store
