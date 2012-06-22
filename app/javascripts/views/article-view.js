@@ -21,7 +21,7 @@ App.ArticleView = Backbone.View.extend({
 
     // Update the intent triggers hrefs for reference
     $(".save_trigger, .share_trigger").attr("href", this.model.get("link"));
-    
+
     // Set the body class to trigger the article loaded state and styles
     $("body").toggleClass("news_loaded");
 
@@ -89,11 +89,11 @@ App.ArticlesView = App.ArticleView.extend({
 
 App.CloseBrowserView = Backbone.View.extend({
   initialize: function(){
-    // Fetch the close button from DOM    
+    // Fetch the close button from DOM
     this.setElement('.close_browser_trigger');
   },
-  
-  events: { 
+
+  events: {
     click: function(){
       $("body").removeClass("news_loaded");
 
@@ -103,6 +103,6 @@ App.CloseBrowserView = Backbone.View.extend({
       App.settings.saveOpenArticleId('');
 
       return false;
-    } 
+    }
   }
 });
