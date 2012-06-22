@@ -71,17 +71,22 @@ describe("Google Feed Parser", function() {
     beforeEach(function() {
       chrome.i18n = {};
       new Mock(chrome.i18n);
-      chrome.i18n.expects('getMessage')
-        .times(3)
-        .returns( 'http://news.google.com/news?output=rss',
-                  '&ned=us',
-                  '&topic=b'
-      );
     });
 
-    it("should return the feed uri for the category", function() {
+    it("should return the feed uri for the category when no language is passed", function() {
+      chrome.i18n.expects('getMessage')
+        .times(2)
+        .returns('http://news.google.com/news?output=rss', 'us');
       var uri = App.googleFeed.uri({ "category": "business" });
       expect(uri).toEqual('http://news.google.com/news?output=rss&ned=us&topic=b');
+    });
+
+    it("should return the feed uri for the category when a language is passed", function() {
+      chrome.i18n.expects('getMessage')
+        .once()
+        .returns('http://news.google.com/news?output=rss');
+      var uri = App.googleFeed.uri({ "category": "business", "language": "uk" });
+      expect(uri).toEqual('http://news.google.com/news?output=rss&ned=uk&topic=b');
     });
 
   });
