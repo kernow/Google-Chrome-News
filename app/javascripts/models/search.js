@@ -22,7 +22,7 @@ App.SearchResults = Backbone.Collection.extend({
     this.removeAll();
     var self = this;
     var language = App.settings.get('feedLanguage');
-    var feedUri = feed.uri({ 'query': query, 'language': language });
+    var feedUri = feed.uri({ 'query': query, 'language': language.code });
     console.log('getting news from: ' + feedUri);
     jQuery.getFeed({
       url: feedUri,
