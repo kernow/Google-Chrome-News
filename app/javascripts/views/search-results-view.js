@@ -8,7 +8,12 @@
 App.SearchResultsView = App.ArticleView.extend({
   initialize: function(){
     this.setElement('#search_container');
-    this.$el.masonry({ isFitWidth: true });
+    
+    this.$el.masonry({ 
+      isFitWidth: false,
+      layoutPriorities: { shelfOrder: 1.21 } 
+    });
+    
     _.bindAll(this, 'render', 'add');
     this.collection.bind('add', this.add);
   },

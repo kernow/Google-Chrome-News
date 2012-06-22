@@ -55,19 +55,15 @@ App.WindowView = Backbone.View.extend({
   },
   
   layout: {
-    // Method for calculating the number of items in a row
     get_items_per_row: function(){ return Math.ceil($("#news_container").width() / 160); },
     get_target_item_vertically: function(direction, item, per_row){
-      // Gte current items index
       index = item.index();
       
-      // Calculate target items index using the number of items per row
-      target_index = (direction == "down") ? index + per_row + 1 : index - per_row - 1;
+      target_index = (direction == "down") ? index + per_row - 1 : index - per_row + 1;
       
-      // Get target item by index
-      new_item = $(".news_item:eq(" + target_index + ")");
+      item = $(".news_item:eq(" + target_index + ")");
       
-      return new_item;
+      return item;
     },
   },
   

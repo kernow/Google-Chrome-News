@@ -38,7 +38,10 @@ App.ArticlesView = App.ArticleView.extend({
     this.collection.bind('remove', this.remove);
     this.collection.bind('articlesFromCategoryRemoved', this.articlesFromCategoryRemoved);
 
-    $("#news_container").masonry();
+    $("#news_container").masonry({
+      isFitWidth: false,
+      layoutPriorities: { shelfOrder: 1.21 }
+    });
   },
   add: function(article){
     $('#news_container').prepend(this.createArtilceView(article).render().el);
