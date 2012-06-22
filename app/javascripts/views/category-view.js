@@ -13,7 +13,9 @@ App.CategoriesListView = Backbone.View.extend({
     this.$el.empty();
     
     // Set default categories
-    var categories = App.defaultCategories;
+    var categories = ["allStories"];
+    
+    categories = categories.concat(App.settings.get('categories') || App.defaultCategories);
     
     // Do something here to reflect preferred categories
     
@@ -59,6 +61,8 @@ App.CategoryView = Backbone.View.extend({
   render: function(){
     // Set label + class
     $(this.el).html(this.category_label).addClass(this.category + "CategoryTrigger");
+    
+    if(this.category == "allStories"){ $(this.el).addClass("active"); }
     
     return this;
   }
