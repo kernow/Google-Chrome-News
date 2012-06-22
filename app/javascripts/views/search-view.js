@@ -6,17 +6,21 @@
 /*global App: false */
 
 App.SearchView = Backbone.View.extend({
-  initialize: function(){
-    this.setElement('#search_trigger');
+  initialize: function(){ 
+    var self = this;
+    
+    self.setElement('#search_trigger'); 
+    
+    // Trigger search on cmd+f
+    $(window).bind("keyup", "f", function(){ self.toggleSearch(); });
   },
 
   events: {
-    "click": "openSearch"
+    "click": "toggleSearch",
     // TODO add event to catch form submit and pass to performSearch
-    // TODO add event to catch click on close button and pass to closeSearch
   },
 
-  openSearch: function(){
+  toggleSearch: function(){
     // Toggle body class to hide/show search
     $("body").toggleClass("search_triggered");
     

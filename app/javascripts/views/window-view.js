@@ -46,9 +46,7 @@ App.WindowView = Backbone.View.extend({
   
   current_active_item: null,
   
-  activate_keyboard_state: function(e, test){
-    console.log(e, test);
-    
+  activate_keyboard_state: function(e, test){    
     // Set keyboard navigable state
     $("body").addClass("keyboard_navigation");
     
