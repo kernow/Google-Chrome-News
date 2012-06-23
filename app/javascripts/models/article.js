@@ -18,6 +18,7 @@ App.articlesDatabase = {
     migrate: function (transaction, next) {
       var store = transaction.db.createObjectStore("articles");
       store.createIndex("categoryIndex", "category", { unique: false }); // Adds an index on the categories
+      store.createIndex("updatedTimeIndex", "updatedTime", { unique: false }); // Adds an index on the categories
       next();
     }
   }]
@@ -140,9 +141,8 @@ App.Articles = Backbone.Collection.extend({
     _.each(articles, function(article){
       article.destroy();
     });
-    console.log('articles removed');
-    // raise event to call post render
-    this.trigger("articlesFromCategoryRemoved");
+    // raise event to that articles from a category have been removed
+    this.trigger("articlesFromCategoryRemoved", category);
   },
 
   // removes all articles from the database
@@ -150,5 +150,6 @@ App.Articles = Backbone.Collection.extend({
     _.chain(App.articles.models).clone().each(function(model){
       model.destroy();
     });
+    this.trigger("allRemoved");
   }
 });

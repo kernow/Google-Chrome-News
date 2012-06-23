@@ -6,6 +6,8 @@
 // setup the applications namespace
 window.App = {
 
+  perPage: 30,
+
   // pluralization help method
   pluralize: function(singular, count) {
     if (count == 1) {

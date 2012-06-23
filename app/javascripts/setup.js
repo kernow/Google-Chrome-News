@@ -91,16 +91,22 @@ App.initializeArticles = function(){
   App.filer.init({persistent: true, size: 1024 * 1024}, function(fs) {
     App.filer.size = 10485760; // set the file size limit to 10 mb
 
+    // The Articles collection keeps track of all known articles
     App.articles = new App.Articles();
-    App.articles_view = new App.ArticlesView({ collection: App.articles });
+
+    // The DisplayedArticles collection stores only the articles displayed on the screen
+    App.displayedArticles = new App.DisplayedArticles();
+
+    // Initialize the articles view and pass it the DisplayedArticles collection
+    App.articles_view = new App.ArticlesView({ collection: App.displayedArticles });
+
+    // Fetch articles to display
+    App.displayedArticles.load();
 
     App.articles.fetch({
       success: function(){
 
-        // Restore the applications state
-        App.restoreState();
-
-        // Load articles on initialisation
+        // Load new articles from the feed on initialisation
         App.articles.getFromFeed(App.googleFeed);
 
         // Load new articles every minute

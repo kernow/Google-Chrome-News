@@ -34,6 +34,11 @@ App.WindowView = Backbone.View.extend({
     var method = (($(this.el).scrollTop() > 0) ? "add" : "remove") + "Class";
 
     $("body")[method]("in_scroll");
+
+    // setup infinite scroll to load articles
+    if(this.$el.scrollTop() + $(window).height() + 400 > $(document).height()){
+      App.displayedArticles.load();
+    }
   },
 
   deactivate_keyboard_state: function(e){

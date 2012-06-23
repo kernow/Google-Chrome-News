@@ -35,21 +35,22 @@ App.ArticleView = Backbone.View.extend({
 
 App.ArticlesView = Backbone.View.extend({
   initialize: function(){
-    _.bindAll(this, 'render', 'add', 'remove', 'articlesFromCategoryRemoved');
-    this.collection.on('reset', this.render);
-    this.collection.on('add', this.add);
-    this.collection.on('remove', this.remove);
-    this.collection.on('articlesFromCategoryRemoved', this.articlesFromCategoryRemoved);
+    this.collection.on('reset', this.render, this);
+    this.collection.on('add', this.add, this);
+    this.collection.on('remove', this.remove, this);
+    this.collection.on('articlesRemoved', this.postRender, this);
+    this.collection.on('articlesAdded', this.postRender, this);
 
-    $("#news_container").masonry({
+    this.setElement("#news_container");
+
+    this.$el.masonry({
       itemSelector: ".news_item:visible",
       isFitWidth: false,
       layoutPriorities: { shelfOrder: 1.21 }
     });
   },
   add: function(article){
-    $('#news_container').prepend(this.createArtilceView(article).render().el);
-    this.postRender();
+    this.$el.prepend(this.createArtilceView(article).render().el);
   },
   remove: function(article){
     $('#article-' + article.cid).remove();
@@ -57,14 +58,14 @@ App.ArticlesView = Backbone.View.extend({
     // and can slow down the browser. Instead we listen out of the articlesFromCategoryRemoved event
     // and call postRender then
   },
-  articlesFromCategoryRemoved: function(){
+  articlesRemoved: function(){
     this.postRender();
   },
   render: function(){
     var self = this;
 
     this.collection.each(function(article){
-      $('#news_container').append(self.createArtilceView(article).render().el);
+      self.$el.append(self.createArtilceView(article).render().el);
     });
 
     this.postRender();
@@ -76,7 +77,7 @@ App.ArticlesView = Backbone.View.extend({
 
     $('#news_container>li').tsort('.timeago', { 'data': 'sort_by', 'order': 'desc' });
 
-    $("#news_container").masonry("reload");
+    this.$el.masonry("reload");
   },
   createArtilceView: function(article){
     return new App.ArticleView({
