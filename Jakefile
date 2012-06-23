@@ -1,5 +1,10 @@
 /*global namespace: false, desc: false, task: false, jake: false, complete: false */
 
+// ### Authors
+// Jamie Dyer <http://kernowsoul.com>
+// ### Last changed
+// 2012-06-23
+
 var fs        = require('fs');
 var template  = require('./tasks/compileTemplate');
 

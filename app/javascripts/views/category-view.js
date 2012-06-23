@@ -1,4 +1,9 @@
-/*global App: false */
+/*global App */
+
+// ### Authors
+// Jamie Dyer <http://kernowsoul.com>
+// ### Last changed
+// 2012-06-23
 
 // View for the category list
 App.CategoriesListView = Backbone.View.extend({

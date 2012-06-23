@@ -1,5 +1,10 @@
 /*global App: false, webkitNotifications: false */
 
+// ### Authors
+// Jamie Dyer <http://kernowsoul.com>
+// ### Last changed
+// 2012-06-23
+
 App.NotificationsView = Backbone.View.extend({
 
   initialize: function(){

@@ -1,9 +1,9 @@
-/*
- * Authors:       Jamie Dyer (http://kernowsoul.com)
- * Last changed:  2012-06-11
- */
-
 /*global App: false, Mock: false */
+
+// ### Authors
+// Jamie Dyer <http://kernowsoul.com>
+// ### Last changed
+// 2012-06-23
 
 describe("Google Feed Parser", function() {
 

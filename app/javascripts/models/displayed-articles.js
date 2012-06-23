@@ -1,5 +1,10 @@
 /*global App */
 
+// ### Authors
+// Jamie Dyer <http://kernowsoul.com>
+// ### Last changed
+// 2012-06-23
+
 // ## App.DisplayedArticles
 // The App.DisplayedArticles is used to store articles that are to be
 // displayed. It handles the loading of new articles from the data store and firing
@@ -12,6 +17,7 @@ App.DisplayedArticles = Backbone.Collection.extend({
   storeName:  "articles",
   model:      App.Article,
 
+  // ### initialize
   initialize: function(){
     this.loading = false;
     App.articles.on('allRemoved', this.allRemoved, this);
@@ -19,11 +25,17 @@ App.DisplayedArticles = Backbone.Collection.extend({
     App.articles.on('articlesFromCategoryRemoved', this.removeWithCategory, this);
   },
 
+  // ### comparator
   // sort articles by the updatedTime field so that newest articles are first
   comparator: function(article) {
     return -article.get('updatedTime');
   },
 
+  // ### articleAdded
+  // handles new articles that have been added and decides if they should
+  // be displayed. Articles that are newer than the oldest article currently displayed
+  // are added. Older articles are also added if the number of articles currently
+  // displayed is less than the value of App.perPage
   articleAdded: function(article){
     var oldestTime;
     if(this.length > 0){
@@ -39,15 +51,18 @@ App.DisplayedArticles = Backbone.Collection.extend({
     }
   },
 
+  // ### removeWithCategory
   removeWithCategory: function(category){
     this.remove(this.where({ 'categoryEnglish': category }));
     this.trigger("articlesRemoved", category);
   },
 
+  // ### allRemoved
   allRemoved: function(){
     this.reset();
   },
 
+  // ### load
   // Load articles form indexedDb, articles will be loaded with a limit the same as the
   // number set in App.perPage to support pagination.
   load: function(){

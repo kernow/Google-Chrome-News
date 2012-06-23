@@ -1,9 +1,11 @@
-/*
- * Authors:       Jamie Dyer (http://kernowsoul.com)
- * Last changed:  2012-06-11
- */
-
 /*global App: false, news_browser: false */
+
+// ### Authors
+// Jamie Dyer <http://kernowsoul.com>
+// ### Last changed
+// 2012-06-23
+
+
 
 App.ArticleView = Backbone.View.extend({
   tagName: "li",

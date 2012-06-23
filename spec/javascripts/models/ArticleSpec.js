@@ -1,9 +1,9 @@
-/*
- * Authors:       Jamie Dyer (http://kernowsoul.com)
- * Last changed:  2012-06-11
- */
+/*global App */
 
-/*global App: false, mostRecentAjaxRequest: false */
+// ### Authors
+// Jamie Dyer <http://kernowsoul.com>
+// ### Last changed
+// 2012-06-23
 
 describe("Article", function() {
 

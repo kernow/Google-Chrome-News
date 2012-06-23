@@ -1,9 +1,9 @@
-/*
- * Authors:       Jamie Dyer (http://kernowsoul.com)
- * Last changed:  2012-06-12
- */
+/*global App */
 
-/*global App: false */
+// ### Authors
+// Jamie Dyer <http://kernowsoul.com>
+// ### Last changed
+// 2012-06-23
 
 /*
  * Setting Model

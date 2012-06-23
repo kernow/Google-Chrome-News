@@ -1,3 +1,8 @@
+// ### Authors
+// Jamie Dyer <http://kernowsoul.com>
+// ### Last changed
+// 2012-06-23
+
 var fs    = require('fs');
 var _und  = require('../app/javascripts/vendor/underscore.min');
 
