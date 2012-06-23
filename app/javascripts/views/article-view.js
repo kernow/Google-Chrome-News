@@ -33,7 +33,7 @@ App.ArticleView = Backbone.View.extend({
   }
 });
 
-App.ArticlesView = App.ArticleView.extend({
+App.ArticlesView = Backbone.View.extend({
   initialize: function(){
     _.bindAll(this, 'render', 'add', 'remove', 'articlesFromCategoryRemoved');
     this.collection.on('reset', this.render);
