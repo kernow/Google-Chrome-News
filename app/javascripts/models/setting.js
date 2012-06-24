@@ -77,6 +77,10 @@ App.Settings = Backbone.Model.extend({
         // set the changes but no need to save them as they are already in the sync storage
         this.set({ 'openArticleId': changes.openArticleId.newValue });
       }
+      if(changes.filterCategory && this.get('filterCategory') != changes.filterCategory.newValue){
+        // set the changes but no need to save them as they are already in the sync storage
+        this.set({ 'filterCategory': changes.filterCategory.newValue });
+      }
     }
   },
 
