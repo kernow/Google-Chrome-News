@@ -113,6 +113,9 @@ App.initializeArticles = function(){
         setInterval(function() {
           App.articles.getFromFeed(App.googleFeed);
         }, 60000);
+
+        // Restore the applications state once the articles have been loaded
+        App.restoreState();
       }
     });
 
