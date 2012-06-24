@@ -66,7 +66,7 @@ App.DisplayedArticles = Backbone.Collection.extend({
   // ## filterCategoryChanged
   filterCategoryChanged: function(category){
 
-    // If the category is allStories we don't need to load anything so return immediatly
+    // If the category is allStories we don't need to load anything so return immediately
     if(category == 'allStories'){ return; }
     console.log('loading articles for category:', category);
     var self = this;
@@ -118,7 +118,7 @@ App.DisplayedArticles = Backbone.Collection.extend({
       // Set loading to be true so we don't load twice at the same time
       this.loading = true;
 
-      // Set the to time to 0 so we can load articles up to the begining of time
+      // Set the to time to 0 so we can load articles up to the beginning of time
       to = 0;
 
       if(this.length > 0){

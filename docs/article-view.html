@@ -35,7 +35,13 @@
     <span class="p">});</span>
   <span class="p">},</span>
   <span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">article</span><span class="p">){</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">createArtilceView</span><span class="p">(</span><span class="nx">article</span><span class="p">).</span><span class="nx">render</span><span class="p">().</span><span class="nx">el</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">articleView</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">createArtilceView</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">articleView</span><span class="p">.</span><span class="nx">render</span><span class="p">().</span><span class="nx">el</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">currentCategory</span> <span class="o">=</span> <span class="nx">App</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">getFilterCategory</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">currentCategory</span> <span class="o">!=</span> <span class="s1">&#39;allStories&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">currentCategory</span> <span class="o">!=</span> <span class="nx">article</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;categoryEnglish&#39;</span><span class="p">)){</span>
+      <span class="nx">articleView</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="p">}</span>
   <span class="p">},</span>
   <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">article</span><span class="p">){</span>
     <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#article-&#39;</span> <span class="o">+</span> <span class="nx">article</span><span class="p">.</span><span class="nx">cid</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span></pre></div>             </td>           </tr>                               <tr id="section-8">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-8">&#182;</a>               </div>               <p>We don't call postRender after removing an article as it's an expensive operation
@@ -48,7 +54,7 @@ and call postRender then</p>             </td>             <td class="code">    
     <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">article</span><span class="p">){</span>
-      <span class="nx">self</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">createArtilceView</span><span class="p">(</span><span class="nx">article</span><span class="p">).</span><span class="nx">render</span><span class="p">().</span><span class="nx">el</span><span class="p">);</span>
+      <span class="nx">self</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
     <span class="p">});</span>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">postRender</span><span class="p">();</span>

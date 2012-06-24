@@ -50,7 +50,7 @@ App.SearchResults = Backbone.Collection.extend({
     this.add(searchResult);
   },
 
-  // grabbs the remote image linked in the article and saves it to the local store
+  // grabs the remote image linked in the article and saves it to the local store
   storeImage: function(item){
     // TODO only request images that haven't already been downloaded
     var xhr = new XMLHttpRequest();

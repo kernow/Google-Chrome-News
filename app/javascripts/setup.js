@@ -58,7 +58,7 @@ $(function() {
 
 });
 
-// This setting is used to control the packground processing of feeds
+// This setting is used to control the background processing of feeds
 App.canBackgroundProcess = true;
 
 App.initializeSettingsView = function(){ new App.SettingsView(); };
@@ -79,7 +79,7 @@ App.restoreState = function(){
       var articleView = new App.ArticleView({ model: article });
       articleView.openLink();
     }else{
-      // If the article can't be found remove the setting from storeage
+      // If the article can't be found remove the setting from storage
       App.settings.saveOpenArticleId('');
     }
   }
@@ -106,7 +106,7 @@ App.initializeArticles = function(){
     App.articles.fetch({
       success: function(){
 
-        // Load new articles from the feed on initialisation
+        // Load new articles from the feed on initialization
         App.articles.getFromFeed(App.googleFeed);
 
         // Load new articles every minute

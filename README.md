@@ -1,6 +1,6 @@
 # Getting Setup
 
-To run this Google Chrom App you will need to have the latest [Google Chrome Canary](https://tools.google.com/dlpage/chromesxs/) installed with a few of the options changed. Open the [chrome://flags/](chrome://flags/) page and eneable the following settings:
+To run this Google Chrome App you will need to have the latest [Google Chrome Canary](https://tools.google.com/dlpage/chromesxs/) installed with a few of the options changed. Open the [chrome://flags/](chrome://flags/) page and enable the following settings:
 
 * Browser Plugin (set to "Everywhere")
 * Experimental Extension APIs
@@ -12,7 +12,7 @@ To load the application click the "Load unpacked extension..." button in the ext
 
 # Building the application
 
-You will need node JS with the Jake package which can ben installed using
+You will need node JS with the Jake package which can be installed using
 
 `npm install -g jake`
 
@@ -21,6 +21,10 @@ Then run `jake build` to build the app before running it. To see a list of tasks
 # Testing
 
 Currently Rake is used to run the test suite so ruby 1.9.3 will need to be installed with ruby gems and bundler. Then run `rake jamsmine` to get the test server running.
+
+# Credits
+
+This Google Chrome App was developed by Jamie Dyer <http://kernowsoul.com> and Chris Garrett <http://abstraktion.co.uk>
 
 # Reference
 

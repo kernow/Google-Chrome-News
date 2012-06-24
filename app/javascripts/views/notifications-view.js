@@ -63,7 +63,7 @@ App.NotificationsView = Backbone.View.extend({
         self.close();
       };
 
-      // Display the notification windoe
+      // Display the notification window
       this.notification.show();
     }
   },

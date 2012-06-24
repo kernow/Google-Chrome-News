@@ -12,7 +12,7 @@
 
 App.articlesDatabase = {
   id: "google-news-database",
-  description: "News acrticles",
+  description: "News articles",
   migrations : [{
     version: 1,
     migrate: function (transaction, next) {
@@ -32,7 +32,7 @@ App.Article = Backbone.Model.extend({
     this.on('destroy', this.destroyFile, this);
   },
 
-  // When the record is destroyed remove the image from the filesystem
+  // When the record is destroyed remove the image from the file system
   destroyFile: function(article){
     App.filer.rm(article.get('image'), function(){});
   }
@@ -82,7 +82,7 @@ App.Articles = Backbone.Collection.extend({
             // parse the feed using the supplied feed parser
             var parsedItem = feed.parseItem(item);
 
-            // Save the english category name so we can use it programatically
+            // Save the English category name so we can use it pragmatically
             parsedItem.categoryEnglish = category;
 
             // instead of storing "nation" store the real country name
@@ -90,7 +90,7 @@ App.Articles = Backbone.Collection.extend({
               parsedItem.category = App.settings.get('feedLanguage').name;
             }
 
-            // Only store the image and save teh article if it not already in the database
+            // Only store the image and save the article if it not already in the database
             if(!self.get(item.id)){
               if(parsedItem.image){
                 self.trigger('articleGrabbedWithImage', parsedItem);
@@ -111,7 +111,7 @@ App.Articles = Backbone.Collection.extend({
     this.add(article);
   },
 
-  // grabbs the remote image linked in the article and saves it to the local store
+  // grabs the remote image linked in the article and saves it to the local store
   storeImage: function(item, callback){
     var xhr = new XMLHttpRequest();
     var self = this;

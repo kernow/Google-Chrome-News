@@ -9,7 +9,7 @@
 App.SettingsView = Backbone.View.extend({
   initialize: function(){
     this.setElement('.settings_dropdown');
-    // Immediatly render on initialization
+    // Immediately render on initialization
     this.render();
   },
 

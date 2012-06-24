@@ -23,7 +23,7 @@ App.Settings = Backbone.Model.extend({
     categories.push(category);
     // Save the categories and call uniq on the array to make sure there are no duplicates
     this.save({ "categories" : _.uniq(categories) });
-    // TODO optimiseation, we only need to grab articles from the category thats just been added
+    // TODO optimization, we only need to grab articles from the category thats just been added
     App.articles.getFromFeed(App.googleFeed, category);
     this.trigger("categoryAdded", category);
   },
