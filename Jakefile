@@ -10,12 +10,6 @@ var template  = require('./tasks/compileTemplate');
 
 var templatesDir          = 'app/javascripts/templates';
 var compiledTemplatesFile = 'app/javascripts/templates.js';
-var javascriptFilePaths   = [
-  "./app/javascripts/lib/**/*.js",
-  "./app/javascripts/models/*.js",
-  "./app/javascripts/views/*.js",
-  "./app/javascripts/*.js"
-].join(' ');
 
 desc('Build the application.');
 task('build', ['build:templates', 'build:docs']);
@@ -44,7 +38,7 @@ namespace('build', function () {
     jake.logger.log('Building documentation...');
     var commands = [
       "rm -r ./docs/*",
-      "docco " + javascriptFilePaths
+      "paige"
     ];
     jake.exec(commands, function () {
       jake.logger.log('Documentation saved to docs folder');

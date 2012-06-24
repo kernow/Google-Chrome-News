@@ -24,7 +24,7 @@ The app comes ready to run, if you wish to rebuild the templates or documentatio
 
 `npm install -g jake`
 
-To see a list of tasks run `jake -T`. To build the documentation you will need [docco](http://jashkenas.github.com/docco/) installed
+To see a list of tasks run `jake -T`. To build the documentation you will need [Paige.js](http://rthauby.github.com/Paige/) installed
 
 # Testing
 
