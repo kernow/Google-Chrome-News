@@ -55,7 +55,7 @@ App.ArticlesView = Backbone.View.extend({
     var articleView = this.createArtilceView(article);
     this.$el.prepend(articleView.render().el);
 
-    var currentCategory = App.settings.get('filterCategory');
+    var currentCategory = App.settings.getFilterCategory();
     if(currentCategory != 'allStories' && currentCategory != article.get('categoryEnglish')){
       articleView.$el.hide();
     }

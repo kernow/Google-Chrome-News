@@ -60,6 +60,13 @@ App.Settings = Backbone.Model.extend({
     this.trigger("languageChanged", feedLanguage);
   },
 
+  // ## getFilterCategory
+  // Returns the current filter category or 'allStories' if none is stored
+  getFilterCategory: function(){
+    var category = App.settings.get('filterCategory');
+    return category ? category : 'allStories';
+  },
+
   onSyncDataChange: function(changes, namespace){
     if (namespace == 'sync') {
       // set the new values into the backbone model

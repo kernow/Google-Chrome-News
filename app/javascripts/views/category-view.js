@@ -29,12 +29,7 @@ App.CategoriesListView = Backbone.View.extend({
     categories = categories.concat(App.settings.get('categories'));
 
     // Load the currently selected category from the settings
-    var selectedCategory = App.settings.get('filterCategory');
-
-    // TODO Mode to the settings model
-    if(!selectedCategory){
-      selectedCategory = 'allStories';
-    }
+    var selectedCategory = App.settings.getFilterCategory();
 
     // Append categories
     _.each(categories, function(category){
