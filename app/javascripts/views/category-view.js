@@ -9,11 +9,19 @@
 // View for the category list
 App.CategoriesListView = Backbone.View.extend({
   initialize: function(){
+
+    // Store the list of category elements
+    this.categoryViews = {};
+
     // Fetch categories dropdown from DOM
     this.setElement('.category_list');
 
     // Listen for the languageChanged event so that the local country name in the list can be changed
     App.settings.on('languageChanged', this.changeCountryName, this);
+
+    // Listen for category added/removed events so the category list can be updated
+    App.settings.on('categoryAdded', this.categoryAdded, this);
+    App.settings.on('categoryRemoved', this.categoryRemoved, this);
 
     this.render();
   },
@@ -24,22 +32,45 @@ App.CategoriesListView = Backbone.View.extend({
     this.$el.empty();
 
     // Set default categories
-    var categories = ["allStories"];
+    var categories = ["allStories"].concat(App.defaultCategories);
 
-    categories = categories.concat(App.settings.get('categories'));
+    // Load the list of current categories from the settings here so we only have to do it once
+    var currentCategories = App.settings.get('categories');
 
     // Load the currently selected category from the settings
     var selectedCategory = App.settings.getFilterCategory();
 
     // Append categories
     _.each(categories, function(category){
+
+      // Figure out if the category is currently selected
       var selected = category == selectedCategory ? true : false;
-      self.$el.append(self.create_category(category, selected).render().el);
+
+      // Add the view to the list of category views
+      self.categoryViews[category] = self.create_category(category, selected);
+
+      // Render the category
+      self.$el.append(self.categoryViews[category].render().el);
+
+      // If the category is not in the list of current categories from the settings then hide it
+      if(!_.include(currentCategories, category) && category != 'allStories'){
+        self.categoryViews[category].$el.hide();
+      }
     });
   },
 
   changeCountryName: function(language){
     this.$('.countryName').text(language.name);
+  },
+
+  // ## categoryAdded
+  categoryAdded: function(category){
+    this.categoryViews[category].$el.show();
+  },
+
+  // ## categoryRemoved
+  categoryRemoved: function(category){
+    this.categoryViews[category].$el.hide();
   },
 
   create_category: function(category, selected){
