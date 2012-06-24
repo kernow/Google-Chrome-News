@@ -1,3 +1,7 @@
+# About
+
+This is a Google Chrome App that consumes Google news RSS feeds for easy viewing of new stories. It supports localization and will automatically detect the users language settings providing feeds from the source that best matches their language.
+
 # Getting Setup
 
 To run this Google Chrome App you will need to have the latest [Google Chrome Canary](https://tools.google.com/dlpage/chromesxs/) installed with a few of the options changed. Open the [chrome://flags/](chrome://flags/) page and enable the following settings:
@@ -9,6 +13,10 @@ To run this Google Chrome App you will need to have the latest [Google Chrome Ca
 Open extension settings (select the Chrome wrench tool > Tools > Extensions) and Check "Developer mode".
 
 To load the application click the "Load unpacked extension..." button in the extension settings and brows to the "app" folder within the codebase. Finally open a new tab and you should see the application icon on the home screen, click it to launch.
+
+# Documentation
+
+TBA
 
 # Building the application
 
