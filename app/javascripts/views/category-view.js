@@ -99,7 +99,7 @@ App.CategoryView = Backbone.View.extend({
     $(".news_item").show();
 
     // Hide irrelevant news items
-    if(this.category != "allStories"){ $(".news_item:not(.in_category_" + this.category + ")").hide(); }
+    if(this.category != "allStories"){ $(".news_item:not(.in_category_" + this.category.underscore() + ")").hide(); }
 
     // Reload masonry
     $("#news_container").masonry("reload");
