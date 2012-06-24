@@ -11,7 +11,6 @@ var template  = require('./tasks/compileTemplate');
 var templatesDir          = 'app/javascripts/templates';
 var compiledTemplatesFile = 'app/javascripts/templates.js';
 var javascriptFilePaths   = [
-  "./app/javascripts/background/*.js",
   "./app/javascripts/lib/**/*.js",
   "./app/javascripts/models/*.js",
   "./app/javascripts/views/*.js",
