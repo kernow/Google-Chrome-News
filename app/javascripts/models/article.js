@@ -55,6 +55,7 @@ App.Articles = Backbone.Collection.extend({
   },
 
   startProcessing: function(interval){
+    this.getFromFeed(App.googleFeed);
     if(!interval){ interval = 60000; } // Set the default interval to 60 seconds
     var self = this;
     if(this.intervalId){

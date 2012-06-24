@@ -86,7 +86,6 @@ App.initializeArticles = function(){
     App.articles.fetch({
       success: function(){
         console.log('start BG processing');
-        App.articles.getFromFeed(App.googleFeed);
         App.articles.startProcessing();
       }
     });
