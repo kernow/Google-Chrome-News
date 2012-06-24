@@ -71,6 +71,11 @@ App.CategoriesListView = Backbone.View.extend({
   // ## categoryRemoved
   categoryRemoved: function(category){
     this.categoryViews[category].$el.hide();
+
+    // If the category thats currently selected is removed activate the allStories category
+    if(category == App.settings.get('filterCategory')){
+      this.categoryViews.allStories.activate_category();
+    }
   },
 
   create_category: function(category, selected){
