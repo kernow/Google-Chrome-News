@@ -20,15 +20,15 @@ TBA
 
 # Building the application
 
-You will need node JS with the Jake package which can be installed using
+The app comes ready to run, if you wish to rebuild the templates or documentation you will need a working [node.js](http://nodejs.org/) installation along with the [Jake](https://github.com/mde/jake) package which can be installed using
 
 `npm install -g jake`
 
-Then run `jake build` to build the app before running it. To see a list of tasks run `jake -T`
+To see a list of tasks run `jake -T`. To build the documentation you will need [docco](http://jashkenas.github.com/docco/) installed
 
 # Testing
 
-Currently Rake is used to run the test suite so ruby 1.9.3 will need to be installed with ruby gems and bundler. Then run `rake jamsmine` to get the test server running.
+Currently Rake is used to run the test suite so ruby 1.9.3 will need to be installed with ruby gems and bundler. Then run `rake jasmine` to get the [Jasmine](http://pivotal.github.com/jasmine/) server running.
 
 # Credits
 
