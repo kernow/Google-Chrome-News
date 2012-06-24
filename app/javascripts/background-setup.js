@@ -5,7 +5,7 @@
 // ### Last changed
 // 2012-06-23
 
-// # background/setup.js
+// ## Overview
 // This file is loaded when the background process runs and is used to setup the application.
 // The background process handles loading articles when the app is not running and notifying the
 // user when new articles have been downloaded.
