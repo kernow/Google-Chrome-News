@@ -40,6 +40,7 @@ App.ArticlesView = Backbone.View.extend({
     this.collection.on('reset', this.render, this);
     this.collection.on('add', this.add, this);
     this.collection.on('remove', this.remove, this);
+    this.collection.on('reset', this.reset, this);
     this.collection.on('articlesRemoved', this.postRender, this);
     this.collection.on('articlesAdded', this.postRender, this);
 
@@ -65,6 +66,9 @@ App.ArticlesView = Backbone.View.extend({
     // We don't call postRender after removing an article as it's an expensive operation
     // and can slow down the browser. Instead we listen out of the articlesFromCategoryRemoved event
     // and call postRender then
+  },
+  reset: function(){
+    this.$el.empty();
   },
   articlesRemoved: function(){
     this.postRender();

@@ -20,6 +20,7 @@ App.DisplayedArticles = Backbone.Collection.extend({
   // ### initialize
   initialize: function(){
     this.loading = false;
+
     App.articles.on('allRemoved', this.allRemoved, this);
     App.articles.on('add', this.articleAdded, this);
     App.articles.on('articlesFromCategoryRemoved', this.removeWithCategory, this);
@@ -65,53 +66,29 @@ App.DisplayedArticles = Backbone.Collection.extend({
 
   // ## filterCategoryChanged
   filterCategoryChanged: function(category){
-
-    // If the category is allStories we don't need to load anything so return immediately
-    if(category == 'allStories'){ return; }
-    console.log('loading articles for category:', category);
-    var self = this;
-    // work out how many articles are in the category
-    var articles = this.where({ 'categoryEnglish': category });
-    console.log('articles', articles);
-
-    var from;
-    // Work out the from time by getting the last article
-    if(articles.length < 1){
-      from = new Date().getTime() + 1;
-    }else{
-      from = _.last(articles).get('updatedTime') + 1;
-    }
-
-    console.log('from', from);
-    console.log('category', category);
-
-    // Load more articles if there is less than should be displayed on a page
-    if(articles.length < App.perPage){
-      console.log('fetching articles...');
-      self.loading = true;
-      this.fetch({
-        add: true,
-        limit: App.perPage,
-        conditions: {
-          'categoryEnglish': category,
-          'updatedTime': [from, 0]
-        },
-        success: function(){
-          console.log('done, articles returned:', arguments);
-          self.loading = false;
-          self.trigger('articlesAdded');
-        }
-      });
-    }
+    this.reset();
+    this.load();
+    return;
   },
 
   // ### load
   // Load articles form indexedDb, articles will be loaded with a limit the same as the
   // number set in App.perPage to support pagination.
   load: function(){
+    var length, articlesLength;
+
+    // If there is a filter category then only include the category in the length comparisons
+    var filterCategory = App.settings.getFilterCategory();
+    if(filterCategory != 'allStories'){
+      length          = this.where({ 'categoryEnglish': filterCategory }).length;
+      articlesLength  = App.articles.where({ 'categoryEnglish': filterCategory }).length;
+    }else{
+      length = this.length;
+      articlesLength = App.articles.length;
+    }
 
     // Check if there are articles to load, or if articles are already being loaded
-    if((this.length < App.articles.length && !this.loading) || this.length === 0){
+    if((length < articlesLength && !this.loading) || length === 0){
       var from, to;
       var self = this;
 
@@ -121,7 +98,7 @@ App.DisplayedArticles = Backbone.Collection.extend({
       // Set the to time to 0 so we can load articles up to the beginning of time
       to = 0;
 
-      if(this.length > 0){
+      if(length > 0){
 
         // Set the from time the date of the last article we have and minus 1 off the value
         // as ranges in indexedDb load results between, but not including, the range limits
@@ -132,6 +109,12 @@ App.DisplayedArticles = Backbone.Collection.extend({
         from = new Date().getTime() + 1;
       }
 
+      var conditions = { 'updatedTime': [from, to] };
+
+      if(filterCategory != 'allStories'){
+        conditions.categoryEnglish = filterCategory;
+      }
+
       // Fetch the articles, we pass add: true so that the articles are added to the current
       // collection and do not replacing  it. The success callback sets the loading variable
       // to false so load() can be called again and also triggers the articlesAdded event so
@@ -139,7 +122,7 @@ App.DisplayedArticles = Backbone.Collection.extend({
       this.fetch({
         add: true,
         limit: App.perPage,
-        conditions: { 'updatedTime': [from, to] },
+        conditions: conditions,
         success: function(){
           self.loading = false;
           self.trigger('articlesAdded');
