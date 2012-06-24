@@ -23,6 +23,7 @@ App.DisplayedArticles = Backbone.Collection.extend({
     App.articles.on('allRemoved', this.allRemoved, this);
     App.articles.on('add', this.articleAdded, this);
     App.articles.on('articlesFromCategoryRemoved', this.removeWithCategory, this);
+    App.settings.on('filterCategoryChanged', this.filterCategoryChanged, this);
   },
 
   // ### comparator
@@ -60,6 +61,48 @@ App.DisplayedArticles = Backbone.Collection.extend({
   // ### allRemoved
   allRemoved: function(){
     this.reset();
+  },
+
+  // ## filterCategoryChanged
+  filterCategoryChanged: function(category){
+
+    // If the category is allStories we don't need to load anything so return immediatly
+    if(category == 'allStories'){ return; }
+    console.log('loading articles for category:', category);
+    var self = this;
+    // work out how many articles are in the category
+    var articles = this.where({ 'categoryEnglish': category });
+    console.log('articles', articles);
+
+    var from;
+    // Work out the from time by getting the last article
+    if(articles.length < 1){
+      from = new Date().getTime() + 1;
+    }else{
+      from = _.last(articles).get('updatedTime') + 1;
+    }
+
+    console.log('from', from);
+    console.log('category', category);
+
+    // Load more articles if there is less than should be displayed on a page
+    if(articles.length < App.perPage){
+      console.log('fetching articles...');
+      self.loading = true;
+      this.fetch({
+        add: true,
+        limit: App.perPage,
+        conditions: {
+          'categoryEnglish': category,
+          'updatedTime': [from, 0]
+        },
+        success: function(){
+          console.log('done, articles returned:', arguments);
+          self.loading = false;
+          self.trigger('articlesAdded');
+        }
+      });
+    }
   },
 
   // ### load

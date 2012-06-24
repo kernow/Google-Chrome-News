@@ -42,6 +42,13 @@ App.Settings = Backbone.Model.extend({
     this.save({ "openArticleId" : id });
   },
 
+  // ## saveCurrentFilterCategory
+  // Saves the current category filter and raises the `filterCategoryChanged` event
+  saveCurrentFilterCategory: function(category){
+    this.save({ "filterCategory": category });
+    this.trigger('filterCategoryChanged', category);
+  },
+
   changeLanguage: function(languageCode){
     var name = _.find(App.supportedLanguages, function(obj){ return obj.code == languageCode; }).name;
     var feedLanguage = { "code": languageCode, "name": name };

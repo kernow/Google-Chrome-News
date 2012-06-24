@@ -17,8 +17,8 @@ App.articlesDatabase = {
     version: 1,
     migrate: function (transaction, next) {
       var store = transaction.db.createObjectStore("articles");
-      store.createIndex("categoryIndex", "category", { unique: false }); // Adds an index on the categories
-      store.createIndex("updatedTimeIndex", "updatedTime", { unique: false }); // Adds an index on the categories
+      store.createIndex("categoryEnglish", "categoryEnglish", { unique: false }); // Adds an index on the categories
+      store.createIndex("updatedTime", "updatedTime", { unique: false }); // Adds an index on the categories
       next();
     }
   }]

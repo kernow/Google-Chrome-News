@@ -52,7 +52,13 @@ App.ArticlesView = Backbone.View.extend({
     });
   },
   add: function(article){
-    this.$el.prepend(this.createArtilceView(article).render().el);
+    var articleView = this.createArtilceView(article);
+    this.$el.prepend(articleView.render().el);
+
+    var currentCategory = App.settings.get('filterCategory');
+    if(currentCategory != 'allStories' && currentCategory != article.get('categoryEnglish')){
+      articleView.$el.hide();
+    }
   },
   remove: function(article){
     $('#article-' + article.cid).remove();
@@ -67,7 +73,7 @@ App.ArticlesView = Backbone.View.extend({
     var self = this;
 
     this.collection.each(function(article){
-      self.$el.append(self.createArtilceView(article).render().el);
+      self.add(article);
     });
 
     this.postRender();
