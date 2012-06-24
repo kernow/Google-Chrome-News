@@ -16,7 +16,11 @@ To load the application click the "Load unpacked extension..." button in the ext
 
 # Documentation
 
-TBA
+The documentation is available at <http://abstraktion.github.com/Google-Chrome-News/> as inline comments.
+
+# Source
+
+The source code for this project is available on Github at <https://github.com/Abstraktion/Google-Chrome-News>
 
 # Building the application
 
