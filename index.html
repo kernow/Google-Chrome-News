@@ -40,7 +40,65 @@
 
 <p>This Google Chrome App was developed by Jamie Dyer <a href="http://kernowsoul.com">http://kernowsoul.com</a> and Chris Garrett <a href="http://abstraktion.co.uk">http://abstraktion.co.uk</a></p>
 
+<h1>Application overview and structure</h1>
+
+<p>The application is built using <a href="http://backbonejs.org/">backbone.js</a> and generally follows the conventions from <a href="http://ricostacruz.com/backbone-patterns/">Backbone patterns</a>. The following application structure is used</p>
+
+<pre><code>app/                    # this is where the applications code lives
+  _locals/              # contains all of the localization files
+  javascripts/
+    lib/                # library code including the Google new feed parser
+    models/             # backbone models and collections
+    templates/          # underscore template source files
+    vendor/             # external libraries required by the application
+    views/              # backbone views
+    app.js              # defines the application namespace and other application level code
+    background-setup.js # code to initialize the background process
+    background.js       # this launches the main application
+    settings.json       # settings requires for the application to run
+    setup.js            # application initialization code
+    templates.js        # the compiled underscore templates
+  stylesheets/          # stylesheet files
+  main.html             # html file that runs the application
+  manifest.json         # this is the file that Google Chrome uses to install and run the application
+spec/                   # the Jasmine test suit
+tasks/                  # code for jake tasks</code></pre>
+
 <h1>Reference</h1>
+
+<h2>Libraries used in this project</h2>
+
+<ul>
+<li><a href="http://backbonejs.org/">backbone</a></li>
+<li><a href="http://underscorejs.org/">underscore</a></li>
+<li><a href="https://github.com/superfeedr/indexeddb-backbonejs-adapter">indexedDB adapter for Backbonejs</a></li>
+<li><a href="https://github.com/domoritz/backbone-eventdata">backbone-eventdata</a></li>
+<li><a href="https://github.com/ebidel/filer.js">filer.js</a></li>
+<li><a href="http://jquery.com/">jquery</a></li>
+<li><a href="https://github.com/jfhovinne/jFeed">jfeed</a></li>
+<li><a href="http://timeago.yarp.com/">jquery.timeago</a></li>
+<li><a href="http://tinysort.sjeiti.com/">jquery.tinysort</a></li>
+<li><a href="http://masonry.desandro.com/">masonry</a></li>
+<li><a href="https://github.com/tasuk/masonry-ordered">masonry_ordered</a></li>
+<li><a href="http://code.google.com/p/inflection-js/">inflection</a></li>
+<li><a href="http://github.com/tzuryby/hotkeys">hotkeys</a></li>
+</ul>
+
+<h2>Testing libraries</h2>
+
+<ul>
+<li><a href="http://pivotal.github.com/jasmine/">jasmine</a></li>
+<li><a href="https://github.com/velesin/jasmine-jquery/">jasmine-jquery</a></li>
+<li><a href="https://github.com/kernow/jsmocha">jsmocha</a></li>
+<li><a href="http://github.com/pivotal/jasmine-ajax">mock-ajax</a></li>
+</ul>
+
+<h2> Build and task libraries</h2>
+
+<ul>
+<li><a href="https://github.com/mde/jake">jake</a></li>
+<li><a href="http://rake.rubyforge.org/">rake</a></li>
+</ul>
 
 <p><a href="http://blog.slashpoundbang.com/post/12975232033/google-news-search-parameters-the-missing-manual">Information on Google news feed parameters</a></p>
 
