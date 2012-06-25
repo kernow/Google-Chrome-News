@@ -38,7 +38,59 @@ Currently Rake is used to run the test suite so ruby 1.9.3 will need to be insta
 
 This Google Chrome App was developed by Jamie Dyer <http://kernowsoul.com> and Chris Garrett <http://abstraktion.co.uk>
 
+# Application overview and structure
+
+The application is built using [backbone.js](http://backbonejs.org/) and generally follows the conventions from [Backbone patterns](http://ricostacruz.com/backbone-patterns/). The following application structure is used
+
+    app/                    # this is where the applications code lives
+      _locals/              # contains all of the localization files
+      javascripts/
+        lib/                # library code including the Google new feed parser
+        models/             # backbone models and collections
+        templates/          # underscore template source files
+        vendor/             # external libraries required by the application
+        views/              # backbone views
+        app.js              # defines the application namespace and other application level code
+        background-setup.js # code to initialize the background process
+        background.js       # this launches the main application
+        settings.json       # settings requires for the application to run
+        setup.js            # application initialization code
+        templates.js        # the compiled underscore templates
+      stylesheets/          # stylesheet files
+      main.html             # html file that runs the application
+      manifest.json         # this is the file that Google Chrome uses to install and run the application
+    spec/                   # the Jasmine test suit
+    tasks/                  # code for jake tasks
+
 # Reference
+
+## Libraries used in this project
+
+* [backbone](http://backbonejs.org/)
+* [underscore](http://underscorejs.org/)
+* [indexedDB adapter for Backbonejs](https://github.com/superfeedr/indexeddb-backbonejs-adapter)
+* [backbone-eventdata](https://github.com/domoritz/backbone-eventdata)
+* [filer.js](https://github.com/ebidel/filer.js)
+* [jquery](http://jquery.com/)
+* [jfeed](https://github.com/jfhovinne/jFeed)
+* [jquery.timeago](http://timeago.yarp.com/)
+* [jquery.tinysort](http://tinysort.sjeiti.com/)
+* [masonry](http://masonry.desandro.com/)
+* [masonry_ordered](https://github.com/tasuk/masonry-ordered)
+* [inflection](http://code.google.com/p/inflection-js/)
+* [hotkeys](http://github.com/tzuryby/hotkeys)
+
+## Testing libraries
+
+* [jasmine](http://pivotal.github.com/jasmine/)
+* [jasmine-jquery](https://github.com/velesin/jasmine-jquery/)
+* [jsmocha](https://github.com/kernow/jsmocha)
+* [mock-ajax](http://github.com/pivotal/jasmine-ajax)
+
+## Build and task libraries
+
+* [jake](https://github.com/mde/jake)
+* [rake](http://rake.rubyforge.org/)
 
 [Information on Google news feed parameters](http://blog.slashpoundbang.com/post/12975232033/google-news-search-parameters-the-missing-manual)
 
