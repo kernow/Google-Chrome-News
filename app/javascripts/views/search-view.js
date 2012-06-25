@@ -5,7 +5,13 @@
 // ### Last changed
 // 2012-06-23
 
+// ## Overview
+// Handles the display of the search menu item
+
 App.SearchView = Backbone.View.extend({
+
+  // ### initialize
+  // Sets the DOM element to work with and binds to the "f" key event
   initialize: function(){
     var self = this;
 
@@ -15,6 +21,7 @@ App.SearchView = Backbone.View.extend({
     $(window).bind("keyup", "f", function(){ self.toggleSearch(); });
   },
 
+  // Set handlers for the click and submit events
   events: {
     "click #search_trigger": "toggleSearch",
     "submit #search_form":   "performSearch"
@@ -22,7 +29,10 @@ App.SearchView = Backbone.View.extend({
 
   exit_method: "close",
 
-  toggleSearch: function(e){
+  // ###toggleSearch
+  // Shows and hides the search menu
+  toggleSearch: function(){
+
     // Toggle body class to hide/show search
     $("body").toggleClass("search_triggered");
 
@@ -37,19 +47,33 @@ App.SearchView = Backbone.View.extend({
     }
   },
 
-  performSearch: function(term){
+  // ### performSearch
+  // Performs a search via the Google news feed
+  performSearch: function(){
+
+    // Toggle body class to hide/show search
     $("body").removeClass("search_triggered");
 
     $("#search_trigger").text("s");
 
+    // Hide the main news container DOM element
     $('#news_container').hide();
+
+    // Empty and show the search results DOM element
     $('#search_container').empty().show();
+
+    // Perform the search with the value taken from the search form field
     App.searchResults.getFromFeed(this.$('#search_term').val(), App.googleFeed);
     return false;
   },
 
+  // ### closeSearch
   closeSearch: function(){
+
+    // Show the main news container DOM element
     $('#news_container').show();
+
+    // Hide the search results DOM element
     $('#search_container').hide();
   }
 });
