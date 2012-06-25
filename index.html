@@ -1,4 +1,4 @@
-<!DOCTYPE html> <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">      <title>Google News Chrome App</title>   <style>     body {       font-size: 16px;       line-height: 24px;       background: #fff url("bg.png");       color: #252519;       font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;       padding: 0 0 50px 50px;     }     div.container {       width: 720px;       margin: 50px 0 50px 50px;     }     p {       width: 550px;     }       #documentation p {         margin-bottom: 4px;       }     a, a:visited {       padding: 0 2px;       text-decoration: none;       background: #dbe6f3;       color: #3f6fa5;     }     a:active, a:hover {       color: #dbe6f3;       background: #3f6fa5;     }     h1, h2, h3, h4, h5, h6 {       margin-top: 40px;       width: 550px;       line-height: 1.25em;     }     b.header {       font-size: 18px;     }     span.alias {       font-size: 14px;       font-style: italic;       margin-left: 20px;     }     table, tr, td {       margin: 0; padding: 0;     }       td {         padding: 2px 12px 2px 0;       }     ul {       list-style-type: circle;       padding: 0 0 0 20px;     }       li {         width: 500px;         margin-bottom: 10px;       }     code, pre, tt {       font-family: Monaco, Consolas, "Lucida Console", monospace;       font-size: 12px;       line-height: 18px;       color: #555529;     }       pre {         font-size: 12px;         padding: 2px 0 2px 12px;         border-left: 6px solid #aaaa99;         margin: 0px 0 30px;       }            #ribbon {      line-height: 0;     }          #ribbon:hover {      background: none;     }          #ribbon img {      position: fixed;      top: 0;      right: 0;      border: 0;      z-index: 2;     }   </style> </head> <body>      <h1>Google News</h1>        <em>Chrome App</em>         <h3>Source files:</h3>   <ol>            <li><a href="google.html">google.js</a></li>            <li><a href="ui.html">ui.js</a></li>            <li><a href="background-setup.html">background-setup.js</a></li>            <li><a href="setup.html">setup.js</a></li>            <li><a href="background.html">background.js</a></li>            <li><a href="app.html">app.js</a></li>            <li><a href="article.html">article.js</a></li>            <li><a href="displayed-articles.html">displayed-articles.js</a></li>            <li><a href="search.html">search.js</a></li>            <li><a href="setting.html">setting.js</a></li>            <li><a href="article-view.html">article-view.js</a></li>            <li><a href="category-view.html">category-view.js</a></li>            <li><a href="fullscreen-view.html">fullscreen-view.js</a></li>            <li><a href="intent-view.html">intent-view.js</a></li>            <li><a href="notifications-view.html">notifications-view.js</a></li>            <li><a href="search-results-view.html">search-results-view.js</a></li>            <li><a href="search-view.html">search-view.js</a></li>            <li><a href="settings-view.html">settings-view.js</a></li>            <li><a href="window-view.html">window-view.js</a></li>        </ol>      <h1>About</h1>
+<!DOCTYPE html> <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">      <title>Google News Chrome App</title>   <style>     body {       font-size: 16px;       line-height: 24px;       background: #fff url("bg.png");       color: #252519;       font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;       padding: 0 0 50px 50px;     }     div.container {       width: 720px;       margin: 50px 0 50px 50px;     }     p {       width: 550px;     }       #documentation p {         margin-bottom: 4px;       }     a, a:visited {       padding: 0 2px;       text-decoration: none;       background: #dbe6f3;       color: #3f6fa5;     }     a:active, a:hover {       color: #dbe6f3;       background: #3f6fa5;     }     h1, h2, h3, h4, h5, h6 {       margin-top: 40px;       width: 550px;       line-height: 1.25em;     }     b.header {       font-size: 18px;     }     span.alias {       font-size: 14px;       font-style: italic;       margin-left: 20px;     }     table, tr, td {       margin: 0; padding: 0;     }       td {         padding: 2px 12px 2px 0;       }     ul {       list-style-type: circle;       padding: 0 0 0 20px;     }       li {         width: 500px;         margin-bottom: 10px;       }     code, pre, tt {       font-family: Monaco, Consolas, "Lucida Console", monospace;       font-size: 12px;       line-height: 18px;       color: #555529;     }       pre {         font-size: 12px;         padding: 2px 0 2px 12px;         border-left: 6px solid #aaaa99;         margin: 0px 0 30px;       }            #ribbon {      line-height: 0;     }          #ribbon:hover {      background: none;     }          #ribbon img {      position: fixed;      top: 0;      right: 0;      border: 0;      z-index: 2;     }   </style> </head> <body>      <h1>Google News</h1>        <em>Chrome App</em>         <h1>About</h1>
 
 <p>This is a Google Chrome App that consumes Google news RSS feeds for easy viewing of new stories. It supports localization and will automatically detect the users language settings providing feeds from the source that best matches their language.</p>
 
@@ -18,7 +18,31 @@
 
 <h1>Documentation</h1>
 
-<p>The documentation is available at <a href="http://abstraktion.github.com/Google-Chrome-News/">http://abstraktion.github.com/Google-Chrome-News/</a> as inline comments.</p>
+<p>The main readme is available at <a href="http://abstraktion.github.com/Google-Chrome-News/">http://abstraktion.github.com/Google-Chrome-News/</a>. Each source file is documented inline with the code using <a href="http://rthauby.github.com/Paige/">Paige.js</a>.</p>
+
+<ul>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/background.html">background.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/app.html">app.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/setup.html">setup.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/background-setup.html">background-setup.js</a></li>
+<li>models/
+<ul><li><a href="http://abstraktion.github.com/Google-Chrome-News/article.html">article.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/displayed-articles.html">displayed-articles.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/search.html">search.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/setting.html">setting.js</a></li></ul></li>
+<li>views/
+<ul><li><a href="http://abstraktion.github.com/Google-Chrome-News/article-view.html">article-view.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/category-view.html">category-view.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/fullscreen-view.html">fullscreen-view.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/notifications-view.html">notifications-view.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/search-results-view.html">search-results-view.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/search-view.html">search-view.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/settings-view.html">settings-view.js</a></li>
+<li><a href="http://abstraktion.github.com/Google-Chrome-News/window-view.html">window-view.js</a></li></ul></li>
+<li>lib/
+<ul><li>feedParsers/
+<ul><li><a href="http://abstraktion.github.com/Google-Chrome-News/google.html">google.js</a></li></ul></li></ul></li>
+</ul>
 
 <h1>Source</h1>
 
