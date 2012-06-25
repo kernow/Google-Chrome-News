@@ -16,7 +16,7 @@ To load the application click the "Load unpacked extension..." button in the ext
 
 # Documentation
 
-The main readme is available at <http://abstraktion.github.com/Google-Chrome-News/>. Each source file is documented with inline
+The main readme is available at <http://abstraktion.github.com/Google-Chrome-News/>. Each source file is documented inline with the code using [Paige.js](http://rthauby.github.com/Paige/).
 
 * [background.js](http://abstraktion.github.com/Google-Chrome-News/background.html)
 * [app.js](http://abstraktion.github.com/Google-Chrome-News/app.html)
