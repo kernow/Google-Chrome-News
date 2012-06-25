@@ -16,7 +16,29 @@ To load the application click the "Load unpacked extension..." button in the ext
 
 # Documentation
 
-The documentation is available at <http://abstraktion.github.com/Google-Chrome-News/> as inline comments.
+The main readme is available at <http://abstraktion.github.com/Google-Chrome-News/>. Each source file is documented with inline
+
+* [background.js](http://abstraktion.github.com/Google-Chrome-News/background.html)
+* [app.js](http://abstraktion.github.com/Google-Chrome-News/app.html)
+* [setup.js](http://abstraktion.github.com/Google-Chrome-News/setup.html)
+* [background-setup.js](http://abstraktion.github.com/Google-Chrome-News/background-setup.html)
+* models/
+    * [article.js](http://abstraktion.github.com/Google-Chrome-News/article.html)
+    * [displayed-articles.js](http://abstraktion.github.com/Google-Chrome-News/displayed-articles.html)
+    * [search.js](http://abstraktion.github.com/Google-Chrome-News/search.html)
+    * [setting.js](http://abstraktion.github.com/Google-Chrome-News/setting.html)
+* views/
+    * [article-view.js](http://abstraktion.github.com/Google-Chrome-News/article-view.html)
+    * [category-view.js](http://abstraktion.github.com/Google-Chrome-News/category-view.html)
+    * [fullscreen-view.js](http://abstraktion.github.com/Google-Chrome-News/fullscreen-view.html)
+    * [notifications-view.js](http://abstraktion.github.com/Google-Chrome-News/notifications-view.html)
+    * [search-results-view.js](http://abstraktion.github.com/Google-Chrome-News/search-results-view.html)
+    * [search-view.js](http://abstraktion.github.com/Google-Chrome-News/search-view.html)
+    * [settings-view.js](http://abstraktion.github.com/Google-Chrome-News/settings-view.html)
+    * [window-view.js](http://abstraktion.github.com/Google-Chrome-News/window-view.html)
+* lib/
+    * feedParsers/
+        * [google.js](http://abstraktion.github.com/Google-Chrome-News/google.html)
 
 # Source
 
