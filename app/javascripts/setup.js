@@ -2,11 +2,16 @@
 
 // ### Authors
 // Jamie Dyer <http://kernowsoul.com>
+// Chris Garrett <http://abstraktion.co.uk>
 // ### Last changed
 // 2012-06-23
 
+// ## Overview
+// This file sets up the backbone application and initializes all classes required for the application
+// to run, this includes loading initial data where required.
+
 $(function() {
-  // initialize settings
+  // ### Initialize settings
 
   // Create a new settings model
   App.settings = new App.Settings();
@@ -17,7 +22,10 @@ $(function() {
 
       $.getJSON('javascripts/settings.json', function(data) {
 
+        // Store the default list of categories so it can be used throughout the application
         App.defaultCategories   = data.defaultCategories;
+
+        // Store the languages supported by the application
         App.supportedLanguages  = data.languages;
 
         // If no categories have been previously stored set the default categories
@@ -45,15 +53,16 @@ $(function() {
     }
   });
 
-  // send a message to the background process to stop working every 60 seconds
-  // currently there is no event for when the app window is closed so we get the main app to send a message to
-  // the background process every 60 seconds telling it to stay paused. There should be an onSuspend event at
-  // some point which can be used instead of this code
+  // Send a message to the background process to stop working every 60 seconds currently there
+  // is no event for when the app window is closed so we get the main app to send a message to
+  // the background process every 60 seconds telling it to stay paused. There should be an
+  // onSuspend event at some point which can be used instead of this code
   chrome.extension.sendMessage('pause');
   setInterval(function() {
     chrome.extension.sendMessage('pause');
   }, 60000);
 
+  // Send a message to the background app to say the main app has been opened
   chrome.extension.sendMessage('appOpened');
 
 });
@@ -65,6 +74,7 @@ App.initializeSettingsView = function(){ new App.SettingsView(); };
 
 App.initialize_window_view = function(){ new App.WindowView(); };
 
+// ### App.restoreState
 // Restore the state of the application on load, settings are loaded from the
 App.restoreState = function(){
   // Restore the state of an open article if needed
@@ -85,6 +95,8 @@ App.restoreState = function(){
   }
 };
 
+// ### App.initializeArticles
+// Handles all initialization to do with the articles collections and model
 App.initializeArticles = function(){
   // initialize filer
   App.filer = new Filer();
