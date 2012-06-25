@@ -5,8 +5,13 @@
 // ### Last changed
 // 2012-06-23
 
+// ## Overview
+// Handles notifying the user of new articles when the application is not running.
+
 App.NotificationsView = Backbone.View.extend({
 
+  // ### initialize
+  // Reset the view, add event listeners and setup the view to render every 30 seconds
   initialize: function(){
     var self = this;
     this.clearCounts();
@@ -20,22 +25,29 @@ App.NotificationsView = Backbone.View.extend({
     }, 30000);
   },
 
+  // ### clearCounts
+  // Reset the unread article counts
   clearCounts: function(){
-    console.log('clearing unread counts');
     this.unreadArticles       = 0;
     this.previousUnreadCount  = 0;
   },
 
+  // ### add
+  // increment the unread article count by 1
   add: function(){
     this.unreadArticles++;
   },
 
+  // ### render
+  // Display a notification to the user if required
   render: function(){
+
     // If background processing is not allowed to run simply return and do nothing
     if(!App.canBackgroundProcess){ return; }
 
     var self = this;
 
+    // Check if there are unread articles to notify the user about
     if(this.unreadArticles > 0 && this.previousUnreadCount != this.unreadArticles){
 
       this.previousUnreadCount = this.unreadArticles;
@@ -54,12 +66,13 @@ App.NotificationsView = Backbone.View.extend({
       // Handle notification click events
       this.notification.onclick = function(){
 
-        // Reset the unread counts to 0
-        this.unreadArticles       = 0;
-        this.previousUnreadCount  = 0;
+        // Reset the unread counts
+        self.clearCounts();
 
         // Launch the application
         chrome.management.launchApp(chrome.i18n.getMessage("@@extension_id"));
+
+        // Close the notification
         self.close();
       };
 
@@ -68,7 +81,8 @@ App.NotificationsView = Backbone.View.extend({
     }
   },
 
-  // close the notification window
+  // ### close
+  // Closes the notification window
   close: function(){
     this.notification.close();
   }
