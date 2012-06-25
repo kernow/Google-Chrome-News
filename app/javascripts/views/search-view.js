@@ -63,7 +63,7 @@ App.SearchView = Backbone.View.extend({
     $('#search_container').empty().show();
 
     // Perform the search with the value taken from the search form field
-    App.searchResults.getFromFeed(this.$('#search_term').val(), App.googleFeed);
+    App.searchResults.getFromFeed(App.googleFeed, this.$('#search_term').val());
     return false;
   },
 

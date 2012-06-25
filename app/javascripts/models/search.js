@@ -26,7 +26,7 @@ App.SearchResults = Backbone.Collection.extend({
   // ### getFromFeed(feed, query)
   // Accepts a feed object that processes the feed and a search query
   //
-  getFromFeed: function(query, feed){
+  getFromFeed: function(feed, query){
     // clear the collection of any previous results
     this.reset();
     var self = this;
