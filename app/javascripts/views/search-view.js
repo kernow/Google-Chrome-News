@@ -19,6 +19,9 @@ App.SearchView = Backbone.View.extend({
 
     // Trigger search on cmd+f
     $(window).bind("keyup", "f", function(){ self.toggleSearch(); });
+    
+    // Register click on sibling close search icon
+    $("#close_search").click(function(){ self.closeSearch(); });
   },
 
   // Set handlers for the click and submit events
@@ -36,8 +39,6 @@ App.SearchView = Backbone.View.extend({
     // Toggle body class to hide/show search
     $("body").toggleClass("search_triggered");
 
-    $("#search_trigger").text(($("body").hasClass("search_triggered")) ? "*" : "s");
-
     // If the search has been triggered, focus on the input
     if($("body").hasClass("search_triggered")){
       $("#search_term").focus();
@@ -50,12 +51,9 @@ App.SearchView = Backbone.View.extend({
   // ### performSearch
   // Performs a search via the Google news feed
   performSearch: function(){
-
-    // Toggle body class to hide/show search
-    $("body").removeClass("search_triggered");
-
-    $("#search_trigger").text("s");
-
+    // Hide search form on execution
+    $("body").removeClass("search_triggered").addClass("search_performed");
+    
     // Hide the main news container DOM element
     $('#news_container').hide();
 
@@ -69,7 +67,9 @@ App.SearchView = Backbone.View.extend({
 
   // ### closeSearch
   closeSearch: function(){
-
+    // Remove class, hiding search specific UI elements
+    $("body").removeClass("search_performed");
+    
     // Show the main news container DOM element
     $('#news_container').show();
 
