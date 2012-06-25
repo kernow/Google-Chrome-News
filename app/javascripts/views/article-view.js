@@ -63,9 +63,6 @@ App.ArticlesView = Backbone.View.extend({
   },
   remove: function(article){
     $('#article-' + article.cid).remove();
-    // We don't call postRender after removing an article as it's an expensive operation
-    // and can slow down the browser. Instead we listen out of the articlesFromCategoryRemoved event
-    // and call postRender then
   },
   reset: function(){
     this.$el.empty();
