@@ -6,7 +6,7 @@
 // 2012-06-23
 
 // ## App.DisplayedArticles
-// The App.DisplayedArticles is used to store articles that are to be
+// The App.DisplayedArticles is used to keep track of articles that are to be
 // displayed. It handles the loading of new articles from the data store and firing
 // events that views can listen for.
 
@@ -18,7 +18,10 @@ App.DisplayedArticles = Backbone.Collection.extend({
   model:      App.Article,
 
   // ### initialize
+  // Setup listeners for various events raised by the articles collection
   initialize: function(){
+
+    // Set loading to false, use to track if the class is currently loading data
     this.loading = false;
 
     App.articles.on('allRemoved', this.allRemoved, this);
@@ -40,11 +43,14 @@ App.DisplayedArticles = Backbone.Collection.extend({
   // displayed is less than the value of App.perPage
   articleAdded: function(article){
     var oldestTime;
+
+    // Work out the timestamp of the oldest article displayed or set to 0
     if(this.length > 0){
       oldestTime = this.last().get('updatedTime');
     }else{
       oldestTime = 0;
     }
+
     // Add the article to the collection if it's newer than the oldest article
     // or if there are less articles displayed than should be on a single page
     if(this.length < App.perPage || oldestTime < article.get('updatedTime')){
@@ -53,18 +59,22 @@ App.DisplayedArticles = Backbone.Collection.extend({
     }
   },
 
-  // ### removeWithCategory
+  // ### removeWithCategory(category)
+  // Removes all articles with the specified category then triggers the `articlesRemoved` event
   removeWithCategory: function(category){
     this.remove(this.where({ 'categoryEnglish': category }));
     this.trigger("articlesRemoved", category);
   },
 
   // ### allRemoved
+  // Removes all articles form the collection
   allRemoved: function(){
     this.reset();
   },
 
-  // ## filterCategoryChanged
+  // ## filterCategoryChanged(category)
+  // When the filter category is changed we need to remove all articles from the collection
+  // and load in new articles
   filterCategoryChanged: function(category){
     this.reset();
     this.load();
