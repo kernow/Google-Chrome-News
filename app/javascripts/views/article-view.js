@@ -72,16 +72,15 @@ App.ArticlesView = Backbone.View.extend({
   // This function is called whenever an article is added to the collection
   add: function(article){
 
-    // Create a view for the article
-    var articleView = this.createArtilceView(article);
-
-    // prepend the article to the articles container
-    this.$el.prepend(articleView.render().el);
-
-
+    // Only render the article if its in a category we are interested in
     var currentCategory = App.settings.getFilterCategory();
-    if(currentCategory != 'allStories' && currentCategory != article.get('categoryEnglish')){
-      articleView.$el.hide();
+    if(currentCategory == 'allStories' || currentCategory == article.get('categoryEnglish')){
+
+      // Create a view for the article
+      var articleView = this.createArtilceView(article);
+
+      // prepend the article to the articles container
+      this.$el.prepend(articleView.render().el);
     }
   },
 
