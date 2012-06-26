@@ -62,8 +62,22 @@ var backgroundJavascriptFiles = [
   "app/javascripts/background-setup.js"
 ];
 
+var cssFiles = [
+  "app/stylesheets/fonts/pictos.css",
+  "app/stylesheets/reset.css",
+  "app/stylesheets/base.css",
+  "app/stylesheets/masonry.css",
+  "app/stylesheets/ui/navigation.css",
+  "app/stylesheets/ui/headings.css",
+  "app/stylesheets/ui/browser.css",
+  "app/stylesheets/ui/news_index.css",
+  "app/stylesheets/ui/search.css",
+  "app/stylesheets/specific/categories.css",
+  "app/stylesheets/specific/settings.css"
+];
+
 desc('Build the application.');
-task('build', ['build:javascripts', 'build:docs']);
+task('build', ['build:javascripts', 'build:css', 'build:docs']);
 
 namespace('build', function () {
   desc('Precompile the applications templates.');
@@ -97,13 +111,29 @@ namespace('build', function () {
     });
   });
 
+  desc('Join and minify the CSS');
+  task('css', [], function(){
+    jake.logger.log('Started compressing CSS files...');
+    new compressor.minify({
+      type: 'yui-css',
+      fileIn: cssFiles,
+      fileOut: 'app/stylesheets/minified.css',
+      callback: function(error){
+          jake.logger.log('Finished compressing CSS');
+          if(error){
+            jake.logger.log(error);
+          }
+      }
+    });
+  });
+
   desc('Join and minify the JavaScript');
   task('javascripts', ['javascripts:foreground', 'javascripts:background']);
 
   namespace('javascripts', function () {
 
     task('foreground', ['templates'], function(){
-      jake.logger.log('Compressing foreground JavaScript files...');
+      jake.logger.log('Started compressing foreground JavaScript files...');
       new compressor.minify({
         type: 'uglifyjs',
         fileIn: foregroundJavascriptFiles,
@@ -118,7 +148,7 @@ namespace('build', function () {
     });
 
     task('background', [], function(){
-      jake.logger.log('Compressing background JavaScript files...');
+      jake.logger.log('Started compressing background JavaScript files...');
       new compressor.minify({
         type: 'uglifyjs',
         fileIn: backgroundJavascriptFiles,
