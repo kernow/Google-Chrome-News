@@ -37,7 +37,7 @@ namespace('build', function () {
   task('docs', [], function(){
     jake.logger.log('Building documentation...');
     var commands = [
-      "rm -r ./docs/*",
+      "rm -fr ./docs/*",
       "paige"
     ];
     jake.exec(commands, function () {
