@@ -25,6 +25,7 @@
         "javascripts/models/setting.js",
         "javascripts/models/article.js",
         "javascripts/views/notifications-view.js",
+        "javascripts/setup.js",
         "javascripts/background-setup.js"
       ]
     }
