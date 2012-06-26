@@ -120,17 +120,17 @@ The application is built using [backbone.js](http://backbonejs.org/) and general
 
 ## Google Feed uri's
 
-* Top Stories   http://news.google.com/news?ned=uk&output=rss&topic=h
-* News Near You http://news.google.com/news?ned=uk&output=rss&geo=detect_metro_area
-* World         http://news.google.com/news?ned=uk&output=rss&topic=w
-* Business      http://news.google.com/news?ned=uk&output=rss&topic=b
-* U.K.          http://news.google.com/news?ned=uk&output=rss&topic=n
-* Technology    http://news.google.com/news?ned=uk&output=rss&topic=tc
-* Entertainment http://news.google.com/news?ned=uk&output=rss&topic=e
-* Sports        http://news.google.com/news?ned=uk&output=rss&topic=s
-* Science       http://news.google.com/news?ned=uk&output=rss&topic=snc
-* Health        http://news.google.com/news?ned=uk&output=rss&topic=m
-* Spotlight     http://news.google.com/news?ned=uk&output=rss&topic=ir
+* [Top Stories](http://news.google.com/news?ned=uk&output=rss&topic=h)
+* [News Near You](http://news.google.com/news?ned=uk&output=rss&geo=detect_metro_area)
+* [World](http://news.google.com/news?ned=uk&output=rss&topic=w)
+* [Business](http://news.google.com/news?ned=uk&output=rss&topic=b)
+* [U.K.](http://news.google.com/news?ned=uk&output=rss&topic=n)
+* [Technology](http://news.google.com/news?ned=uk&output=rss&topic=tc)
+* [Entertainment](http://news.google.com/news?ned=uk&output=rss&topic=e)
+* [Sports](http://news.google.com/news?ned=uk&output=rss&topic=s)
+* [Science](http://news.google.com/news?ned=uk&output=rss&topic=snc)
+* [Health](http://news.google.com/news?ned=uk&output=rss&topic=m)
+* [Spotlight](http://news.google.com/news?ned=uk&output=rss&topic=ir)
 
 ## Languages supported by Google news feeds
 
