@@ -31,13 +31,13 @@
     <script src="javascripts/vendor/inflection.js"></script>
 
     <script src="javascripts/app.js"></script>
-    <script src="javascripts/ui.js"></script>
     <script src="javascripts/lib/feedParsers/google.js"></script>
     <script src="javascripts/models/setting.js"></script>
     <script src="javascripts/models/article.js"></script>
     <script src="javascripts/models/displayed-articles.js"></script>
     <script src="javascripts/models/search.js"></script>
     <script src="javascripts/views/window-view.js"></script>
+    <script src="javascripts/views/intent-view.js"></script>
     <script src="javascripts/views/article-view.js"></script>
     <script src="javascripts/views/category-view.js"></script>
     <script src="javascripts/views/search-view.js"></script>
@@ -49,15 +49,13 @@
   <body>
     <nav id="main_nav">
       <ul class="icon_list">
+        <li class="icon" id="close_search"><a href="#">*</a></li>
         <li class="icon" id="search_menu">
           <a href="#" id="search_trigger">s</a>
           <form id="search_form">
             <input type="text" id="search_term" />
             <button id="search_button" type="submit">s</button>
           </form>
-        </li>
-        <li class="icon">
-          <a href="#" id="close_search">*</a>
         </li>
         <li class="category_list_trigger">
           <a href="/categories/" id="categories_trigger">Categories</a>
@@ -91,8 +89,8 @@
       <header class="browser_controls">
         <h2 class="secondary_heading browser_heading"></h2>
         <nav class="browser_tools">
-          <a href="#" class="share_trigger">R</a>
-          <a href="#" class="save_trigger">c</a>
+          <a href="#" class="intent_trigger share_trigger">R</a>
+          <a href="#" class="intent_trigger save_trigger">c</a>
           <a href="#" class="close_browser_trigger">*</a>
         </nav>
       </header>

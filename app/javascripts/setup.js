@@ -49,6 +49,9 @@ $(function() {
 
         // Initialize categories list
         new App.CategoriesListView();
+        
+        // Initialize Intent view for sharing
+        new App.IntentView();
       });
     }
   });
