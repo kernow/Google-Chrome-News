@@ -21,18 +21,8 @@ App.setup.initializeMessageHandlers = function(){
   // the background process every 60 seconds telling it to stay paused. There should be an onSuspend event at
   // some point which can be used, we can then tell the background process to resume when the main app window
   // is closed
-  chrome.extension.onMessage.addListener(
-    function(message, sender, sendResponse) {
-      switch(message){
-        case 'pause':
-          // Stop processing new articles, but set to automatically resume in 70 seconds
-          App.pauseProcessing(90000);
-          break;
-        case 'appOpened':
-          // When the main app is opened clear any unread notification counts as we assume everything is now read
-          App.notificationsView.clearCounts();
-          break;
-      }
+  chrome.runtime.onSuspend.addListener( function() {
+    App.pauseProcessing(90000);
   });
 };
 

@@ -16,13 +16,9 @@
 // the background process every 60 seconds telling it to stay paused. There should be an
 // onSuspend event at some point which can be used instead of this code
 App.setup.initializeMessaging = function(){
-  chrome.extension.sendMessage('pause');
-  setInterval(function() {
-    chrome.extension.sendMessage('pause');
-  }, 60000);
-
-  // Send a message to the background app to say the main app has been opened
-  chrome.extension.sendMessage('appOpened');
+  chrome.runtime.onSuspend.addListener( function() {
+    App.pauseProcessing(90000);
+  });
 };
 
 // ### view initalization functions
